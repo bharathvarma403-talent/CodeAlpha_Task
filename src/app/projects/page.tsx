@@ -3,7 +3,8 @@
 import { useState, useCallback } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useProjects, type KanbanProject } from '@/hooks/useProjects'
-import { updateTask, createTask, type UpdateTaskRequest } from '@/lib/api'
+import { updateTask, createTask, generateIdempotencyKey } from '@/lib/api'
+import { ConflictResolutionModal, type ConflictData } from '@/components/ui/ConflictResolutionModal'
 import { cn } from '@/lib/utils'
 
 // ---------------------------------------------------------------------------
@@ -107,19 +108,23 @@ function StatusColumn({
     e.preventDefault()
     if (!newTitle.trim() || creating) return
     setCreating(true)
+    // Idempotency key prevents duplicate tasks if user double-submits or network retries
+    const idempotencyKey = generateIdempotencyKey()
     try {
+      const workspaceId = tasks[0]?.workspace_id ?? project.tasks?.[0]?.workspace_id ?? ''
       const result = await createTask({
-        workspace_id: tasks[0]?.workspace_id ?? '',
+        workspace_id: workspaceId,
         project_id: project.id,
         title: newTitle.trim(),
         status_id: status.id,
+        idempotencyKey,
       })
       if (result.error) {
         console.error('Create task failed:', result.error.message)
       } else {
         setNewTitle('')
         setShowCreateForm(false)
-        queryClient.invalidateQueries({ queryKey: ['projects'] })
+        // Realtime will apply the INSERT event; no explicit invalidation needed
       }
     } finally {
       setCreating(false)
@@ -218,7 +223,10 @@ function StatusColumn({
 // ---------------------------------------------------------------------------
 function ProjectBoard({ project }: { project: KanbanProject }) {
   const queryClient = useQueryClient()
-  const [conflictError, setConflictError] = useState<string | null>(null)
+  const [conflict, setConflict] = useState<ConflictData | null>(null)
+  const [pendingMove, setPendingMove] = useState<{ taskId: string; newStatusId: string } | null>(null)
+
+  const workspaceId = project.tasks[0]?.workspace_id ?? ''
 
   const moveMutation = useMutation({
     mutationFn: async ({ taskId, newStatusId, updatedAt }: { taskId: string; newStatusId: string; updatedAt: string }) => {
@@ -226,21 +234,16 @@ function ProjectBoard({ project }: { project: KanbanProject }) {
         id: taskId,
         status_id: newStatusId,
         expected_updated_at: updatedAt,
+        _pendingUpdates: { status_id: newStatusId },
       })
-      if (result.error) {
-        if (result.error.isConflict) {
-          throw new Error('CONFLICT:' + (result.error.message ?? 'Task was modified by someone else.'))
-        }
-        throw new Error(result.error.message)
-      }
+      if (result.error) throw result.error
       return result.data
     },
     onMutate: async ({ taskId, newStatusId }) => {
-      // Optimistic update
-      await queryClient.cancelQueries({ queryKey: ['projects'] })
-      const prev = queryClient.getQueryData<KanbanProject[]>(['projects', project.tasks[0]?.workspace_id ?? ''])
+      await queryClient.cancelQueries({ queryKey: ['projects', workspaceId] })
+      const prev = queryClient.getQueryData<KanbanProject[]>(['projects', workspaceId])
       queryClient.setQueryData<KanbanProject[]>(
-        ['projects', project.tasks[0]?.workspace_id ?? ''],
+        ['projects', workspaceId],
         old => old?.map(p => p.id === project.id
           ? { ...p, tasks: p.tasks.map(t => t.id === taskId ? { ...t, status_id: newStatusId } : t) }
           : p
@@ -248,19 +251,14 @@ function ProjectBoard({ project }: { project: KanbanProject }) {
       )
       return { prev }
     },
-    onError: (err, _vars, ctx) => {
-      // Roll back optimistic update
-      if (ctx?.prev) {
-        queryClient.setQueryData(['projects', project.tasks[0]?.workspace_id ?? ''], ctx.prev)
+    onError: (err, vars, ctx) => {
+      if (ctx?.prev) queryClient.setQueryData(['projects', workspaceId], ctx.prev)
+      const apiErr = err as { isConflict?: boolean; conflict?: ConflictData; message?: string }
+      if (apiErr.isConflict && apiErr.conflict) {
+        const task = project.tasks.find(t => t.id === vars.taskId)
+        setConflict({ ...apiErr.conflict, taskTitle: task?.title ?? 'Task' })
+        setPendingMove({ taskId: vars.taskId, newStatusId: vars.newStatusId })
       }
-      const msg = (err as Error).message
-      if (msg.startsWith('CONFLICT:')) {
-        setConflictError(msg.replace('CONFLICT:', ''))
-        setTimeout(() => setConflictError(null), 5000)
-      }
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['projects'] })
     },
   })
 
@@ -270,23 +268,34 @@ function ProjectBoard({ project }: { project: KanbanProject }) {
     moveMutation.mutate({ taskId, newStatusId, updatedAt: task.updated_at })
   }, [project.tasks, moveMutation])
 
+  const handleConflictResolve = useCallback(async (resolvedUpdates: Record<string, unknown>) => {
+    if (!conflict || !pendingMove) return
+    setConflict(null)
+    // Re-apply with no expected_updated_at (force-write after user chose resolution)
+    const result = await updateTask({
+      id: pendingMove.taskId,
+      ...(resolvedUpdates as Record<string, unknown>),
+    })
+    if (!result.error) {
+      queryClient.invalidateQueries({ queryKey: ['projects', workspaceId] })
+    }
+    setPendingMove(null)
+  }, [conflict, pendingMove, workspaceId, queryClient])
+
   return (
     <div className="relative">
-      {conflictError && (
-        <div className="absolute top-0 inset-x-0 z-50 mx-auto max-w-md">
-          <div className="flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 rounded-lg px-4 py-3 text-sm">
-            <span className="material-symbols-outlined text-[18px]">warning</span>
-            <span>{conflictError}</span>
-          </div>
-        </div>
+      {/* Full conflict resolution modal */}
+      {conflict && (
+        <ConflictResolutionModal
+          conflict={conflict}
+          onResolve={handleConflictResolve}
+          onDismiss={() => { setConflict(null); setPendingMove(null) }}
+        />
       )}
 
       {/* Board header */}
       <div className="flex items-center gap-3 mb-6">
-        <div
-          className="w-3 h-3 rounded-full shrink-0"
-          style={{ backgroundColor: project.color }}
-        />
+        <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
         <h2 className="font-h2 text-h2 text-on-surface">{project.name}</h2>
         <span className="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">
           {project.tasks.length} tasks

@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { createBrowserClient } from '@supabase/ssr'
 import { useEffect, useRef } from 'react'
 import { useWorkspaces } from './useWorkspaces'
+import { applyTaskEvent, type TaskRecord, type RealtimeEvent } from '@/lib/realtimeReducer'
 
 type ProjectStatus = {
   id: string
@@ -12,23 +13,6 @@ type ProjectStatus = {
   wip_limit: number | null
 }
 
-type Task = {
-  id: string
-  title: string
-  status_id: string | null
-  status: string
-  priority: string
-  assignee_id: string | null
-  due_date: string | null
-  sort_order: number
-  created_at: string
-  updated_at: string
-  identifier: string | null
-  is_archived: boolean
-  project_id: string
-  workspace_id: string
-}
-
 export type KanbanProject = {
   id: string
   name: string
@@ -36,7 +20,7 @@ export type KanbanProject = {
   icon: string | null
   identifier: string | null
   statuses: ProjectStatus[]
-  tasks: Task[]
+  tasks: TaskRecord[]
 }
 
 function getClient() {
@@ -50,7 +34,6 @@ export function useProjects() {
   const { data: workspaces } = useWorkspaces()
   const workspaceId = workspaces?.[0]?.id
   const queryClient = useQueryClient()
-  const channelRef = useRef<ReturnType<ReturnType<typeof getClient>['channel']> | null>(null)
 
   const query = useQuery({
     queryKey: ['projects', workspaceId],
@@ -59,7 +42,6 @@ export function useProjects() {
     queryFn: async (): Promise<KanbanProject[]> => {
       const supabase = getClient()
 
-      // Fetch projects with statuses
       const { data: projects, error: projErr } = await supabase
         .from('projects')
         .select(`
@@ -75,21 +57,19 @@ export function useProjects() {
 
       const projectIds = projects.map(p => p.id)
 
-      // Fetch all non-archived tasks for these projects (single batched query, no N+1)
       const { data: tasks, error: taskErr } = await supabase
         .from('tasks')
         .select('id, title, status_id, status, priority, assignee_id, due_date, sort_order, created_at, updated_at, identifier, is_archived, project_id, workspace_id')
         .in('project_id', projectIds)
         .eq('is_archived', false)
-        .is('parent_id', null) // top-level tasks only on kanban
+        .is('parent_id', null)
         .order('sort_order', { ascending: true })
 
       if (taskErr) throw taskErr
 
-      // Group tasks by project
-      const tasksByProject = (tasks ?? []).reduce<Record<string, Task[]>>((acc, task) => {
+      const tasksByProject = (tasks ?? []).reduce<Record<string, TaskRecord[]>>((acc, task) => {
         const arr = acc[task.project_id] ?? []
-        arr.push(task)
+        arr.push(task as TaskRecord)
         acc[task.project_id] = arr
         return acc
       }, {})
@@ -108,19 +88,39 @@ export function useProjects() {
     },
   })
 
-  // Realtime subscription: task INSERT/UPDATE/DELETE
+  // Realtime: deterministic in-place cache surgery (no full refetch on update events)
   useEffect(() => {
     if (!workspaceId) return
 
     const supabase = getClient()
 
-    // Debounce rapid events to prevent flickering
-    let debounceTimer: ReturnType<typeof setTimeout> | null = null
-    const scheduleRefetch = () => {
-      if (debounceTimer) clearTimeout(debounceTimer)
-      debounceTimer = setTimeout(() => {
-        queryClient.invalidateQueries({ queryKey: ['projects', workspaceId] })
-      }, 300)
+    // Pending INSERT/DELETE events queue (debounced to batch rapid creation)
+    const pendingInsertDelete: RealtimeEvent[] = []
+    let batchTimer: ReturnType<typeof setTimeout> | null = null
+
+    const flushInsertDeleteBatch = () => {
+      if (pendingInsertDelete.length === 0) return
+      const batch = pendingInsertDelete.splice(0)
+      queryClient.setQueryData<KanbanProject[]>(
+        ['projects', workspaceId],
+        old => {
+          if (!old) return old
+          return old.map(project => {
+            const relevantEvents = batch.filter(e => {
+              if (e.eventType === 'INSERT' || e.eventType === 'UPDATE') {
+                return (e.new as TaskRecord).project_id === project.id
+              }
+              return true // DELETE — reducer handles not-found gracefully
+            })
+            if (relevantEvents.length === 0) return project
+            let tasks = project.tasks
+            for (const event of relevantEvents) {
+              tasks = applyTaskEvent(tasks, event)
+            }
+            return { ...project, tasks }
+          })
+        }
+      )
     }
 
     const channel = supabase
@@ -134,34 +134,39 @@ export function useProjects() {
           filter: `workspace_id=eq.${workspaceId}`,
         },
         (payload) => {
-          // ID-based deduplication via React Query cache
-          const existingData = queryClient.getQueryData<KanbanProject[]>(['projects', workspaceId])
-          
-          if (payload.eventType === 'UPDATE' && payload.new && existingData) {
-            const newTask = payload.new as Task
-            // Stale-check: only apply if the event is newer than cached data
-            let isStale = false
-            for (const project of existingData) {
-              const cached = project.tasks.find(t => t.id === newTask.id)
-              if (cached && new Date(cached.updated_at) >= new Date(newTask.updated_at)) {
-                isStale = true
-                break
-              }
-            }
-            if (isStale) return
-          }
+          const eventType = payload.eventType as 'INSERT' | 'UPDATE' | 'DELETE'
+          const event = { eventType, new: payload.new, old: payload.old } as RealtimeEvent
 
-          scheduleRefetch()
+          if (eventType === 'UPDATE') {
+            // UPDATEs: apply directly to cache via deterministic reducer (no debounce, low latency)
+            queryClient.setQueryData<KanbanProject[]>(
+              ['projects', workspaceId],
+              old => {
+                if (!old) return old
+                const incomingTask = payload.new as TaskRecord
+                // Only update the specific project this task belongs to
+                return old.map(project => {
+                  if (!project.tasks.some(t => t.id === incomingTask.id) && project.id !== incomingTask.project_id) {
+                    return project
+                  }
+                  const tasks = applyTaskEvent(project.tasks, event)
+                  return { ...project, tasks }
+                })
+              }
+            )
+          } else {
+            // INSERT/DELETE: batch for 200ms to coalesce rapid-fire events
+            pendingInsertDelete.push(event)
+            if (batchTimer) clearTimeout(batchTimer)
+            batchTimer = setTimeout(flushInsertDeleteBatch, 200)
+          }
         }
       )
       .subscribe()
 
-    channelRef.current = channel
-
     return () => {
-      if (debounceTimer) clearTimeout(debounceTimer)
+      if (batchTimer) clearTimeout(batchTimer)
       supabase.removeChannel(channel)
-      channelRef.current = null
     }
   }, [workspaceId, queryClient])
 
