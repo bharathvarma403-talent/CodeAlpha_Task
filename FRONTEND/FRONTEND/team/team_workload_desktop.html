@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Workload - Apex</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+</head>
+<body class="bg-background text-on-background font-body-base overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen p-4 bg-gray-100 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 fixed left-0 top-0 w-[240px] font-inter text-[13px] leading-tight z-50">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<img alt="Organization Avatar" class="w-8 h-8 rounded-lg object-cover" data-alt="A modern corporate logo or workspace avatar. Clean, minimal, high contrast dark mode styling. Subtle gradient background with a sleek architectural or geometric icon inside." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpwFzjR4y5lnJqTpwgDrmPJ0QwoONMwEkWLbSOrR-Lj1Aavdn8bQAK8wF4kTywSzJHN4ozSgHnd39T01k7qBFJmwlUd8yJiwqL5ZKEo_7dyWoh4M0ZHhUlk0M4kAM6_Z-3P4x07dQc1E3DKB28IGlEzdQ0_Bnu1GWmGmK5wExn0jGdN1_i-ZRAx_9YLJS9U_Ds-k1O0c4xEmFuIhw5JzhKa1jz963OrGsO5pR-tMtL6wJMMxye2bh73VAOHloL4OFlb7GQylf4S4"/>
+<div>
+<div class="text-lg font-black text-gray-900 dark:text-gray-50">Apex</div>
+<div class="text-gray-500 dark:text-gray-400 text-xs">Workspace</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full mb-6 bg-primary-container text-on-primary-container font-medium py-2 rounded-DEFAULT flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            New Project
+        </button>
+<!-- Main Nav -->
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+<span>Search</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="inbox">inbox</span>
+<span>Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="tactic">tactic</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-violet-600 dark:text-violet-400 bg-gray-200/50 dark:bg-gray-800/50 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="group">group</span>
+<span>Teams</span>
+</a>
+</div>
+<!-- Footer Nav -->
+<div class="flex flex-col gap-1 mt-auto pt-4 border-t border-gray-200 dark:border-gray-800">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="star">star</span>
+<span>Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Workspace Area -->
+<div class="flex-1 flex flex-col ml-0 md:ml-[240px] min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-6 h-14 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 font-inter text-sm font-medium z-40 relative">
+<!-- Left Side / Nav Links -->
+<div class="flex items-center gap-6 h-full">
+<a class="text-gray-500 dark:text-gray-400 pb-2 h-full flex items-end hover:text-gray-900 dark:hover:text-gray-50 transition-all duration-200 ease-in-out" href="#">Board</a>
+<a class="text-gray-500 dark:text-gray-400 pb-2 h-full flex items-end hover:text-gray-900 dark:hover:text-gray-50 transition-all duration-200 ease-in-out" href="#">List</a>
+<a class="text-violet-600 dark:text-violet-400 border-b-2 border-violet-600 dark:border-violet-400 pb-2 h-full flex items-end transition-all duration-200 ease-in-out" href="#">Timeline</a>
+<a class="text-gray-500 dark:text-gray-400 pb-2 h-full flex items-end hover:text-gray-900 dark:hover:text-gray-50 transition-all duration-200 ease-in-out" href="#">Dashboard</a>
+</div>
+<!-- Right Side / Actions -->
+<div class="flex items-center gap-4 text-gray-500 dark:text-gray-400">
+<button class="hover:text-gray-900 dark:hover:text-gray-50 transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span></button>
+<button class="hover:text-gray-900 dark:hover:text-gray-50 transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="help">help</span></button>
+<button class="hover:text-gray-900 dark:hover:text-gray-50 transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="account_circle">account_circle</span></button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-x-auto overflow-y-auto bg-surface relative p-6">
+<div class="flex justify-between items-center mb-6 min-w-[1200px]">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface mb-1">Frontend Engineering</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sprint 42 (June 10 - June 24)</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-DEFAULT bg-surface-container border border-outline-variant text-on-surface text-body-sm font-medium hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> Filter
+                    </button>
+<button class="px-3 py-1.5 rounded-DEFAULT bg-primary text-on-primary text-body-sm font-medium hover:bg-primary-fixed-dim transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">add_task</span> Allocate
+                    </button>
+</div>
+</div>
+<!-- Gantt Container -->
+<div class="min-w-[1200px] border border-outline-variant rounded-lg bg-surface-container-low overflow-hidden">
+<!-- Header Row -->
+<div class="flex border-b border-outline-variant bg-surface-container text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider sticky top-0 z-10">
+<div class="w-64 flex-shrink-0 p-3 border-r border-outline-variant flex items-center">Team Member</div>
+<!-- Days Columns -->
+<div class="flex-1 flex">
+<!-- Week 1 -->
+<div class="flex-1 flex flex-col border-r border-outline-variant border-dashed">
+<div class="text-center py-1 border-b border-outline-variant border-dashed opacity-50">W24</div>
+<div class="flex flex-1">
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0">10<br/><span class="opacity-50 font-normal">M</span></div>
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0">11<br/><span class="opacity-50 font-normal">T</span></div>
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0 bg-surface-container-high">12<br/><span class="opacity-50 font-normal">W</span></div>
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0">13<br/><span class="opacity-50 font-normal">T</span></div>
+<div class="flex-1 text-center py-2">14<br/><span class="opacity-50 font-normal">F</span></div>
+</div>
+</div>
+<!-- Week 2 -->
+<div class="flex-1 flex flex-col">
+<div class="text-center py-1 border-b border-outline-variant border-dashed opacity-50">W25</div>
+<div class="flex flex-1">
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0">17<br/><span class="opacity-50 font-normal">M</span></div>
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0">18<br/><span class="opacity-50 font-normal">T</span></div>
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0">19<br/><span class="opacity-50 font-normal">W</span></div>
+<div class="flex-1 text-center py-2 border-r border-outline-variant border-dashed last:border-r-0">20<br/><span class="opacity-50 font-normal">T</span></div>
+<div class="flex-1 text-center py-2">21<br/><span class="opacity-50 font-normal">F</span></div>
+</div>
+</div>
+</div>
+<div class="w-24 flex-shrink-0 p-3 border-l border-outline-variant flex items-center justify-end">Points</div>
+</div>
+<!-- Body -->
+<div class="flex flex-col relative">
+<!-- Row 1: Normal Load -->
+<div class="flex border-b border-outline-variant hover:bg-surface-container-high transition-colors group h-16 relative">
+<!-- Member Info -->
+<div class="w-64 flex-shrink-0 p-3 border-r border-outline-variant flex items-center gap-3 bg-surface-container-low group-hover:bg-surface-container-high transition-colors z-10">
+<img alt="Sarah Jenkins" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="Portrait of a young professional woman. Dark aesthetic, high contrast. Used as an avatar in a complex UI dashboard. Focused expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-EZsKlZ4Yi5Hy5ZUcwGyNbj8hbhtPLy9DQmMluHrIksbDnQLTNQU2FGqZg8KqjQtTwk6IFhP04C2i2xbhahCeyC5WRJ4-q54RA9ucD8uK7Whrd_jX-7LWYlx0g-Fy1EXf2Nbcdas0QZ7-lXXyzz913qUxIxbV7aYNdfetyIPoxJ_ubVvBP5Hw-OpN248ey1ylPY3TEDp6A8UDPnceZ09svbL9wA0nDV0PE_cF4h0K7ZpNT_qjvROLUNq_liz1WSPwqrl8jduHczo"/>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium">Sarah Jenkins</div>
+<div class="font-mono text-mono text-on-surface-variant">Senior Eng</div>
+</div>
+</div>
+<!-- Timeline Grid (Background) -->
+<div class="flex-1 flex absolute left-64 right-24 top-0 bottom-0 pointer-events-none">
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed bg-surface-container-high/30"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1 border-r border-outline-variant border-dashed"></div>
+<div class="flex-1"></div>
+</div>
+<!-- Task Bars -->
+<div class="flex-1 relative">
+<!-- Task 1 (High Priority, 3 days) -->
+<div class="absolute top-3 left-[0%] right-[70%] h-10 bg-tertiary-container/20 border border-tertiary-container rounded-DEFAULT mx-1 group/task cursor-pointer hover:bg-tertiary-container/30 transition-colors flex items-center px-2">
+<span class="w-1.5 h-full absolute left-0 top-0 bg-tertiary rounded-l-DEFAULT"></span>
+<span class="font-body-sm text-body-sm text-tertiary font-medium truncate ml-2">FE-201: Auth Flow</span>
+<!-- Hover Actions / Reassign -->
+<button class="ml-auto opacity-0 group-hover/task:opacity-100 transition-opacity bg-surface-container px-2 py-1 rounded text-xs text-on-surface-variant border border-outline-variant hover:text-on-surface hover:border-outline flex items-center gap-1 z-20">
+<span class="material-symbols-outlined text-[14px]">swap_horiz</span>
+</button>
+<!-- Mock Tooltip -->
+<div class="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-surface-container-highest border border-outline-variant rounded shadow-xl p-2 opacity-0 group-hover/task:opacity-100 transition-opacity pointer-events-none z-30 min-w-[200px]">
+<div class="font-body-sm text-body-sm text-on-surface font-medium mb-1">Implement OAuth2 Login</div>
+<div class="flex justify-between items-center text-xs text-on-surface-variant">
+<span>Status: In Progress</span>
+<span class="px-1.5 py-0.5 bg-surface-container-low rounded text-tertiary font-mono">5 pts</span>
+</div>
+</div>
+</div>
+<!-- Task 2 (Normal Priority, 4 days) -->
+<div class="absolute top-3 left-[40%] right-[20%] h-10 bg-primary-container/10 border border-primary-container/30 rounded-DEFAULT mx-1 group/task cursor-pointer hover:bg-primary-container/20 transition-colors flex items-center px-2">
+<span class="w-1.5 h-full absolute left-0 top-0 bg-primary-container rounded-l-DEFAULT"></span>
+<span class="font-body-sm text-body-sm text-primary-container font-medium truncate ml-2">FE-215: Dashboard Widgets</span>
+<!-- Hover Actions / Reassign -->
+<button class="ml-auto opacity-0 group-hover/task:opacity-100 transition-opacity bg-surface-container px-2 py-1 rounded text-xs text-on-surface-variant border border-outline-variant hover:text-on-surface hover:border-outline flex items-center gap-1 z-20">
+<span class="material-symbols-outlined text-[14px]">swap_horiz</span>
+</button>
+</div>
+</div>
+<!-- Points -->
+<div class="w-24 flex-shrink-0 p-3 border-l border-outline-variant flex items-center justify-end bg-surface-container-low group-hover:bg-surface-container-high transition-colors z-10">
+<span class="font-mono text-mono text-on-surface bg-surface-container-highest px-2 py-1 rounded">8 pts</span>
+</div>
+</div>
+<!-- Row 2: Overloaded Load (Red Tint) -->
+<div class="flex border-b border-outline-variant hover:bg-error-container/20 bg-error-container/10 transition-colors group h-16 relative">
+<!-- Member Info -->
+<div class="w-64 flex-shrink-0 p-3 border-r border-outline-variant flex items-center gap-3 bg-transparent z-10">
+<img alt="Marcus Chen" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="Portrait of a male software engineer. Professional headshot for an enterprise dashboard. Moody dark lighting, focused expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmTg9ZH77ARLpXC4UzHsI5TSNul60zFTpwxenoPSqtaYneKRI3poUKIZf4FYN580syigJzFzvCSuzZ3j5nAmMxeqvYX31HxY91g98qwUUV0ybrJk60mbxX_xc_s6FoLmizl4EyBXoboyprVRliSzkTtTSU9lL8rUDFUN7Yy_kncWHbISuvG02PjNF-i884ulT4ZsKWJbuFqmGjOr669nZYNgPV8Jr72-k_-cbWkwavvCYmR7c6Xj4hiTHzlONANT68Sfcau8Bcfaw"/>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium flex items-center gap-2">
+                                    Marcus Chen
+                                    <span class="material-symbols-outlined text-error text-[16px]" title="Over capacity">warning</span>
+</div>
+<div class="font-mono text-mono text-on-surface-variant">UI Dev</div>
+</div>
+</div>
+<!-- Timeline Grid (Background) -->
+<div class="flex-1 flex absolute left-64 right-24 top-0 bottom-0 pointer-events-none opacity-50">
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1 border-r border-error/20 border-dashed"></div>
+<div class="flex-1"></div>
+</div>
+<!-- Task Bars -->
+<div class="flex-1 relative">
+<!-- Task 1 (Critical, 2 days) -->
+<div class="absolute top-3 left-[10%] right-[70%] h-10 bg-error/20 border border-error rounded-DEFAULT mx-1 group/task cursor-pointer hover:bg-error/30 transition-colors flex items-center px-2 z-20">
+<span class="w-1.5 h-full absolute left-0 top-0 bg-error rounded-l-DEFAULT"></span>
+<span class="font-body-sm text-body-sm text-error font-medium truncate ml-2">FE-199: Hotfix</span>
+</div>
+<!-- Task 2 (Overlapping, 5 days) -->
+<div class="absolute top-5 left-[20%] right-[30%] h-8 bg-secondary-container/30 border border-secondary-container/50 rounded-DEFAULT mx-1 group/task cursor-pointer hover:bg-secondary-container/40 transition-colors flex items-center px-2 z-10 shadow-sm opacity-90 backdrop-blur-sm">
+<span class="w-1.5 h-full absolute left-0 top-0 bg-secondary-container rounded-l-DEFAULT"></span>
+<span class="font-body-sm text-body-sm text-secondary font-medium truncate ml-2">FE-220: Dark Mode CSS</span>
+<button class="ml-auto opacity-0 group-hover/task:opacity-100 transition-opacity bg-surface-container px-2 py-1 rounded text-xs text-on-surface-variant border border-outline-variant hover:text-on-surface hover:border-outline flex items-center gap-1 z-20">
+<span class="material-symbols-outlined text-[14px]">swap_horiz</span>
+</button>
+</div>
+</div>
+<!-- Points -->
+<div class="w-24 flex-shrink-0 p-3 border-l border-outline-variant flex items-center justify-end bg-transparent z-10">
+<span class="font-mono text-mono text-error font-bold bg-error-container/30 border border-error/30 px-2 py-1 rounded">14 pts</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg dark:shadow-none font-inter text-[10px] font-medium text-gray-500 dark:text-gray-400">
+<a class="flex flex-col items-center justify-center text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/20 rounded-xl px-3 py-1 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1" data-icon="task_alt">task_alt</span>
+<span>Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1" data-icon="search">search</span>
+<span>Search</span>
+</a>
+<a class="flex flex-col items-center justify-center active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1" data-icon="mail">mail</span>
+<span>Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>

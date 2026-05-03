@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Settings - Security</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<link rel="stylesheet" href="../assets/css/globals.css" />
+</head>
+<body class="bg-background text-on-surface font-body-base h-screen flex overflow-hidden">
+<!-- Navigation Drawer (Left Sidebar) - Suppressed as per context "Settings", but prompt implies it might be a sub-view. However, keeping it as it's a main structural element for this app style unless it's a deep modal. Let's assume it's the main settings area, so sidebar is present but maybe folded or settings is a distinct view. The prompt specifies "Settings - Security". I will suppress the main nav and provide a settings-specific layout, or just use the TopAppBar to signify "Settings". Actually, standard practice for "Settings" in this style often involves a settings specific sidebar or a full page modal. Given the prompt details, I'll use a clean canvas layout prioritizing the settings content, maybe a settings sub-nav. Let's use the Navigation Drawer but select nothing active, or suppress it. Let's suppress standard nav for focus, but keep TopAppBar. -->
+<!-- Navigation Drawer Suppressed for Settings focused flow, but let's build a typical settings layout with a side menu for settings categories. -->
+<div class="fixed left-0 top-0 h-full w-[240px] border-r bg-gray-900 text-violet-500 font-inter text-[13px] font-medium border-gray-800 transition-all duration-200 flex flex-col p-4 gap-2 hidden md:flex">
+<div class="mb-6 flex items-center gap-3 px-2">
+<img alt="Workspace Avatar" class="w-8 h-8 rounded-DEFAULT object-cover" data-alt="A modern, abstract geometric logo representing a technology company. The logo uses sharp lines and vibrant violet and deep dark grey colors, conveying a sense of precision and advanced engineering. Set against a clean, minimal dark background to enhance the glowing effect of the violet elements. The overall aesthetic is sleek, corporate, and cutting-edge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmuHO0mKBIcGhXKBgkaWmCTprWZhrhKWGms_pbWSq3knbFysiNtw4mr9tPMKTHRqFscXRfs6CBeSjZnc0oyZCrhGktc-rH0A0XFISKkQG5L6UgnfQkwfmtfkWxp3CgxTa1W3PBKKW9xdTAmydg4lWSri8YatQBFdu3vuSPPCaYGMI9QhObd-lC_umLBX-O4owpPvcaNeFQenmifbWV8X3V6JWoBLNrhs2A-ScQ5PSUVV0rzAm861FdpbuvQ-T75uVGlA3y6RQtpA4"/>
+<div>
+<div class="text-violet-500 font-bold">Apex Engineering</div>
+<div class="text-gray-400 text-[11px]">Workspace Switcher</div>
+</div>
+<span class="material-symbols-outlined text-gray-500 ml-auto text-[16px]">unfold_more</span>
+</div>
+<div class="text-gray-500 font-label-caps text-label-caps px-2 mb-2 mt-4">Settings</div>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-colors duration-150 ease-in-out flex items-center gap-3 px-3 py-2 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined text-[18px]">person</span>
+            Profile
+        </a>
+<a class="bg-gray-800 text-violet-400 font-semibold transition-colors duration-150 ease-in-out flex items-center gap-3 px-3 py-2 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+            Security
+        </a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-colors duration-150 ease-in-out flex items-center gap-3 px-3 py-2 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+            Notifications
+        </a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-colors duration-150 ease-in-out flex items-center gap-3 px-3 py-2 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+            Billing
+        </a>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-[240px] overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-gray-950 font-inter text-sm font-medium tracking-tight docked full-width top-0 border-b border-gray-800 flat no shadows flex items-center justify-between px-4 h-14 w-full">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-gray-400 hover:text-gray-100 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-lg font-semibold text-white tracking-tight">Security Settings</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-gray-400 hover:text-gray-100 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full border border-gray-800 object-cover" data-alt="A professional headshot of a person, used as a user profile avatar. The individual is lit with soft, flattering light, set against a neutral, slightly dark background to match a dark-mode user interface. The expression is approachable yet serious, suitable for a corporate or professional software environment. The image is crisp and highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0_L-mK9Fmee95OzJy0BpmiwWjebAlGNvxg6kVYCPsM0OLSqPfjZrJ3bdPN9fyU7SEp0sHXsAHsK9yO4sBgoKDbK8yUR5J3IZ4WNv1do2FcXyg9XnWC7MtzIzZgo3gX5NkYMDsDuyTw9ABvEKozciGsOWv9MZnlBqIqNfzyA1URXijen7HIX88cN1ix4vefERtmA--ZlZfbpTW1CfFMIrls6jsQDwS4yiC3cQxbyLsdKltoqMn7qFoXbEtWg2IGi8PI16WD_5qpYE"/>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter md:p-container-padding bg-surface">
+<div class="max-w-4xl mx-auto space-y-8">
+<!-- Password Section -->
+<section class="bg-surface-container rounded-lg border border-outline-variant overflow-hidden">
+<div class="p-6 border-b border-outline-variant bg-surface-container-low">
+<h2 class="font-h2 text-h2 text-on-surface mb-1">Change Password</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Update your password to keep your account secure.</p>
+</div>
+<div class="p-6 space-y-6">
+<div class="space-y-4 max-w-md">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">Current Password</label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-DEFAULT px-3 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-body-sm" placeholder="••••••••" type="password"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">New Password</label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-DEFAULT px-3 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-body-sm" placeholder="••••••••" type="password"/>
+<!-- Password Strength Indicator -->
+<div class="mt-3 flex gap-1">
+<div class="h-1.5 flex-1 bg-tertiary rounded-full"></div>
+<div class="h-1.5 flex-1 bg-tertiary rounded-full"></div>
+<div class="h-1.5 flex-1 bg-surface-container-highest rounded-full"></div>
+<div class="h-1.5 flex-1 bg-surface-container-highest rounded-full"></div>
+</div>
+<p class="text-[11px] text-tertiary mt-2">Medium strength. Add numbers or special characters.</p>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">Confirm New Password</label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-DEFAULT px-3 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-body-sm" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="pt-4 flex justify-end gap-3">
+<button class="px-4 py-2 font-body-sm text-body-sm text-on-surface bg-surface-container-high border border-outline-variant rounded-DEFAULT hover:bg-surface-bright transition-colors">Cancel</button>
+<button class="px-4 py-2 font-body-sm text-body-sm text-white bg-[#8B5CF6] rounded-DEFAULT shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-[#7C3AED] transition-colors">Update Password</button>
+</div>
+</div>
+</section>
+<!-- Two-Factor Authentication -->
+<section class="bg-surface-container rounded-lg border border-outline-variant overflow-hidden">
+<div class="p-6 border-b border-outline-variant bg-surface-container-low flex justify-between items-start">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface mb-1 flex items-center gap-2">
+                                Two-Factor Authentication (2FA)
+                                <span class="bg-primary/20 text-primary-fixed border border-primary/30 px-2 py-0.5 rounded-full font-label-caps text-[10px] uppercase tracking-wider">Enabled</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Add an extra layer of security to your account.</p>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center justify-between p-4 bg-surface-dim rounded-lg border border-outline-variant mb-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium">Authenticator App</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Configured via Google Authenticator</div>
+</div>
+</div>
+<button class="px-3 py-1.5 font-body-sm text-body-sm text-on-surface border border-outline-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors">Manage</button>
+</div>
+<div class="flex justify-between items-center pt-2">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lost access to your device?</p>
+<button class="flex items-center gap-2 text-primary hover:text-primary-fixed transition-colors font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">key</span>
+                                View Backup Codes
+                            </button>
+</div>
+</div>
+</section>
+<!-- Active Sessions -->
+<section class="bg-surface-container rounded-lg border border-outline-variant overflow-hidden">
+<div class="p-6 border-b border-outline-variant bg-surface-container-low">
+<h2 class="font-h2 text-h2 text-on-surface mb-1">Active Sessions</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Devices currently logged into your account.</p>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Session 1 (Current) -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined">laptop_mac</span>
+</div>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium flex items-center gap-2">
+                                        MacBook Pro (M2)
+                                        <span class="text-[10px] bg-secondary/20 text-secondary-fixed px-1.5 py-0.5 rounded-sm uppercase tracking-wider font-semibold">Current Session</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Chrome 114.0.0.0 on macOS</div>
+<div class="font-mono text-mono text-on-surface-variant mt-1.5 flex items-center gap-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> San Francisco, USA</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Active now</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Session 2 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined">phone_iphone</span>
+</div>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium">iPhone 14 Pro</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Safari Mobile on iOS 16.5</div>
+<div class="font-mono text-mono text-on-surface-variant mt-1.5 flex items-center gap-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> San Jose, USA</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Last seen 2 hours ago</span>
+</div>
+</div>
+</div>
+<button class="px-3 py-1.5 font-body-sm text-body-sm text-error hover:bg-error/10 border border-transparent hover:border-error/20 rounded-DEFAULT transition-all">Revoke</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Projects - List View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body-base overflow-hidden flex h-screen w-screen">
+<!-- NavigationDrawer -->
+<nav class="bg-gray-900 text-violet-500 font-inter text-[13px] font-medium fixed left-0 top-0 h-full w-[240px] border-r border-gray-800 transition-all duration-200 flex flex-col p-4 gap-2 z-50">
+<!-- Header -->
+<div class="flex items-center justify-between mb-4 px-2 py-1 hover:bg-gray-800/50 rounded cursor-pointer transition-colors duration-200">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-h2 text-h2 font-bold">
+                    A
+                </div>
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold text-[14px]">Apex Engineering</span>
+<span class="text-gray-400 text-[11px]">Workspace Switcher</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-lg">unfold_more</span>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-1">
+<a class="flex items-center justify-between px-2 py-1.5 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span>Search</span>
+</div>
+<span class="text-[10px] text-gray-500 group-hover:text-gray-400 border border-gray-700 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">Cmd+K</span>
+</a>
+<div class="h-[1px] bg-gray-800 my-2"></div>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-DEFAULT bg-gray-800 text-violet-400 font-semibold hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>My Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+<span>Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span>Favorites</span>
+</a>
+<div class="mt-4 mb-1 px-2">
+<span class="font-label-caps text-label-caps text-gray-500">WORK</span>
+</div>
+<a class="flex items-center justify-between px-2 py-1.5 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+<span>Projects</span>
+</div>
+<span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">add</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>Teams</span>
+</a>
+</div>
+<div class="mt-auto pt-4 border-t border-gray-800">
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex flex-col flex-1 ml-[240px] h-screen bg-background relative overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-gray-950 font-inter text-sm font-medium tracking-tight docked full-width top-0 border-b border-gray-800 flat no shadows flex items-center justify-between px-4 h-14 w-full z-40 shrink-0">
+<div class="flex items-center gap-4">
+<button class="text-gray-400 hover:text-gray-100 transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="h-4 w-[1px] bg-gray-800"></div>
+<span class="text-lg font-semibold text-white tracking-tight">Apex Projects</span>
+<div class="h-4 w-[1px] bg-gray-800 mx-2"></div>
+<div class="flex items-center gap-4">
+<a class="text-violet-400 border-b-2 border-violet-500 pb-[17px] pt-[17px]" href="#">List</a>
+<a class="text-gray-500 hover:bg-gray-900 hover:text-gray-100 transition-colors duration-150 ease-in-out px-2 py-1 rounded" href="#">Board</a>
+<a class="text-gray-500 hover:bg-gray-900 hover:text-gray-100 transition-colors duration-150 ease-in-out px-2 py-1 rounded" href="#">Timeline</a>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 mr-4 text-gray-400">
+<span class="text-body-sm font-body-sm">Filter</span>
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</div>
+<button class="bg-primary hover:bg-primary-fixed-dim text-on-primary px-3 py-1.5 rounded-DEFAULT font-medium text-body-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                    Task
+                </button>
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full border border-gray-800" data-alt="A close-up studio portrait of a professional individual looking slightly off-camera. The lighting is cinematic and cool-toned, casting soft shadows that emphasize facial features. The background is a stark, minimal dark gray, matching a sleek, modern, corporate dark-mode UI aesthetic. The overall mood is focused, serious, and highly polished, reflecting a high-performance work environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NzXKjSlq34Bg2hD2qR0QZQea70FUQVeNVvyNk7IzLtcliqAZsD7KCC1TRwPXIILo_AAESRV111NSz9_LgetrgrNCmFO4AWW6Svjo9380IStPieYixMGCKGCQqMh5tN0ncm-T9AtsXgG-MYru9P8_EVdPRheybozbebfVazvrWPh92PnM1_GZtwIwjkU2635nxA1bBnFKuJsQGNO2ogXptKp-BKg-cQwMNnqnVi8IX8oiAaIEUEcJ9fKv9xKJDXR6GiyTQmXlKoA"/>
+</div>
+</header>
+<!-- Workspace & Drawer Split -->
+<div class="flex flex-1 overflow-hidden">
+<!-- List Canvas -->
+<div class="flex-1 overflow-y-auto overflow-x-auto bg-surface-container-lowest custom-scrollbar">
+<div class="min-w-[900px] w-full p-6 pb-24">
+<!-- Table Header -->
+<div class="grid grid-cols-[40px_minmax(300px,1fr)_120px_100px_120px_120px_80px] gap-4 px-2 py-2 border-b border-surface-container-highest text-label-caps font-label-caps text-on-surface-variant mb-4 sticky top-0 bg-surface-container-lowest z-10">
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-outline-variant cursor-pointer hover:text-on-surface">check_box_outline_blank</span>
+</div>
+<div class="flex items-center">Task Name</div>
+<div class="flex items-center">Status</div>
+<div class="flex items-center">Priority</div>
+<div class="flex items-center">Assignee</div>
+<div class="flex items-center">Due Date</div>
+<div class="flex items-center justify-end pr-2">Estimate</div>
+</div>
+<!-- Group 1: SPRINT 24 -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-2 px-2 group cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant transition-transform group-hover:text-on-surface">expand_more</span>
+<h2 class="font-h2 text-h2 text-on-surface flex items-center gap-2">SPRINT 24 <span class="text-body-sm font-body-sm text-outline font-normal">17 tasks</span></h2>
+</div>
+<div class="flex flex-col gap-[2px]">
+<!-- Selected Row (Matches Drawer) -->
+<div class="grid grid-cols-[40px_minmax(300px,1fr)_120px_100px_120px_120px_80px] gap-4 px-2 py-1.5 bg-primary-fixed/10 border border-primary-fixed/20 rounded-DEFAULT items-center group cursor-pointer transition-colors">
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-primary">check_box_outline_blank</span>
+</div>
+<div class="flex items-center gap-2 truncate">
+<span class="w-[3px] h-[14px] bg-error rounded-full shrink-0"></span>
+<span class="font-body-sm text-body-sm text-primary truncate font-medium">Implement OAuth2.0 Authentication Flow</span>
+<span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 ml-auto">edit</span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container/30">In Progress</span>
+</div>
+<div class="flex items-center gap-1.5 text-error">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">keyboard_double_arrow_up</span>
+<span class="text-body-sm font-body-sm">Urgent</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-[10px] font-bold">AK</div>
+<span class="text-body-sm font-body-sm text-on-surface truncate">Alex K.</span>
+</div>
+<div class="text-body-sm font-body-sm text-error">Tomorrow</div>
+<div class="text-body-sm font-body-sm text-outline-variant text-right pr-2">8h</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[40px_minmax(300px,1fr)_120px_100px_120px_120px_80px] gap-4 px-2 py-1.5 hover:bg-surface-container rounded-DEFAULT items-center group cursor-pointer border border-transparent hover:border-surface-variant transition-colors">
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">check_box_outline_blank</span>
+</div>
+<div class="flex items-center gap-2 truncate">
+<span class="w-[3px] h-[14px] bg-tertiary rounded-full shrink-0"></span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Design System Component Updates</span>
+<span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 ml-auto">edit</span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-variant text-on-surface-variant border border-outline-variant">To Do</span>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">keyboard_arrow_up</span>
+<span class="text-body-sm font-body-sm">High</span>
+</div>
+<div class="flex items-center gap-2">
+<img alt="Sarah J" class="w-5 h-5 rounded-full border border-surface-container" data-alt="A tight headshot of a smiling professional woman. She is well-lit with soft, neutral lighting against a completely dark gray studio background. The image has a crisp, modern aesthetic that blends seamlessly into a dark-mode corporate UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbA2ekIQjonAC9zoq_CuzTkN8lIJ1pBADtOwNqSclTaR12Q6sPZnLJQjy4p4nolrAkppbdkBzafzyPspmXsv4swrJAwzM9ev0IkYdPFCfLWS34KXOZDYeXvMn4UHeQTBzChuJFagWgeIeSyD5EDZV0MJX8ddS3DkZSPwdF8Qfuop9G-CEtD_mpVIAOgjjssJl-Y--zMf_j7KZxuuLWJ8I0oaum-b-YMnTTAi3efYKliglPkUvjgTqitr_ZEEovhclCI45hjXcSwk"/>
+<span class="text-body-sm font-body-sm text-on-surface truncate">Sarah J.</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Oct 24</div>
+<div class="text-body-sm font-body-sm text-outline-variant text-right pr-2">12h</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-[40px_minmax(300px,1fr)_120px_100px_120px_120px_80px] gap-4 px-2 py-1.5 hover:bg-surface-container rounded-DEFAULT items-center group cursor-pointer border border-transparent hover:border-surface-variant transition-colors">
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">check_box_outline_blank</span>
+</div>
+<div class="flex items-center gap-2 truncate">
+<span class="w-[3px] h-[14px] bg-secondary rounded-full shrink-0"></span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Database Migration Script</span>
+<span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 ml-auto">edit</span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container/20 text-primary-fixed border border-primary-container/30">In Review</span>
+</div>
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+<span class="text-body-sm font-body-sm">Medium</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-variant text-on-surface-variant border border-outline-variant border-dashed flex items-center justify-center text-[10px]"><span class="material-symbols-outlined text-[12px]">person_add</span></div>
+<span class="text-body-sm font-body-sm text-outline-variant truncate">Unassigned</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Oct 26</div>
+<div class="text-body-sm font-body-sm text-outline-variant text-right pr-2">4h</div>
+</div>
+</div>
+<button class="ml-10 mt-2 text-body-sm font-body-sm text-outline flex items-center gap-1 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Task
+                        </button>
+</div>
+<!-- Group 2: BACKLOG -->
+<div>
+<div class="flex items-center gap-2 mb-2 px-2 group cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant transition-transform group-hover:text-on-surface -rotate-90">expand_more</span>
+<h2 class="font-h2 text-h2 text-on-surface flex items-center gap-2">BACKLOG <span class="text-body-sm font-body-sm text-outline font-normal">34 tasks</span></h2>
+</div>
+</div>
+</div>
+</div>
+<!-- Detail Drawer (Right Side) -->
+<aside class="w-[480px] bg-surface-container-low border-l border-surface-container-highest flex flex-col shrink-0 shadow-2xl z-30">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between px-6 py-4 border-b border-surface-container-highest shrink-0">
+<div class="flex items-center gap-2 text-outline text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px]">view_kanban</span>
+<span>APEX-142</span>
+</div>
+<div class="flex items-center gap-2 text-outline">
+<button class="hover:bg-surface-container hover:text-on-surface p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">thumb_up</span>
+</button>
+<button class="hover:bg-surface-container hover:text-on-surface p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+<div class="w-[1px] h-4 bg-outline-variant mx-1"></div>
+<button class="hover:bg-surface-container hover:text-on-surface p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Drawer Content Scrollable Area -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-8 custom-scrollbar">
+<!-- Title & Core Properties -->
+<div class="flex flex-col gap-6">
+<h1 class="font-h1 text-h1 text-on-surface leading-tight">Implement OAuth2.0 Authentication Flow</h1>
+<div class="grid grid-cols-[120px_1fr] gap-y-4 text-body-sm font-body-sm items-center">
+<div class="text-outline">Status</div>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container/30 cursor-pointer hover:bg-tertiary-container/30 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span>
+                                    In Progress
+                                </span>
+</div>
+<div class="text-outline">Assignee</div>
+<div class="flex items-center gap-2 cursor-pointer hover:bg-surface-container p-1 -ml-1 rounded transition-colors w-fit">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-[11px] font-bold">AK</div>
+<span class="text-on-surface">Alex K.</span>
+</div>
+<div class="text-outline">Due Date</div>
+<div class="flex items-center gap-2 text-error cursor-pointer hover:bg-surface-container p-1 -ml-1 rounded transition-colors w-fit">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Tomorrow</span>
+</div>
+<div class="text-outline">Priority</div>
+<div class="flex items-center gap-2 text-error cursor-pointer hover:bg-surface-container p-1 -ml-1 rounded transition-colors w-fit">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">keyboard_double_arrow_up</span>
+<span>Urgent</span>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-2">
+<h3 class="font-label-caps text-label-caps text-outline">DESCRIPTION</h3>
+<div class="text-body-base font-body-base text-on-surface-variant leading-relaxed p-3 border border-outline-variant rounded-lg bg-surface-container-lowest min-h-[120px] cursor-text hover:border-outline transition-colors">
+<p class="mb-2">We need to implement the standard OAuth2.0 flow for third-party integrations. This involves:</p>
+<ul class="list-disc pl-5 space-y-1 mb-2">
+<li>Setting up the authorization endpoint.</li>
+<li>Handling token exchange (access and refresh tokens).</li>
+<li>Securely storing client secrets.</li>
+</ul>
+<p>Reference the technical spec doc linked below for exact scope.</p>
+</div>
+</div>
+<!-- Subtasks -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<h3 class="font-label-caps text-label-caps text-outline">SUBTASKS</h3>
+<span class="text-mono font-mono text-outline-variant">1/3 Completed</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-start gap-3 p-2 hover:bg-surface-container rounded-lg transition-colors group">
+<span class="material-symbols-outlined text-[20px] text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">check_box</span>
+<span class="text-body-sm font-body-sm text-outline-variant line-through flex-1">Create database schemas for tokens</span>
+<span class="material-symbols-outlined text-[16px] text-outline opacity-0 group-hover:opacity-100 cursor-pointer">close</span>
+</div>
+<div class="flex items-start gap-3 p-2 hover:bg-surface-container rounded-lg transition-colors group">
+<span class="material-symbols-outlined text-[20px] text-outline-variant mt-0.5 cursor-pointer hover:text-on-surface">check_box_outline_blank</span>
+<span class="text-body-sm font-body-sm text-on-surface flex-1">Implement Authorization Server</span>
+<div class="w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-[10px] font-bold shrink-0">AK</div>
+</div>
+<div class="flex items-start gap-3 p-2 hover:bg-surface-container rounded-lg transition-colors group">
+<span class="material-symbols-outlined text-[20px] text-outline-variant mt-0.5 cursor-pointer hover:text-on-surface">check_box_outline_blank</span>
+<span class="text-body-sm font-body-sm text-on-surface flex-1">Write unit tests for token refresh flow</span>
+<span class="material-symbols-outlined text-[16px] text-outline opacity-0 group-hover:opacity-100 cursor-pointer">close</span>
+</div>
+</div>
+<button class="mt-1 text-body-sm font-body-sm text-outline flex items-center gap-1 hover:text-on-surface transition-colors w-fit px-2 py-1 rounded hover:bg-surface-container">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Subtask
+                        </button>
+</div>
+<!-- Attachments -->
+<div class="flex flex-col gap-3">
+<h3 class="font-label-caps text-label-caps text-outline">ATTACHMENTS</h3>
+<div class="flex gap-3 overflow-x-auto pb-2 custom-scrollbar">
+<div class="flex items-center gap-3 p-3 border border-outline-variant rounded-lg bg-surface-container-lowest min-w-[200px] hover:border-outline cursor-pointer transition-colors shrink-0 group">
+<div class="w-10 h-10 rounded bg-error-container/20 text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex flex-col flex-1 overflow-hidden">
+<span class="text-body-sm font-body-sm text-on-surface truncate">Auth_Spec_v2.pdf</span>
+<span class="text-[11px] text-outline">2.4 MB</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Comment Input Fixed at Bottom -->
+<div class="p-4 border-t border-surface-container-highest bg-surface-container-low shrink-0">
+<div class="flex items-start gap-3">
+<img alt="Current User" class="w-8 h-8 rounded-full border border-gray-800 shrink-0" data-alt="A close-up studio portrait of a professional individual looking slightly off-camera. The lighting is cinematic and cool-toned, casting soft shadows that emphasize facial features. The background is a stark, minimal dark gray, matching a sleek, modern, corporate dark-mode UI aesthetic. The overall mood is focused, serious, and highly polished, reflecting a high-performance work environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxdokMaxf_Aje6Tg9bbp1AL5hDwpYVB8WPjl90wlfw5tvMfDW8lfSE4RJlIOqgdekG7wwnJH6e7HBOUC5FK_cz2ZDn87LT23piYJwEDjFpUwADQdf8mgLMnK6hyzHkMHbSOoeAtVeaaegb8nqc9IwlbLg5Y0drnYbMKvnMwjUnwvwEJ4OMle-ns0cIgT61C-DUL_84r7smglfg9JzMjUIUyUD9nzWouMYV16mB-ZDlezEwtGptqY8zIh9Sg2vRcfvKvbNEIvKJ5Js"/>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-body-sm font-body-sm text-on-surface p-3 min-h-[60px] resize-none" placeholder="Ask a question or post an update..." rows="1"></textarea>
+<div class="flex items-center justify-between p-2 bg-surface-container border-t border-outline-variant">
+<div class="flex items-center gap-1 text-outline">
+<button class="p-1 hover:text-on-surface rounded transition-colors"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 hover:text-on-surface rounded transition-colors"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1 hover:text-on-surface rounded transition-colors"><span class="material-symbols-outlined text-[18px]">attach_file</span></button>
+</div>
+<button class="bg-primary hover:bg-primary-fixed-dim text-on-primary px-3 py-1 rounded text-body-sm font-medium transition-colors">
+                                    Comment
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+
+</body></html>

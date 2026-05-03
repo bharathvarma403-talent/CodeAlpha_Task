@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Desktop Dashboard &amp; Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="../assets/js/theme.js"></script>
+<script src="../assets/js/supabase.js"></script>
+<link rel="stylesheet" href="../assets/css/globals.css" />
+</head>
+<body class="bg-surface text-on-surface font-body-base h-screen flex overflow-hidden">
+<!-- NavigationDrawer -->
+<nav class="hidden md:flex flex-col h-full p-4 gap-2 fixed left-0 top-0 w-[240px] border-r bg-gray-900 border-gray-800 z-20">
+<!-- Workspace Switcher -->
+<div class="flex items-center gap-3 p-2 mb-4 hover:bg-gray-800/50 rounded transition-all duration-200 cursor-pointer">
+<img alt="workspace_avatar" class="w-8 h-8 rounded bg-gray-800 object-cover" data-alt="A small, stylized avatar image representing a corporate engineering team. Dark minimalist style with subtle purple accents, suitable for a dark mode dashboard workspace switcher." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpHuNmxnd0Oyhn8TfcfgLVb2o-lcp2fWmHxdhfXsCiQIiyfyp3CIaRzDnT8fmU_ZGVK2CLrFx_OTIZv4228tCrZFAWzBMhiRX6ONdKUAkwJ9RM_cx8ETcB-dUIxlc15g8W7IdO7xTz_Y2QLXadd8-bHyeXUANqVVdg9AoDpe6E-TMkI1BCpcMNrcFHvS97EflyJCJKyLuJnf1GHOfmxaEufymbakW3Fxs9aAPVJDL30BN7QlY2mgyhde_UEMdPKnW19ZKROajn5DY"/>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm text-violet-500 font-bold truncate">Apex Engineering</p>
+<p class="font-label-caps text-label-caps text-gray-400 truncate">Workspace Switcher</p>
+</div>
+<span class="material-symbols-outlined text-gray-500 text-sm">unfold_more</span>
+</div>
+<!-- Search Bar / Command Palette Trigger -->
+<button class="flex items-center justify-between w-full p-2 rounded bg-gray-800/50 border border-gray-700 hover:bg-gray-800 transition-colors mb-2">
+<div class="flex items-center gap-2 text-gray-400">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span class="font-body-sm text-body-sm">Search</span>
+</div>
+<span class="font-mono text-mono text-gray-500 bg-gray-800 px-1.5 py-0.5 rounded border border-gray-700">Cmd+K</span>
+</button>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md transition-all duration-200 text-gray-400 hover:bg-gray-800/50 hover:text-gray-200" href="#">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium">My Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md transition-all duration-200 text-gray-400 hover:bg-gray-800/50 hover:text-gray-200" href="#">
+<span class="material-symbols-outlined text-[20px]">inbox</span>
+<span class="font-body-sm text-body-sm font-medium">Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md transition-all duration-200 text-gray-400 hover:bg-gray-800/50 hover:text-gray-200" href="#">
+<span class="material-symbols-outlined text-[20px]">star</span>
+<span class="font-body-sm text-body-sm font-medium">Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md transition-all duration-200 bg-gray-800 text-violet-400 font-semibold" href="../projects/index.html">
+<span class="material-symbols-outlined text-[20px] fill">format_list_bulleted</span>
+<span class="font-body-sm text-body-sm">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md transition-all duration-200 text-gray-400 hover:bg-gray-800/50 hover:text-gray-200" href="../team/index.html">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="font-body-sm text-body-sm font-medium">Teams</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[240px] w-full bg-surface">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-gray-950 border-b border-gray-800 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-gray-400 hover:text-gray-100 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-lg font-semibold text-white tracking-tight">Apex Projects</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-6 mr-4">
+<a class="font-inter text-sm font-medium tracking-tight text-gray-500 hover:text-gray-100 transition-colors duration-150 ease-in-out" href="#">Board</a>
+<a class="font-inter text-sm font-medium tracking-tight text-gray-500 hover:text-gray-100 transition-colors duration-150 ease-in-out" href="#">List</a>
+<a class="font-inter text-sm font-medium tracking-tight text-gray-500 hover:text-gray-100 transition-colors duration-150 ease-in-out" href="#">Timeline</a>
+<a class="font-inter text-sm font-medium tracking-tight text-violet-400 border-b-2 border-violet-500 py-4 transition-colors duration-150 ease-in-out" href="#">Analytics</a>
+</div>
+<img alt="user_profile_avatar" class="w-8 h-8 rounded-full border border-gray-700 object-cover cursor-pointer" data-alt="A portrait of a professional individual used as a user profile avatar. Dark, minimalist aesthetic, suitable for a dark mode application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9qbz1XxerNlBHJ48Lx0zDxoGl9ohlADhp7DG1w08lV0oAD_EX4XesAhyh_KC3TXVDmtLKYd5eSfRXsQg8pB6dp38TuBgqDBbBDmGTmzoHIE8tHNP9eIm5KNAX0RG2ryLcYm1akUW_9FxDMj7yL5eKeFlrsOI2cHXSXIaRHMaH4s8RbifuP-oqZWGfXofauqJJyFW4X3MhdOLt_eV2Ks9FtxTv9zvcNzVfCBf9bl_G0_R1Ky2PgGGevE21_LPf91TqtdJy45S3_L0"/>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto p-container-padding bg-surface">
+<!-- Dashboard Controls -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Dashboard &amp; Analytics</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Project performance and team metrics overview.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-high border border-outline-variant rounded text-on-surface hover:bg-surface-variant transition-colors font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                        Last 30 Days
+                        <span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-inverse-primary text-white rounded shadow-sm hover:bg-primary-container transition-colors font-body-sm text-body-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Add Widget
+                    </button>
+</div>
+</div>
+<!-- Widget Grid (Bento Style) -->
+<div class="grid grid-cols-12 gap-gutter auto-rows-min">
+<!-- Large Stat Card: Completion Rate -->
+<div class="col-span-12 md:col-span-4 lg:col-span-3 bg-surface-container border border-outline-variant rounded-lg p-4 flex flex-col justify-between shadow-sm relative overflow-hidden group cursor-pointer hover:border-outline transition-colors">
+<div class="flex items-start justify-between mb-2">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Completion Rate</h3>
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-h1 text-[36px] leading-[40px] font-semibold text-on-surface">84%</span>
+<span class="font-body-sm text-body-sm text-tertiary flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 2.4%</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">vs previous sprint</p>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 84%"></div>
+</div>
+</div>
+<!-- Sprint Burndown Chart -->
+<div class="col-span-12 md:col-span-8 lg:col-span-6 bg-surface-container border border-outline-variant rounded-lg p-4 flex flex-col shadow-sm relative group">
+<div class="flex items-start justify-between mb-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Sprint Burndown</h3>
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+<div class="flex-1 flex items-end gap-1 h-[160px] relative mt-2">
+<!-- Simulated Line Chart via CSS gradients/borders -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent border-t-2 border-primary" style="clip-path: polygon(0 20%, 20% 30%, 40% 50%, 60% 60%, 80% 80%, 100% 95%, 100% 100%, 0 100%);"></div>
+<div class="absolute inset-0 border-t-2 border-outline-variant border-dashed" style="clip-path: polygon(0 0, 100% 100%, 100% 100%, 0 100%);"></div>
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-outline font-mono -ml-6">
+<span>50</span><span>25</span><span>0</span>
+</div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-outline font-mono">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
+</div>
+</div>
+<!-- Velocity Chart -->
+<div class="col-span-12 md:col-span-12 lg:col-span-3 bg-surface-container border border-outline-variant rounded-lg p-4 flex flex-col shadow-sm relative group">
+<div class="flex items-start justify-between mb-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Velocity</h3>
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+<div class="flex-1 flex items-end justify-between gap-2 h-[160px] mt-2 pb-1 border-b border-outline-variant/30">
+<!-- Bar Chart -->
+<div class="w-full flex flex-col justify-end items-center group/bar"><div class="w-full bg-secondary-container rounded-t-sm h-[40%] group-hover/bar:bg-secondary transition-colors"></div></div>
+<div class="w-full flex flex-col justify-end items-center group/bar"><div class="w-full bg-secondary-container rounded-t-sm h-[60%] group-hover/bar:bg-secondary transition-colors"></div></div>
+<div class="w-full flex flex-col justify-end items-center group/bar"><div class="w-full bg-secondary-container rounded-t-sm h-[45%] group-hover/bar:bg-secondary transition-colors"></div></div>
+<div class="w-full flex flex-col justify-end items-center group/bar"><div class="w-full bg-primary rounded-t-sm h-[75%] relative"><span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-mono text-on-surface">34</span></div></div>
+<div class="w-full flex flex-col justify-end items-center group/bar"><div class="w-full bg-secondary-container rounded-t-sm h-[50%] group-hover/bar:bg-secondary transition-colors"></div></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-outline font-mono">
+<span>S1</span><span>S2</span><span>S3</span><span class="text-primary">S4</span><span>S5</span>
+</div>
+</div>
+<!-- Team Workload (Horizontal Bars) -->
+<div class="col-span-12 lg:col-span-5 bg-surface-container border border-outline-variant rounded-lg p-4 flex flex-col shadow-sm relative group min-h-[280px]">
+<div class="flex items-start justify-between mb-6">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Team Workload</h3>
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Workload Item 1 -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-medium text-on-surface border border-outline-variant">AK</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-[12px] text-on-surface">Alex K.</span>
+<span class="font-mono text-[10px] text-outline">12 pts</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</div>
+<!-- Workload Item 2 -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-medium text-on-surface border border-outline-variant">JD</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-[12px] text-on-surface">Jane D.</span>
+<span class="font-mono text-[10px] text-outline">8 pts</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 50%"></div>
+</div>
+</div>
+</div>
+<!-- Workload Item 3 -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-medium text-on-surface border border-outline-variant">MR</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-[12px] text-on-surface">Mike R.</span>
+<span class="font-mono text-[10px] text-error">18 pts (Over)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<!-- Workload Item 4 -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-medium text-on-surface border border-outline-variant">SL</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-[12px] text-on-surface">Sarah L.</span>
+<span class="font-mono text-[10px] text-outline">5 pts</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full opacity-60" style="width: 30%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Task Status Distribution (Donut Chart representation) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bg-surface-container border border-outline-variant rounded-lg p-4 flex flex-col shadow-sm relative group min-h-[280px]">
+<div class="flex items-start justify-between mb-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Task Status</h3>
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- CSS Donut Chart approximation -->
+<div class="w-32 h-32 rounded-full border-[16px] border-surface-container-highest relative flex items-center justify-center" style="border-top-color: #d0bcff; border-right-color: #3131c0; border-bottom-color: #3131c0; transform: rotate(-45deg);">
+<div class="text-center" style="transform: rotate(45deg);">
+<span class="font-h2 text-h2 text-on-surface block">124</span>
+<span class="font-label-caps text-[9px] text-outline">Total</span>
+</div>
+</div>
+<div class="w-full grid grid-cols-2 gap-2 mt-6">
+<div class="flex items-center gap-2 font-body-sm text-[12px] text-on-surface-variant"><div class="w-2 h-2 rounded-full bg-primary"></div> Done (45%)</div>
+<div class="flex items-center gap-2 font-body-sm text-[12px] text-on-surface-variant"><div class="w-2 h-2 rounded-full bg-secondary-container"></div> In Progress (35%)</div>
+<div class="flex items-center gap-2 font-body-sm text-[12px] text-on-surface-variant"><div class="w-2 h-2 rounded-full bg-surface-container-highest"></div> To Do (20%)</div>
+</div>
+</div>
+</div>
+<!-- Recently Updated (Activity Feed) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-3 bg-surface-container border border-outline-variant rounded-lg p-4 flex flex-col shadow-sm relative group min-h-[280px]">
+<div class="flex items-start justify-between mb-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Recent Activity</h3>
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+<div class="flex flex-col gap-card-gap overflow-y-auto pr-2 custom-scrollbar">
+<div class="flex gap-3 items-start border-l-2 border-outline-variant/30 pl-3 relative">
+<div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-primary"></div>
+<div class="flex-1">
+<p class="font-body-sm text-[12px] text-on-surface"><span class="font-medium text-primary">PRJ-102</span> moved to Review</p>
+<span class="font-mono text-[10px] text-outline">10 mins ago by Alex</span>
+</div>
+</div>
+<div class="flex gap-3 items-start border-l-2 border-outline-variant/30 pl-3 relative">
+<div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-surface-variant border border-outline"></div>
+<div class="flex-1">
+<p class="font-body-sm text-[12px] text-on-surface">Comment on <span class="font-medium text-secondary">API-44</span></p>
+<span class="font-mono text-[10px] text-outline">1 hr ago by Sarah</span>
+</div>
+</div>
+<div class="flex gap-3 items-start border-l-2 border-outline-variant/30 pl-3 relative">
+<div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-error"></div>
+<div class="flex-1">
+<p class="font-body-sm text-[12px] text-on-surface">Bug <span class="font-medium text-error">DEF-09</span> created</p>
+<span class="font-mono text-[10px] text-outline">2 hrs ago by Mike</span>
+</div>
+</div>
+<div class="flex gap-3 items-start border-l-2 border-outline-variant/30 pl-3 relative">
+<div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-surface-variant border border-outline"></div>
+<div class="flex-1">
+<p class="font-body-sm text-[12px] text-on-surface"><span class="font-medium text-on-surface">UX-22</span> assigned to Jane</p>
+<span class="font-mono text-[10px] text-outline">4 hrs ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+<script>
+document.addEventListener('supabase:ready', async () => {
+  // ── Auth guard ─────────────────────────────────────────────────────
+  const session = await window.ApexApp.requireAuth('../auth/sign_in.html');
+  if (!session) return;
+
+  const db   = window._supabase;
+  const user = session.user;
+
+  // ── Load user profile ───────────────────────────────────────────────
+  const { data: profile } = await db.from('profiles').select('*').eq('id', user.id).single();
+  const displayName = profile?.full_name || user.email.split('@')[0];
+
+  // Update UI with user name/avatar
+  document.querySelectorAll('[data-user-name]').forEach(el => el.textContent = displayName);
+  const avatarImgs = document.querySelectorAll('img[alt="user_profile_avatar"]');
+  if (profile?.avatar_url) avatarImgs.forEach(img => img.src = profile.avatar_url);
+
+  // ── Load workspaces ─────────────────────────────────────────────────
+  const workspaces = await window.ApexApp.fetchMyWorkspaces();
+  if (workspaces.length > 0) {
+    const ws = workspaces[0]; // active workspace
+    // Update workspace switcher
+    const wsSwitcher = document.querySelector('[data-workspace-name], .text-violet-500');
+    if (wsSwitcher) wsSwitcher.textContent = ws.name;
+
+    // Store active workspace globally
+    window.ApexApp.activeWorkspaceId = ws.id;
+
+    // ── Load task stats ───────────────────────────────────────────────
+    const { data: tasks } = await db
+      .from('tasks')
+      .select('id, status_id, status_ref:project_statuses!status_id(type)')
+      .eq('workspace_id', ws.id)
+      .is('parent_id', null)
+      .eq('is_archived', false);
+
+    if (tasks) {
+      const total     = tasks.length;
+      const done      = tasks.filter(t => t.status_ref?.type === 'done').length;
+      const inProg    = tasks.filter(t => t.status_ref?.type === 'in_progress').length;
+      const rate      = total > 0 ? Math.round((done / total) * 100) : 0;
+
+      // Update completion rate widget
+      const rateEl = document.querySelector('.text-\\[36px\\]');
+      if (rateEl) rateEl.textContent = rate + '%';
+      const barEl = document.querySelector('.bg-primary.h-full.rounded-full');
+      if (barEl) barEl.style.width = rate + '%';
+
+      // Update task status donut labels
+      const totalEl = document.querySelector('.font-h2');
+      if (totalEl) totalEl.textContent = total;
+      
+      // Update distribution labels
+      const doneLabel = document.querySelectorAll('.flex.items-center.gap-2.font-body-sm.text-\\[12px\\]')[0];
+      if (doneLabel) doneLabel.innerHTML = `<div class="w-2 h-2 rounded-full bg-primary"></div> Done (${Math.round(done/total*100)||0}%)`;
+    }
+
+    // ── Realtime Activity Feed ────────────────────────────────────────
+    const activityFeed = document.querySelector('.flex.flex-col.gap-card-gap');
+
+    function renderActivity(logs) {
+      if (!activityFeed || !logs?.length) return;
+      activityFeed.innerHTML = logs.map(log => {
+        const actor = log.actor?.display_name || log.actor?.full_name || 'Someone';
+        const time  = new Date(log.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        
+        let desc = '';
+        if (log.action === 'create') desc = 'created a task';
+        else if (log.action === 'update') {
+          desc = `changed <strong>${log.field}</strong> from <i>${log.old_value}</i> to <i>${log.new_value}</i>`;
+        } else if (log.action === 'delete') desc = 'deleted a task';
+
+        const dotColor = log.action === 'create' ? 'bg-primary'
+                       : log.action === 'update' ? 'bg-secondary'
+                       : 'bg-error';
+
+        return `<div class="flex gap-3 items-start border-l-2 border-outline-variant/30 pl-3 relative">
+          <div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full ${dotColor}"></div>
+          <div class="flex-1">
+            <p class="font-body-sm text-[12px] text-on-surface"><span class="font-medium text-primary">${actor}</span> ${desc}</p>
+            <span class="font-mono text-[10px] text-outline">${time}</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // Initial activity load
+    // For dashboard, we might want workspace activity. 
+    // fetchActivity currently takes taskId. I'll add a fetchWorkspaceActivity helper in supabase.js later if needed, 
+    // or just fetch by workspace_id here.
+    const { data: wsActivity } = await db.from('activity_log')
+      .select('*, actor:profiles!actor_id(*)')
+      .eq('workspace_id', ws.id)
+      .order('created_at', { ascending: false })
+      .limit(10);
+    
+    renderActivity(wsActivity);
+
+    // Live updates
+    window._supabase.channel(`ws_activity:${ws.id}`)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'activity_log', filter: `workspace_id=eq.${ws.id}` }, () => {
+        db.from('activity_log').select('*, actor:profiles!actor_id(*)').eq('workspace_id', ws.id).order('created_at', { ascending: false }).limit(10).then(({data}) => renderActivity(data));
+      }).subscribe();
+  }
+
+  // ── Sign out ────────────────────────────────────────────────────────
+  const avatarBtn = document.querySelector('img[alt="user_profile_avatar"]');
+  if (avatarBtn) {
+    avatarBtn.style.cursor = 'pointer';
+    avatarBtn.title = 'Click to sign out';
+    avatarBtn.addEventListener('click', () => {
+      if (confirm('Sign out?')) window.ApexApp.signOut();
+    });
+  }
+});
+</script>
+</body></html>

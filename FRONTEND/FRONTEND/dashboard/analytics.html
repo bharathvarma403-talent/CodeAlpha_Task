@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Projects - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base antialiased h-screen flex overflow-hidden selection:bg-primary selection:text-on-primary">
+<!-- Navigation Drawer (Hidden on Mobile, Visible on md+) -->
+<aside class="hidden md:flex flex-col h-full p-4 gap-2 bg-gray-900 text-violet-500 font-inter text-[13px] font-medium fixed left-0 top-0 w-[240px] border-r border-gray-800 shadow-none transition-all duration-200 z-20">
+<!-- Header (Profile) -->
+<div class="flex items-center gap-3 mb-6 px-2">
+<img class="w-8 h-8 rounded-DEFAULT object-cover ring-1 ring-outline-variant" data-alt="A macro photograph of an abstract, dark geometric surface, featuring sharp angles and subtle neon violet lighting reflections, creating a corporate yet futuristic workspace aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB09Q4M9xqiOYtA8L4NWsmjm1KBu4a9Z_7hOLJ9Voe5-hPD58yli64S9Bg8tvNnnVqvjh1QTMGnT46AHG0fHig7_8X5T54qQweGmmaK9Vz4s_Hd20U2Z76RJuWLQ9PaYQpgQv3tzFFMZqF6DEMBPoSLpYFj5WFNYbUS8ZoGkI7gYH1YTCRcxpjP48zASx2__KZDzmnNa-UiJoWIWhQ1lxxN1rZu1KtO1uN-W-wKyXDD6W8QHc7P2gIXlVBNKlgJa1oTQy1JWKcJPOg"/>
+<div class="flex flex-col flex-1 overflow-hidden">
+<span class="text-violet-500 font-bold truncate">Apex Engineering</span>
+<span class="text-[11px] text-gray-400 truncate">Workspace Switcher</span>
+</div>
+<span class="text-[10px] font-mono text-gray-500 bg-gray-800 px-1.5 py-0.5 rounded border border-gray-700">Cmd+K</span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1 flex-1">
+<!-- Search -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[18px] opacity-80 group-hover:opacity-100">search</span>
+<span>Search</span>
+</a>
+<!-- My Tasks -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[18px] opacity-80 group-hover:opacity-100">check_circle</span>
+<span>My Tasks</span>
+</a>
+<!-- Inbox -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[18px] opacity-80 group-hover:opacity-100">inbox</span>
+<span>Inbox</span>
+</a>
+<!-- Favorites -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[18px] opacity-80 group-hover:opacity-100">star</span>
+<span>Favorites</span>
+</a>
+<!-- Projects (Active based on Semantic Context: Dashboard/Analytics usually sits under projects/workspaces) -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-gray-800 text-violet-400 font-semibold transition-all duration-200 group relative" href="#">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-4 bg-violet-500 rounded-r-full"></div>
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+<span>Projects</span>
+</a>
+<!-- Teams -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[18px] opacity-80 group-hover:opacity-100">group</span>
+<span>Teams</span>
+</a>
+</nav>
+<!-- User Profile Footer in Sidebar -->
+<div class="mt-auto pt-4 border-t border-gray-800">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="A professional headshot of a male software engineer with short hair, wearing a dark grey t-shirt, set against a completely black minimalist background. High contrast, cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCceaoriJuzyB4CNehqYZK6wWqetDZ42Iqafq8zSkvi9Vjin1dQvMMlt4XefKiLrhiRB_req-LJSK6Z92Fu8sSULXeEyVJDnivgI5Qw7RT2Kb-qr0I6epcdzICD63YWgZ3nUu98QHC2uQRey6INdyJtNA0dMU5vJ-OkRNZugYiD3vAg6N-Gr7YkFgrs6Y9oaKWU4vWNDQL1D6KYx3Wiid3QtZ5YlrPpMFvoPtgdkfLk2-7qLkf-kJEneE1UTmHpUiiSIOCaT3k9uxE"/>
+<span>Profile Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[240px] relative">
+<!-- TopAppBar (Execution of style_ keys) -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-gray-950 text-violet-500 font-inter text-sm font-medium tracking-tight sticky top-0 z-10 border-b border-gray-800 shadow-none transition-colors duration-150 ease-in-out shrink-0">
+<div class="flex items-center gap-3">
+<button class="md:hidden flex items-center justify-center p-1.5 rounded-DEFAULT hover:bg-gray-900 hover:text-gray-100 transition-colors">
+<span class="material-symbols-outlined text-[20px]">menu</span>
+</button>
+<span class="text-lg font-semibold text-white tracking-tight">Apex Projects</span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Inactive nav item representing context -->
+<span class="hidden sm:block text-gray-500 text-body-sm font-body-sm">Sprint Dashboard</span>
+<button class="relative rounded-full hover:ring-2 ring-violet-500/50 transition-all">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A professional headshot of a male software engineer with short hair, wearing a dark grey t-shirt, set against a completely black minimalist background. High contrast, cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPTyR2FWAEshiquM1-qKu9Vrtl1fyw6hgPFEDZAgNStFz_P0H-ZRzpTz53EN5evK1iYxokLjXXphZzUcDmITxab9L4XaE8Klyvflb1L6V6LbiVSnZPm7r6zlm2yOpIrtBzb6VuCam0_-VdfneIBI39Oyhs6tOxoo2jDjnCGRuVPqZqlSZLouu3m5NAeLYK0N_94Javera9MyMQqUBNB316SCnka-W3FyvfJx7tZbhXNlB_DitbSfjThvryYmV4a-9ot5PBfADpXss"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-gray-950"></div>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-4 md:p-container-padding scroll-smooth">
+<!-- Dashboard Header & Filters -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface mb-1">Analytics Overview</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Monitoring team velocity and sprint health.</p>
+</div>
+<!-- Date Range Filter -->
+<div class="flex items-center gap-2 bg-surface-container-low border border-outline-variant rounded-lg p-1">
+<button class="px-3 py-1.5 text-body-sm font-body-sm rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors">Last Sprint</button>
+<button class="px-3 py-1.5 text-body-sm font-body-sm rounded bg-surface-variant text-on-surface shadow-sm">This Sprint</button>
+<button class="px-3 py-1.5 text-body-sm font-body-sm rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                        Custom
+                    </button>
+</div>
+</div>
+<!-- Widget Grid (12-column logic, vertical stacking on mobile) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-card-gap">
+<!-- Widget 1: Completion Rate (Stat Card) -->
+<div class="col-span-1 md:col-span-4 bg-surface-container-low rounded-xl border border-outline-variant p-5 flex flex-col justify-between group hover:border-outline transition-colors relative overflow-hidden">
+<!-- Subtle background glow -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-inverse-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-h2 text-h2 text-on-surface text-[16px]">Completion Rate</h2>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">monitoring</span>
+</div>
+<div class="mt-auto flex items-baseline gap-3">
+<span class="font-h1 text-[48px] leading-[48px] tracking-tight text-on-surface">72%</span>
+<div class="flex items-center text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[12px] font-bold mr-0.5">arrow_upward</span>
+                            5%
+                        </div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">vs. 67% last sprint at this stage</p>
+</div>
+<!-- Widget 2: Sprint Burndown Chart (Line Chart) -->
+<div class="col-span-1 md:col-span-8 bg-surface-container-low rounded-xl border border-outline-variant p-5 flex flex-col group hover:border-outline transition-colors">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface text-[16px]">Sprint Burndown</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Remaining Effort (Points)</p>
+</div>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<!-- SVG Chart Area -->
+<div class="flex-1 relative min-h-[160px] w-full">
+<!-- Y-axis labels -->
+<div class="absolute left-0 top-0 bottom-6 flex flex-col justify-between text-[10px] font-mono text-outline w-6">
+<span>40</span><span>30</span><span>20</span><span>10</span><span>0</span>
+</div>
+<!-- Chart Canvas -->
+<div class="absolute left-8 right-0 top-2 bottom-6">
+<!-- Grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full h-px bg-outline-variant/30"></div>
+<div class="w-full h-px bg-outline-variant/30"></div>
+<div class="w-full h-px bg-outline-variant/30"></div>
+<div class="w-full h-px bg-outline-variant/30"></div>
+<div class="w-full h-px border-b border-outline-variant/50"></div>
+</div>
+<!-- SVG Lines -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Ideal Guideline (Straight line) -->
+<line class="chart-path" stroke="#494454" stroke-dasharray="4 4" stroke-width="1.5" x1="0" x2="100" y1="0" y2="100"></line>
+<!-- Actual Burndown Line -->
+<path class="chart-path" d="M0,0 L14,10 L28,15 L42,35 L56,40 L70,65 L80,70" fill="none" stroke="#6d3bd7" stroke-width="2.5"></path>
+<!-- Data Points (Actual) -->
+<circle cx="0" cy="0" fill="#1d1a23" r="3" stroke="#6d3bd7" stroke-width="2"></circle>
+<circle cx="14" cy="10" fill="#1d1a23" r="3" stroke="#6d3bd7" stroke-width="2"></circle>
+<circle cx="28" cy="15" fill="#1d1a23" r="3" stroke="#6d3bd7" stroke-width="2"></circle>
+<circle cx="42" cy="35" fill="#1d1a23" r="3" stroke="#6d3bd7" stroke-width="2"></circle>
+<circle cx="56" cy="40" fill="#1d1a23" r="3" stroke="#6d3bd7" stroke-width="2"></circle>
+<circle cx="70" cy="65" fill="#1d1a23" r="3" stroke="#6d3bd7" stroke-width="2"></circle>
+<circle cx="80" cy="70" fill="#6d3bd7" r="3"></circle> <!-- Current day active point -->
+<!-- Projection (Dashed) -->
+<path class="chart-path opacity-70" d="M80,70 L100,85" fill="none" stroke="#a078ff" stroke-dasharray="3 3" stroke-width="2"></path>
+</svg>
+</div>
+<!-- X-axis labels -->
+<div class="absolute left-8 right-0 bottom-0 flex justify-between text-[10px] font-mono text-outline pt-2">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>M</span><span>T</span><span>W</span>
+</div>
+</div>
+</div>
+<!-- Widget 3: Task Status Distribution (Donut Chart) -->
+<div class="col-span-1 md:col-span-6 bg-surface-container-low rounded-xl border border-outline-variant p-5 flex flex-col group hover:border-outline transition-colors">
+<h2 class="font-h2 text-h2 text-on-surface text-[16px] mb-4">Status Distribution</h2>
+<div class="flex flex-1 items-center justify-center gap-6 sm:gap-10">
+<!-- Donut SVG -->
+<div class="relative w-32 h-32 shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<!-- Background Track -->
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#2c2832" stroke-width="4"></circle>
+<!-- Segments (Total = 100) -->
+<!-- Done (35%) -->
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#6d3bd7" stroke-dasharray="35 65" stroke-dashoffset="0" stroke-width="4"></circle>
+<!-- In Review (20%) -->
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#c0c1ff" stroke-dasharray="20 80" stroke-dashoffset="-35" stroke-width="4"></circle>
+<!-- In Progress (25%) -->
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#ffb869" stroke-dasharray="25 75" stroke-dashoffset="-55" stroke-width="4"></circle>
+<!-- Todo (15%) -->
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#958ea0" stroke-dasharray="15 85" stroke-dashoffset="-80" stroke-width="4"></circle>
+<!-- Backlog (5%) -->
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#37333d" stroke-dasharray="5 95" stroke-dashoffset="-95" stroke-width="4"></circle>
+</svg>
+<!-- Center Text -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-h2 text-h2 text-on-surface">64</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Tasks</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex flex-col gap-2.5 font-body-sm text-body-sm w-full max-w-[120px]">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-inverse-primary"></div>
+<span class="text-on-surface-variant">Done</span>
+</div>
+<span class="text-on-surface font-medium">35%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-secondary"></div>
+<span class="text-on-surface-variant">Review</span>
+</div>
+<span class="text-on-surface font-medium">20%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-tertiary"></div>
+<span class="text-on-surface-variant">Progress</span>
+</div>
+<span class="text-on-surface font-medium">25%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-outline"></div>
+<span class="text-on-surface-variant">Todo</span>
+</div>
+<span class="text-on-surface font-medium">15%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-surface-variant"></div>
+<span class="text-on-surface-variant">Backlog</span>
+</div>
+<span class="text-on-surface font-medium">5%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Widget 4: Velocity Chart (Bar Chart) -->
+<div class="col-span-1 md:col-span-6 bg-surface-container-low rounded-xl border border-outline-variant p-5 flex flex-col group hover:border-outline transition-colors">
+<h2 class="font-h2 text-h2 text-on-surface text-[16px] mb-6">Team Velocity</h2>
+<div class="flex-1 flex items-end justify-between gap-2 h-[140px] mt-auto">
+<!-- Bar 1 -->
+<div class="flex flex-col items-center gap-2 flex-1 group/bar cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t relative overflow-hidden transition-all group-hover/bar:bg-surface-variant" style="height: 100px;">
+<div class="absolute bottom-0 left-0 w-full bg-primary-container/30 transition-all group-hover/bar:bg-primary-container/50" style="height: 75%;"></div>
+<div class="absolute bottom-0 left-0 w-full bg-primary-container" style="height: 65%;"></div>
+</div>
+<span class="font-mono text-[10px] text-outline">SP-12</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col items-center gap-2 flex-1 group/bar cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t relative overflow-hidden transition-all group-hover/bar:bg-surface-variant" style="height: 100px;">
+<div class="absolute bottom-0 left-0 w-full bg-primary-container/30 transition-all group-hover/bar:bg-primary-container/50" style="height: 80%;"></div>
+<div class="absolute bottom-0 left-0 w-full bg-primary-container" style="height: 70%;"></div>
+</div>
+<span class="font-mono text-[10px] text-outline">SP-13</span>
+</div>
+<!-- Bar 3 -->
+<div class="flex flex-col items-center gap-2 flex-1 group/bar cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t relative overflow-hidden transition-all group-hover/bar:bg-surface-variant" style="height: 100px;">
+<div class="absolute bottom-0 left-0 w-full bg-primary-container/30 transition-all group-hover/bar:bg-primary-container/50" style="height: 85%;"></div>
+<div class="absolute bottom-0 left-0 w-full bg-primary-container" style="height: 85%;"></div>
+</div>
+<span class="font-mono text-[10px] text-outline">SP-14</span>
+</div>
+<!-- Bar 4 (Current) -->
+<div class="flex flex-col items-center gap-2 flex-1 group/bar cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t relative overflow-hidden transition-all" style="height: 100px;">
+<div class="absolute bottom-0 left-0 w-full bg-inverse-primary/30 border-t border-dashed border-inverse-primary" style="height: 90%;"></div>
+<div class="absolute bottom-0 left-0 w-full bg-inverse-primary shadow-[0_0_12px_rgba(109,59,215,0.4)]" style="height: 60%;"></div>
+</div>
+<span class="font-mono text-[10px] text-on-surface font-bold">SP-15</span>
+</div>
+</div>
+</div>
+<!-- Widget 5: Team Workload (Horizontal Bars) -->
+<div class="col-span-1 md:col-span-12 bg-surface-container-low rounded-xl border border-outline-variant p-5 flex flex-col group hover:border-outline transition-colors">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-h2 text-h2 text-on-surface text-[16px]">Team Workload</h2>
+<a class="font-body-sm text-body-sm text-inverse-primary hover:text-primary transition-colors" href="#">View Resource Planner</a>
+</div>
+<div class="flex flex-col gap-4 mt-2">
+<!-- Member 1 -->
+<div class="flex items-center gap-4">
+<img class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" data-alt="A professional headshot of a female software developer with glasses, looking directly at the camera. Minimalist dark grey background, high contrast corporate lighting, ensuring a pristine modern UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLXTfKmLTCsfNLkmbTvCbWs1_kj20o1ULhh3YjdsIDwI9ohkoeSdvLfH6gPBCOBCHP9FQUYVZ2CUzoJe3afjaxoURVfb77SX-Osooz-CZ04jl8MEuMU9-OeaAV6r1rOE-TxIRQCOjsFL-vfO15sGoXrvAN_TQePvcwzjkDVjI6qoULMLxs7wakmLe92Vn7jWYjB62Pyyb_2Xjzm8VsjfWuDxEUM7dpGJEdrtndjH-y1_H_GYbcADN9zn6WRoVdi0yiXoFqTZDSD3w"/>
+<div class="flex-1 flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Sarah Jenkins</span>
+<span class="font-mono text-[11px] text-outline">18/20 pts</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 90%;"></div>
+</div>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="flex items-center gap-4">
+<img class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" data-alt="A portrait of a male designer with a beard, side profile looking off-camera. Deep shadows, dark moody background, high-end commercial photography style suitable for a sleek dashboard avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCpVP3DlNQQ1rCepKXJeNawLHuMj8qOz6CoRVmMaOcgT_0TQpFRl3fwfYMZOSiDy3U9lOvDlkc2aycjEdeKNYL18ksYs0c9ZAqi6YSIV-KtEE541SJpbJDS1Z01Y_7MZrPLGBnwAhbW3_P1kZoMc-vg-bw3GVJSazSusMWidAp-j2FuQcSojXz7sOSV_OQbrHvhxH_WWRWwzAoL3nUYb7lFjhEGKdKYw7yLswp_Zv8eSEqDMDM0thRPCBvmIJxagcbLz_XQoHGsV8"/>
+<div class="flex-1 flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Marcus Chen</span>
+<span class="font-mono text-[11px] text-error">24/20 pts</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-caps text-label-caps ring-1 ring-outline-variant">
+                                EP
+                            </div>
+<div class="flex-1 flex flex-col gap-1.5">
+<div class="flex justify-between items-end">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Elena Patel</span>
+<span class="font-mono text-[11px] text-outline">12/20 pts</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-inverse-primary rounded-full" style="width: 60%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="mt-8 flex justify-center pb-8">
+<button class="flex items-center gap-2 bg-surface-container-low hover:bg-surface-variant border border-outline-variant border-dashed text-on-surface-variant hover:text-on-surface hover:border-outline px-6 py-3 rounded-lg font-body-sm text-body-sm font-medium transition-all group">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-90 transition-transform duration-300">add</span>
+                    Add Widget
+                </button>
+</div>
+</main>
+</div>
+</body></html>

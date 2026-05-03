@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Timeline / Gantt View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex w-full flex-col md:flex-row overflow-hidden font-body-base text-body-base">
+<!-- TopAppBar (Mobile) -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-gray-950 text-violet-500 font-inter text-sm font-medium tracking-tight border-b border-gray-800 md:hidden shrink-0 z-50">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center hover:bg-gray-900 hover:text-gray-100 transition-colors duration-150 ease-in-out p-1 rounded-DEFAULT text-violet-500">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-lg font-semibold text-white tracking-tight">Apex Projects</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden shrink-0 border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional individual in a minimalist studio setting. Soft, even studio lighting highlights their features against a subtle dark grey background. The mood is confident and modern, aligning perfectly with a clean, dark-mode corporate aesthetic. High resolution, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO3-Zs-NqStAz1uZm2Ypwg2-2Uo3mewdmyjl2sTugi_Z9mAydqL5Izrd1uL5o5RkCCbFAVwMJFV9uNs7rOAzRztJHjHuIRbH-Gur7h_fjxUUqlscsShqD1O1rIJ0O-IsqcBZTcNPKupUEhJ2jlUwPR6r1kanYFSkzSj_qFdvQXeZ-BvfMcBaZrRSd3DhhXkHwCIWQpdOpbYTctWbbHj19LwQ5wB5U4VTFsfWySGX5YBwKVmi_hEpe-i7ZlHFXt-FWKXh8smoHHmdo"/>
+</div>
+</header>
+<!-- NavigationDrawer (Web) -->
+<aside class="hidden md:flex flex-col h-full w-[240px] bg-gray-900 border-r border-gray-800 shrink-0 z-40 relative left-0 top-0 p-4 gap-2">
+<div class="flex items-center gap-3 mb-6 p-2">
+<div class="w-8 h-8 rounded-DEFAULT overflow-hidden bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
+                 A
+             </div>
+<div class="flex flex-col">
+<span class="text-violet-500 font-bold font-body-sm text-body-sm">Apex Engineering</span>
+<span class="text-xs text-gray-500">Workspace Switcher</span>
+</div>
+<span class="ml-auto text-xs text-gray-500 font-mono">Cmd+K</span>
+</div>
+<nav class="flex flex-col gap-1 font-inter text-[13px] font-medium">
+<a class="flex items-center gap-3 p-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">search</span> Search
+            </a>
+<a class="flex items-center gap-3 p-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> My Tasks
+            </a>
+<a class="flex items-center gap-3 p-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span> Inbox
+            </a>
+<a class="flex items-center gap-3 p-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">star</span> Favorites
+            </a>
+<a class="flex items-center gap-3 p-2 rounded-DEFAULT bg-gray-800 text-violet-400 font-semibold transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">format_list_bulleted</span> Projects
+            </a>
+<a class="flex items-center gap-3 p-2 rounded-DEFAULT text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span> Teams
+            </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background relative">
+<!-- View Controls Header -->
+<div class="flex items-center justify-between p-4 border-b border-surface-variant bg-surface shrink-0">
+<div>
+<h1 class="font-h2 text-h2 text-on-surface">Timeline</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Q3 Roadmap • 24 Tasks</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container rounded-lg p-1 border border-outline-variant">
+<button class="px-3 py-1 rounded-DEFAULT text-xs font-medium text-on-surface-variant hover:text-on-surface transition-colors">Day</button>
+<button class="px-3 py-1 rounded-DEFAULT text-xs font-medium bg-surface-variant text-on-surface shadow-sm">Week</button>
+<button class="px-3 py-1 rounded-DEFAULT text-xs font-medium text-on-surface-variant hover:text-on-surface transition-colors">Month</button>
+<button class="px-3 py-1 rounded-DEFAULT text-xs font-medium text-on-surface-variant hover:text-on-surface transition-colors">Quarter</button>
+</div>
+</div>
+<!-- Gantt Chart Container -->
+<div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+<!-- Fixed Task List Column (Left) -->
+<div class="w-full md:w-[320px] shrink-0 border-b md:border-b-0 md:border-r border-surface-variant flex flex-col bg-surface z-20 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.5)] md:shadow-none">
+<!-- Header row for tasks -->
+<div class="h-[48px] border-b border-surface-variant flex items-center px-4 shrink-0 bg-surface-container-lowest">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Task Name</span>
+</div>
+<!-- Scrollable Task List -->
+<div class="flex-1 overflow-y-auto no-scrollbar pb-24 md:pb-0">
+<!-- Group: Sprint 1 -->
+<div class="flex items-center px-2 py-1 bg-surface-container-low border-b border-surface-variant sticky top-0 z-10 cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm text-on-surface-variant mr-1">expand_more</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Sprint 42 (Core API)</span>
+</div>
+<!-- Task Rows -->
+<div class="h-[48px] flex flex-col justify-center px-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error shrink-0"></span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Database Migration</span>
+</div>
+</div>
+<div class="h-[48px] flex flex-col justify-center px-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary shrink-0"></span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Auth Service Update</span>
+</div>
+</div>
+<div class="h-[48px] flex flex-col justify-center px-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary shrink-0"></span>
+<span class="font-body-sm text-body-sm text-on-surface truncate pl-4">OAuth Provider Integration</span>
+</div>
+</div>
+<!-- Group: Sprint 2 -->
+<div class="flex items-center px-2 py-1 bg-surface-container-low border-b border-surface-variant sticky top-0 z-10 cursor-pointer hover:bg-surface-container transition-colors mt-4">
+<span class="material-symbols-outlined text-sm text-on-surface-variant mr-1">expand_more</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Frontend Team - UI Overhaul</span>
+</div>
+<div class="h-[48px] flex flex-col justify-center px-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Dashboard Redesign</span>
+</div>
+</div>
+<div class="h-[48px] flex flex-col justify-center px-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary shrink-0"></span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Component Library Updates</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Scrollable Timeline Area (Right) -->
+<div class="flex-1 overflow-x-auto overflow-y-auto no-scrollbar relative bg-surface-dim">
+<!-- Timeline Header (Dates) -->
+<div class="flex h-[48px] border-b border-surface-variant bg-surface-container-lowest sticky top-0 z-30 min-w-max">
+<!-- Week 1 -->
+<div class="flex flex-col border-r border-surface-variant">
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant py-1 border-b border-surface-variant px-2">Sep 11 - 17</div>
+<div class="flex">
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">M</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">T</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50 bg-primary/10 text-primary font-bold">W</div> <!-- Today -->
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">T</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">F</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50 bg-surface-variant/30">S</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 bg-surface-variant/30">S</div>
+</div>
+</div>
+<!-- Week 2 -->
+<div class="flex flex-col border-r border-surface-variant">
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant py-1 border-b border-surface-variant px-2">Sep 18 - 24</div>
+<div class="flex">
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">M</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">T</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">W</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">T</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50">F</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 border-r border-surface-variant/50 bg-surface-variant/30">S</div>
+<div class="w-12 text-center text-[10px] text-on-surface-variant py-1 bg-surface-variant/30">S</div>
+</div>
+</div>
+</div>
+<!-- Timeline Grid Body -->
+<div class="relative min-w-max pb-24 md:pb-0">
+<!-- Vertical Grid Lines & Shading (Background) -->
+<div class="absolute inset-0 flex pointer-events-none z-0">
+<!-- Week 1 lines -->
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full bg-surface-variant/10"></div>
+<div class="w-12 border-r border-surface-variant/40 h-full bg-surface-variant/10"></div>
+<!-- Week 2 lines -->
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full"></div>
+<div class="w-12 border-r border-surface-variant/20 h-full bg-surface-variant/10"></div>
+<div class="w-12 border-r border-surface-variant/40 h-full bg-surface-variant/10"></div>
+</div>
+<!-- "Today" Line -->
+<div class="absolute left-[120px] top-0 bottom-0 w-px border-l-2 border-dashed border-primary z-10 pointer-events-none">
+<div class="bg-primary text-on-primary text-[10px] font-bold px-1 py-0.5 rounded-sm absolute -left-[14px] top-2">TODAY</div>
+</div>
+<!-- Row Spacer for Group Header -->
+<div class="h-[28px] border-b border-surface-variant/10 bg-surface-container-low/50"></div>
+<!-- Task Bar 1 -->
+<div class="h-[48px] border-b border-surface-variant/30 relative flex items-center group">
+<div class="absolute left-[24px] w-[144px] h-[24px] bg-error-container/20 border border-error-container rounded-full flex items-center px-3 z-10 shadow-sm cursor-pointer hover:bg-error-container/30 transition-colors">
+<span class="text-[11px] font-medium text-error truncate">Database Migration</span>
+</div>
+</div>
+<!-- Task Bar 2 -->
+<div class="h-[48px] border-b border-surface-variant/30 relative flex items-center group">
+<div class="absolute left-[144px] w-[96px] h-[24px] bg-tertiary-container/20 border border-tertiary-container rounded-full flex items-center px-3 z-10 shadow-sm cursor-pointer hover:bg-tertiary-container/30 transition-colors">
+<span class="text-[11px] font-medium text-tertiary truncate">Auth Service</span>
+</div>
+<!-- Dependency Arrow SVG -->
+<svg class="absolute left-[168px] top-[-24px] w-[24px] h-[48px] pointer-events-none z-0 text-outline-variant" style="stroke: currentColor; fill: none; stroke-width: 1.5;">
+<path d="M0,0 L12,0 L12,36 L20,36"></path>
+<polygon points="20,32 24,36 20,40" style="fill: currentColor; stroke: none;"></polygon>
+</svg>
+</div>
+<!-- Task Bar 3 (Subtask) -->
+<div class="h-[48px] border-b border-surface-variant/30 relative flex items-center group">
+<div class="absolute left-[192px] w-[120px] h-[24px] bg-primary-container/20 border border-primary-container rounded-full flex items-center px-3 z-10 shadow-sm cursor-pointer hover:bg-primary-container/30 transition-colors">
+<span class="text-[11px] font-medium text-primary truncate">OAuth Provider</span>
+</div>
+<!-- Milestone Marker -->
+<div class="absolute left-[330px] text-tertiary text-[14px] flex flex-col items-center justify-center h-full z-10" title="Milestone: Alpha Release">
+                            ◆
+                        </div>
+</div>
+<!-- Row Spacer for Group Header -->
+<div class="h-[28px] border-b border-surface-variant/10 bg-surface-container-low/50 mt-4"></div>
+<!-- Task Bar 4 -->
+<div class="h-[48px] border-b border-surface-variant/30 relative flex items-center group">
+<div class="absolute left-[48px] w-[240px] h-[24px] bg-secondary-container/20 border border-secondary-container rounded-full flex items-center px-3 z-10 shadow-sm cursor-pointer hover:bg-secondary-container/30 transition-colors">
+<span class="text-[11px] font-medium text-secondary truncate">Dashboard Redesign Phase 1</span>
+</div>
+</div>
+<!-- Task Bar 5 -->
+<div class="h-[48px] border-b border-surface-variant/30 relative flex items-center group">
+<div class="absolute left-[240px] w-[144px] h-[24px] bg-tertiary-container/20 border border-tertiary-container rounded-full flex items-center px-3 z-10 shadow-sm cursor-pointer hover:bg-tertiary-container/30 transition-colors">
+<span class="text-[11px] font-medium text-tertiary truncate">Component Lib</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

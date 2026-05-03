@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex — Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/supabase.js"></script>
+<style>body { min-height: max(884px, 100dvh); }</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center font-body-base relative overflow-hidden antialiased">
+
+<div class="absolute inset-0 z-0 pointer-events-none">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-container rounded-full blur-[150px] opacity-10"></div>
+</div>
+
+<main class="w-full max-w-[400px] z-10 px-container-padding">
+  <div class="flex flex-col items-center mb-8">
+    <div class="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg border border-outline-variant shadow-sm mb-6">
+      <span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">hexagon</span>
+    </div>
+    <h1 class="font-h1 text-h1 text-on-surface mb-2">Welcome back</h1>
+    <p class="font-body-sm text-body-sm text-on-surface-variant">Enter your credentials to access your workspace.</p>
+  </div>
+
+  <div class="bg-surface-container rounded-xl border border-outline-variant shadow-sm p-6">
+    <!-- Error Banner -->
+    <div id="error-banner" class="hidden mb-4 flex items-center gap-2 bg-error/10 border border-error/30 text-error rounded-lg px-4 py-3 text-sm">
+      <span class="material-symbols-outlined text-[18px]">error</span>
+      <span id="error-msg">Something went wrong.</span>
+    </div>
+
+    <form id="signin-form" class="space-y-5">
+      <div class="space-y-1.5">
+        <label class="font-label-caps text-label-caps text-on-surface-variant block uppercase" for="email">Email Address</label>
+        <input class="w-full bg-surface border border-outline-variant text-on-surface text-body-sm font-body-sm rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-primary transition-colors placeholder:text-outline"
+          id="email" placeholder="name@company.com" type="email" autocomplete="email" required/>
+      </div>
+
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="font-label-caps text-label-caps text-on-surface-variant block uppercase" for="password">Password</label>
+          <a class="font-body-sm text-body-sm text-primary hover:text-primary-fixed transition-colors" href="forgot_password.html">Forgot password?</a>
+        </div>
+        <div class="relative">
+          <input class="w-full bg-surface border border-outline-variant text-on-surface text-body-sm font-body-sm rounded-lg px-3 py-2 pr-10 focus:ring-2 focus:ring-primary focus:border-primary transition-colors placeholder:text-outline"
+            id="password" placeholder="••••••••" type="password" autocomplete="current-password" required/>
+          <button aria-label="Toggle password visibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors flex items-center justify-center"
+            type="button" id="toggle-pw">
+            <span class="material-symbols-outlined text-[18px]">visibility</span>
+          </button>
+        </div>
+      </div>
+
+      <button id="signin-btn" class="w-full bg-primary-container text-on-primary-container font-body-sm text-body-sm font-semibold rounded-lg px-4 py-2.5 shadow-sm hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2" type="submit">
+        <span id="signin-label">Sign in</span>
+        <span id="signin-spinner" class="hidden material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+      </button>
+    </form>
+
+    <div class="mt-6 flex items-center text-outline-variant">
+      <div class="flex-grow border-t border-outline-variant"></div>
+      <span class="px-3 font-body-sm text-body-sm text-on-surface-variant">or continue with</span>
+      <div class="flex-grow border-t border-outline-variant"></div>
+    </div>
+
+    <div class="mt-6 space-y-3">
+      <button id="google-btn" class="w-full bg-surface border border-outline-variant text-on-surface font-body-sm text-body-sm rounded-lg px-4 py-2.5 hover:bg-surface-bright transition-colors flex items-center justify-center gap-3" type="button">
+        <img alt="Google" class="w-5 h-5" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"/>
+        Google
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <p class="font-body-sm text-body-sm text-on-surface-variant">
+      Don't have an account? <a class="text-primary hover:text-primary-fixed font-medium transition-colors" href="sign_up.html">Sign up</a>
+    </p>
+  </div>
+</main>
+
+<script>
+document.addEventListener('supabase:ready', async () => {
+  // Redirect if already signed in
+  await window.ApexApp.requireGuest('../dashboard/index.html');
+
+  const db       = window._supabase;
+  const form     = document.getElementById('signin-form');
+  const btn      = document.getElementById('signin-btn');
+  const label    = document.getElementById('signin-label');
+  const spinner  = document.getElementById('signin-spinner');
+  const errBan   = document.getElementById('error-banner');
+  const errMsg   = document.getElementById('error-msg');
+  const togglePw = document.getElementById('toggle-pw');
+  const pwField  = document.getElementById('password');
+
+  function showError(msg) {
+    errMsg.textContent = msg;
+    errBan.classList.remove('hidden');
+  }
+  function hideError() { errBan.classList.add('hidden'); }
+  function setLoading(v) {
+    btn.disabled = v;
+    label.textContent = v ? 'Signing in…' : 'Sign in';
+    spinner.classList.toggle('hidden', !v);
+  }
+
+  // Password toggle
+  togglePw.addEventListener('click', () => {
+    const isHidden = pwField.type === 'password';
+    pwField.type = isHidden ? 'text' : 'password';
+    togglePw.querySelector('span').textContent = isHidden ? 'visibility_off' : 'visibility';
+  });
+
+  // Email/password sign in
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideError();
+    setLoading(true);
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const { error } = await db.auth.signInWithPassword({ email, password });
+    if (error) {
+      showError(error.message);
+      setLoading(false);
+    } else {
+      window.location.href = '../dashboard/index.html';
+    }
+  });
+
+  // Google OAuth
+  document.getElementById('google-btn').addEventListener('click', async () => {
+    const callbackUrl = new URL('../auth/callback.html', window.location.href).href;
+    const { error } = await db.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: callbackUrl,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'select_account',
+        }
+      }
+    });
+    if (error) showError(error.message);
+  });
+});
+</script>
+</body></html>

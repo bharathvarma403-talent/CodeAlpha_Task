@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Projects - Profile Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen overflow-hidden flex font-body-base">
+<nav class="bg-gray-900 text-violet-500 font-inter text-[13px] font-medium fixed left-0 top-0 h-full w-[240px] border-r border-gray-800 flex flex-col p-4 gap-2 z-20">
+<div class="flex items-center gap-3 mb-4 px-2 py-1">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-violet-600 to-indigo-800 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                A
+            </div>
+<div class="flex flex-col">
+<span class="text-violet-500 font-bold text-[14px] leading-tight">Apex Engineering</span>
+<span class="text-gray-400 text-[11px] font-medium flex items-center gap-1">Workspace Switcher <span class="text-gray-500 text-[9px]">Cmd+K</span></span>
+</div>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 flex items-center gap-3 px-3 py-2 rounded-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+                Search
+            </a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 flex items-center gap-3 px-3 py-2 rounded-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+                My Tasks
+            </a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 flex items-center gap-3 px-3 py-2 rounded-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="inbox">inbox</span>
+                Inbox
+            </a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 flex items-center gap-3 px-3 py-2 rounded-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="star">star</span>
+                Favorites
+            </a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 flex items-center gap-3 px-3 py-2 rounded-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+                Projects
+            </a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 flex items-center gap-3 px-3 py-2 rounded-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="group">group</span>
+                Teams
+            </a>
+</div>
+</nav>
+<div class="ml-[240px] flex-1 flex flex-col h-full bg-background relative z-10">
+<header class="bg-gray-950 flex items-center justify-between px-4 h-14 w-full border-b border-gray-800 shrink-0">
+<div class="flex items-center gap-3">
+<button class="text-violet-500 hover:bg-gray-900 hover:text-gray-100 transition-colors duration-150 ease-in-out p-1.5 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu">menu</span>
+</button>
+<span class="text-lg font-semibold text-white tracking-tight font-inter">Apex Projects</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a young professional woman with dark hair in a sleek, dimly lit studio environment. The lighting is moody and cinematic, adhering to a dark-mode aesthetic with soft, cool-toned rim lights illuminating her features against a solid black background. The mood is confident, modern, and perfectly suited for a high-end corporate software avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSzzmSxHaTuFu-oRuJYM_l4cQ0gRtrOfIiJP5RgEFGhCO06RngH5D250yf-o4LCWaU7TAdEaVV7jyaeLmNGuCCUTCXF_uf-EQvwP9PuUrk5lvf9yFOWqbpUDZuVJlb4tvrAITvb9jGUnbtuLBjCj6QQaoS09fWHhFGqcGV_9bWs1qxJpEOkB4mQ_r6_Ci6NCsuAnNepnKgGrsbFc3Mr47zi5B-gKjXiIGtp-WiUuqTMwrphRLVKTE80BRwRHkFq38vbW46JPfuQRs"/>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-container-padding">
+<div class="max-w-[720px] mx-auto w-full pb-12">
+<h1 class="font-h1 text-h1 text-on-surface mb-8">Profile Settings</h1>
+<div class="bg-surface-container rounded-xl p-6 border border-outline-variant shadow-sm mb-8 flex flex-col gap-8">
+<div class="flex items-center gap-6">
+<div class="relative w-24 h-24 shrink-0">
+<img alt="Profile Avatar" class="w-24 h-24 rounded-full object-cover border border-outline-variant" data-alt="A highly detailed close-up portrait of a young professional woman with dark hair in a sleek, dimly lit studio environment. The lighting is moody and cinematic, adhering to a dark-mode aesthetic with soft, cool-toned rim lights illuminating her features against a solid black background. The mood is confident, modern, and perfectly suited for a high-end corporate software avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFzEX9JcpUYSFA8h2kzqV6AZHl6a3mqRAbcXVfEONLdQ67PH1U4nL_cddJgMHg2i8O3aTYwdnerG7waJMFLgcieQaCyu4qT0EOLFS6VOH3pOEypw_qdXRtd9T7RjOMci2Fek5_LzQoZIevROWPheJg_nghCylLEQw-MHBcEtFNUbc_QQ-XQa6QG6Ba0phDRwfKjZcjsc6MGh0-1zkJfMI-JnQIHe0wq5a0TmL0gxUJFgzqMya0zL9lttBDAWO8PDj1S8M73yYEHC0"/>
+<button class="absolute bottom-0 right-0 bg-surface-container-high border border-outline-variant rounded-full p-2 shadow-md hover:bg-surface-bright text-on-surface transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-h2 text-h2 text-on-surface">Avatar</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">JPEG, GIF or PNG. Maximum size of 2MB.</span>
+</div>
+</div>
+<div class="border-t border-outline-variant/30"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Full Name</label>
+<input class="bg-surface-container-lowest border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-3 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-full placeholder:text-outline" type="text" value="Jane Doe"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Display Name</label>
+<input class="bg-surface-container-lowest border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-3 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-full placeholder:text-outline" type="text" value="janedoe_design"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Email Address</label>
+<div class="relative flex items-center w-full">
+<input class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg pl-3 pr-10 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="email" value="jane.doe@apex-engineering.com"/>
+<span class="material-symbols-outlined absolute right-3 text-emerald-400 text-[18px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Timezone</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-3 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer">
+<option value="pst">Pacific Time (US &amp; Canada)</option>
+<option selected="" value="est">Eastern Time (US &amp; Canada)</option>
+<option value="utc">UTC / GMT</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Language</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-3 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer">
+<option selected="" value="en">English (United States)</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Bio</label>
+<span class="font-mono text-mono text-on-surface-variant">105 / 140</span>
+</div>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-3 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none placeholder:text-outline-variant" rows="3">Product Designer focusing on scalable design systems, complex data visualization, and streamlined workflows.</textarea>
+</div>
+<div class="flex justify-end pt-2">
+<button class="bg-primary text-on-primary font-body-base text-body-base font-medium px-5 py-2.5 rounded-lg opacity-50 cursor-not-allowed shadow-sm" disabled="">
+                            Save changes
+                        </button>
+</div>
+</div>
+<div class="border border-error-container/50 bg-error-container/5 rounded-xl p-6 flex flex-col gap-4">
+<h2 class="font-h2 text-h2 text-error">Danger Zone</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[90%]">
+                        Permanently delete your account and all associated data, including workspaces, tasks, and settings. This action is irreversible and cannot be undone once executed.
+                    </p>
+<div class="mt-2">
+<button class="border border-error text-error font-body-base text-body-base font-medium px-5 py-2.5 rounded-lg hover:bg-error/10 transition-colors">
+                            Delete account
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

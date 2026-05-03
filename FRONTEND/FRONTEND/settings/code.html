@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Projects - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/css/globals.css" />
+<script src="../assets/js/theme.js"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base h-screen w-full flex overflow-hidden antialiased">
+<!-- Navigation Drawer (Desktop) -->
+<nav class="bg-gray-900 fixed left-0 top-0 h-full w-[240px] border-r border-gray-800 flex flex-col p-4 gap-2 hidden md:flex transition-all duration-200 z-20">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-6 p-2 rounded-lg hover:bg-gray-800/50 cursor-pointer transition-colors">
+<img class="w-8 h-8 rounded-lg object-cover bg-surface-variant" data-alt="A sleek, geometric 3D rendering of an abstract workspace logo in vibrant violet and deep dark gray. The sharp, structural interlocking shapes float in a dark void, illuminated by dramatic directional lighting that highlights the clean lines, evoking a modern, high-tech engineering aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdKhpJuP7FD0V7eupH6oX4AviBWfMyRswqyaaN_oJ42HNGpRyeUqnA94-ysUXs9SPth4B9LagFDF7WdR97VQcZOHH6dfgMywM1o98iRQ0pnhVMCLDaXs3yHNLJ5APTD_xxc1dlZKI_lCYIoazEbh2199nYgMym8ij0iMc9T2PEAa8duaUF74-kWGGcfeLOvpTpYnmiCtdczLU_L8Lz5fNZioVDSPM2NN-IvCyDMK83XubxNdN-DpMnah2ysdv1GuxFnlyJDAXUnTI"/>
+<div class="flex flex-col flex-1">
+<span class="text-violet-500 font-bold font-inter text-[13px] leading-tight text-ellipsis overflow-hidden whitespace-nowrap">Apex Engineering</span>
+<span class="text-gray-400 font-inter text-[11px] leading-tight">Workspace Switcher</span>
+</div>
+<span class="material-symbols-outlined text-gray-500 text-[16px]">unfold_more</span>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-1">
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium p-2 rounded-lg flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+<span class="flex-1">Search</span>
+<span class="text-[10px] text-gray-500 font-mono tracking-wider">Cmd+K</span>
+</a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium p-2 rounded-lg flex items-center gap-3 mt-4" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span>My Tasks</span>
+</a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium p-2 rounded-lg flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="inbox">inbox</span>
+<span class="flex-1">Inbox</span>
+<span class="bg-gray-800 text-gray-300 text-[10px] px-1.5 py-0.5 rounded font-bold">3</span>
+</a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium p-2 rounded-lg flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="star">star</span>
+<span>Favorites</span>
+</a>
+<div class="h-px bg-gray-800 my-2 mx-2"></div>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium p-2 rounded-lg flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span>Projects</span>
+</a>
+<a class="text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium p-2 rounded-lg flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="group">group</span>
+<span>Teams</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<div class="flex-1 md:ml-[240px] flex flex-col h-screen overflow-hidden bg-background">
+<!-- TopAppBar -->
+<header class="bg-gray-950 border-b border-gray-800 flex items-center justify-between px-4 h-14 w-full shrink-0 z-10 transition-colors duration-150 ease-in-out">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-gray-500 hover:bg-gray-900 hover:text-gray-100 p-1.5 rounded-md flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu">menu</span>
+</button>
+<h1 class="text-lg font-semibold text-white tracking-tight font-inter">Apex Projects</h1>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-7 h-7 rounded-full border border-gray-800 object-cover cursor-pointer" data-alt="A striking digital profile portrait of a modern professional male, shot with soft, high-key studio lighting against a deep dark gray background. The subject is sharply in focus, wearing minimalist dark attire, evoking a sense of 'Quiet Power'. The aesthetic relies on deep blacks and subtle highlights, perfectly matching a premium dark mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO29eOif0YRGQaDxCxYIgFeIau6J8LEioJpYY6qNUx-46jIUMCVvAUwzZt60dfaXz7GimnkgPkXJtXBUlEcW7EIY_xImk5YIzXhlvzSQZJu2unHK3DPadmr5YqVdWvYENrBX2V-06srFbroZ8qy8a-o5f_xK7pK5qWNOEG3WAHpRIn7imTp6YTyxVE12A7wpk_3XujSoO3zTh5QQNGA_RibEDO9-9Yd5vMwwCF-BGEz4n2WiGQD3JPlReWUuv9hwf9yytSPd2S4Gk"/>
+</div>
+</header>
+<!-- Scrollable Settings Area -->
+<main class="flex-1 overflow-y-auto p-4 md:p-container-padding pb-20">
+<div class="max-w-4xl mx-auto space-y-8">
+<!-- Profile Hero -->
+<div class="flex flex-col items-center pt-6 pb-2">
+<div class="relative group cursor-pointer">
+<img class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-surface-container-high object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105" data-alt="A striking digital profile portrait of a modern professional male, shot with soft, high-key studio lighting against a deep dark gray background. The subject is sharply in focus, wearing minimalist dark attire, evoking a sense of 'Quiet Power'. The aesthetic relies on deep blacks and subtle highlights, perfectly matching a premium dark mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNN_16OXZa_P3ghMwd2JwdRScdVIJOgdAmW-XSq5rJaHcgP1FRB19C4v9NMkbTtg0OfdOxpW9INsSGUuCZlR7WfGT_2sADY0KbGlZrTlfYsaE0vAjeXJwj3FmdXbWleq2xAVT-3rDGyI8n1GVD5KRo_akRoxGUp0V_vzURU_chPK9tj_pJ8dI-Uk07E6eK58eFeNEPIoRYxX8Q9BVVg4U3KJYdsZAhr052OCczyUX4xdinwPZwoFamT8czMFNMubBBcQqPSwyd7ro"/>
+<div class="absolute inset-0 bg-black/40 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+<span class="material-symbols-outlined text-white text-[24px]">photo_camera</span>
+</div>
+</div>
+<h2 class="font-h1 text-h1 text-on-surface mt-5 tracking-tight">Alex Mercer</h2>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Lead Engineer • alex.m@apex.inc</p>
+<button class="mt-4 bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-sm text-body-sm font-medium px-4 py-2 rounded-lg border border-outline-variant transition-colors shadow-sm">
+                        Manage Account
+                    </button>
+</div>
+<!-- Bento Grid / Stacked Lists -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- General Column -->
+<div class="space-y-6">
+<!-- Notifications Section -->
+<section class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="p-4 border-b border-outline-variant bg-surface-container-lowest">
+<h3 class="font-h2 text-[15px] leading-snug text-on-surface font-semibold tracking-tight">Notifications</h3>
+</div>
+<div class="flex flex-col divide-y divide-outline-variant bg-surface">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="notifications">notifications</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-base text-body-base text-on-surface font-medium">Push Notifications</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Direct mentions and assignments</span>
+</div>
+</div>
+<button class="w-10 h-6 rounded-full bg-primary relative transition-colors shadow-sm shrink-0">
+<span class="absolute left-1 top-1 w-4 h-4 rounded-full bg-on-primary transition-transform translate-x-4 shadow-sm"></span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="mail">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-base text-body-base text-on-surface font-medium">Email Digests</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Daily project summaries</span>
+</div>
+</div>
+<button class="w-10 h-6 rounded-full bg-surface-container-high border border-outline-variant relative transition-colors shrink-0">
+<span class="absolute left-1 top-1 w-3.5 h-3.5 rounded-full bg-outline transition-transform"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- Appearance Section -->
+<section class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="p-4 border-b border-outline-variant bg-surface-container-lowest">
+<h3 class="font-h2 text-[15px] leading-snug text-on-surface font-semibold tracking-tight">Appearance</h3>
+</div>
+<div class="flex flex-col divide-y divide-outline-variant bg-surface">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="dark_mode">dark_mode</span>
+</div>
+<span class="font-body-base text-body-base text-on-surface font-medium">Theme</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant group-hover:text-on-surface transition-colors">
+<span class="font-body-sm text-body-sm">Dark Mode</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_color_fill">format_color_fill</span>
+</div>
+<span class="font-body-base text-body-base text-on-surface font-medium">Accent Color</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant group-hover:text-on-surface transition-colors">
+<div class="w-4 h-4 rounded-full bg-primary border border-surface-variant"></div>
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Workspace Column -->
+<div class="space-y-6">
+<!-- Workspace & Billing -->
+<section class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="p-4 border-b border-outline-variant bg-surface-container-lowest">
+<h3 class="font-h2 text-[15px] leading-snug text-on-surface font-semibold tracking-tight">Workspace</h3>
+</div>
+<div class="flex flex-col divide-y divide-outline-variant bg-surface">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="domain">domain</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-base text-body-base text-on-surface font-medium">Branding &amp; Logo</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Apex Engineering</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="credit_card">credit_card</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-base text-body-base text-on-surface font-medium">Billing &amp; Plan</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Enterprise Tier • Renews in 14 days</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Members & Roles -->
+<section class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="p-4 border-b border-outline-variant bg-surface-container-lowest">
+<h3 class="font-h2 text-[15px] leading-snug text-on-surface font-semibold tracking-tight">Access Control</h3>
+</div>
+<div class="flex flex-col divide-y divide-outline-variant bg-surface">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="group">group</span>
+</div>
+<span class="font-body-base text-body-base text-on-surface font-medium">Members &amp; Invites</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2 overflow-hidden">
+<img class="inline-block h-6 w-6 rounded-full ring-2 ring-surface object-cover" data-alt="A portrait of a young female professional in a modern office. Lighting is soft and flattering. Deep blacks and subtle highlights match the premium dark mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHU9Y0L3aD8H5tiT-GJX7t-a4kADaDY8yexeVjTUiWEKzVj-QvU35FinTqBwWLySBlbLVFVQ4WyWCGKTtjG3jMIkoIKz4kW697rTFFaXuGTUJKrO2DdUrcMp13A-jJtBXNcewskhkDcdeR1vjMDuUXE6ORF3RHZ8C2Sjg_vQDUIDPJ3I5qdZnJYZ_JbnEd8Ae2H0lUFCNYrOrYX5kDBjNCBdeMrOc2Wpt7X1rz8_HCgaA6gcR7HtfNhXtj_LOGFGC0lK_WVHHlZd8"/>
+<img class="inline-block h-6 w-6 rounded-full ring-2 ring-surface object-cover" data-alt="A striking portrait of a male professional looking off-camera. Lighting is studio quality, high-key against a dark background. Subtle grays and deep blacks fit the minimalist corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_WhsFITxoqZJX4v6_5PUDjzEPfHbOOOd2lWI6kdcejmNe3j_I1L9u-zCpExMrM62UDaMJZ_SYAtfFwUICwiHYhSUh8KWvUKlSXDqu5F2PohpjqlnP_ofRbn91YY3qzG1GKgPAC7TZpfnbRDzsqNUaP1JuwHtAVXMLw3T8QRg_6af-8YYzQsUK3pl6eTZnXJQMp6zy4ptu3kUQ94QtMm0fWVeqPE0Vl1XY8ydxVEEu-1qExHlTV7UxkL6kSyfUOcWUokNx-GvedUs"/>
+<span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-surface-container-highest ring-2 ring-surface text-[10px] font-medium text-on-surface-variant">+12</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-on-surface transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="extension">extension</span>
+</div>
+<span class="font-body-base text-body-base text-on-surface font-medium">Integrations</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant group-hover:text-on-surface transition-colors">
+<span class="font-body-sm text-body-sm">4 Active</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Danger Zone (Subtle) -->
+<div class="mt-8 flex justify-center pb-8">
+<button class="flex items-center gap-2 text-error hover:text-error-container hover:bg-error/10 px-4 py-2 rounded-lg transition-colors font-body-sm font-medium">
+<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                        Log out of all devices
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

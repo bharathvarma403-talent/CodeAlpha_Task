@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up - Apex Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/supabase.js"></script>
+<link rel="stylesheet" href="../assets/css/globals.css" />
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center relative overflow-hidden font-body-base">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-container opacity-[0.08] blur-[100px] rounded-full pointer-events-none"></div>
+<main class="w-full max-w-[400px] p-container-padding z-10 relative">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-2xl p-[32px] flex flex-col gap-[32px]">
+<div class="flex flex-col gap-2 items-center text-center">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-outline-variant mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">account_circle</span>
+</div>
+<h1 class="font-h1 text-h1 text-on-surface m-0">Create your account</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant m-0">Join Apex to manage your projects.</p>
+</div>
+<!-- Error Banner -->
+<div id="error-banner" class="hidden flex items-center gap-2 bg-error/10 border border-error/30 text-error rounded-lg px-4 py-3 text-sm">
+  <span class="material-symbols-outlined text-[18px]">error</span>
+  <span id="error-msg"></span>
+</div>
+<!-- Success Banner -->
+<div id="success-banner" class="hidden flex items-center gap-2 bg-tertiary/10 border border-tertiary/30 text-tertiary rounded-lg px-4 py-3 text-sm">
+  <span class="material-symbols-outlined text-[18px]">mark_email_read</span>
+  <span>Check your email to confirm your account!</span>
+</div>
+<form id="signup-form" class="flex flex-col gap-[20px]">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="fullName">Full name</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-3 py-2 font-body-base text-body-base text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow bg-transparent" id="fullName" placeholder="Jane Doe" type="text" required/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="email">Email address</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-3 py-2 font-body-base text-body-base text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow bg-transparent" id="email" placeholder="jane@example.com" type="email" required/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="password">Password</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-3 py-2 font-body-base text-body-base text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow bg-transparent" id="password" placeholder="Min. 8 characters" type="password" required minlength="8"/>
+<div class="flex gap-1 mt-1" id="pw-bars">
+<div class="h-1 flex-1 rounded-full bg-surface-variant" id="pw-bar-1"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-variant" id="pw-bar-2"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-variant" id="pw-bar-3"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-variant" id="pw-bar-4"></div>
+</div>
+<p class="font-label-caps text-[10px] text-on-surface-variant text-right" id="pw-label">Too short</p>
+</div>
+<div class="flex items-start gap-3 mt-2">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" id="terms" type="checkbox" required/>
+</div>
+<label class="font-body-sm text-body-sm text-on-surface-variant leading-tight" for="terms">
+  I agree to the <a class="text-primary hover:underline transition-colors" href="#">Terms of Service</a> and <a class="text-primary hover:underline transition-colors" href="#">Privacy Policy</a>.
+</label>
+</div>
+<button id="signup-btn" class="w-full mt-2 bg-primary text-on-primary font-body-sm text-body-sm font-semibold rounded-lg py-2.5 transition-colors hover:bg-primary-fixed shadow-sm flex items-center justify-center gap-2" type="submit">
+  <span id="signup-label">Create account</span>
+  <span id="signup-spinner" class="hidden material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+  <span class="material-symbols-outlined text-[18px]" id="signup-arrow">arrow_forward</span>
+</button>
+</form>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-[1px] bg-outline-variant"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Or continue with</span>
+<div class="flex-1 h-[1px] bg-outline-variant"></div>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<button id="google-signup-btn" class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container transition-colors font-body-sm text-body-sm text-on-surface font-medium" type="button">
+<img alt="Google logo" class="w-4 h-4" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"/>
+Google
+</button>
+</div>
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant m-0">
+                Already have an account? 
+                <a class="text-primary font-medium hover:underline transition-colors" href="sign_in.html">Sign in</a>
+</p>
+</div>
+</main>
+<script>
+document.addEventListener('supabase:ready', async () => {
+  await window.ApexApp.requireGuest('../dashboard/index.html');
+  const db = window._supabase;
+  const form     = document.getElementById('signup-form');
+  const btn      = document.getElementById('signup-btn');
+  const label    = document.getElementById('signup-label');
+  const spinner  = document.getElementById('signup-spinner');
+  const arrow    = document.getElementById('signup-arrow');
+  const errBan   = document.getElementById('error-banner');
+  const errMsg   = document.getElementById('error-msg');
+  const sucBan   = document.getElementById('success-banner');
+  const pwField  = document.getElementById('password');
+  const pwLabel  = document.getElementById('pw-label');
+  const bars     = [1,2,3,4].map(i => document.getElementById(`pw-bar-${i}`));
+
+  const strengthColors = ['bg-error','bg-error','bg-tertiary','bg-primary'];
+  const strengthLabels = ['Too short','Weak','Fair','Strong','Very strong'];
+
+  pwField.addEventListener('input', () => {
+    const v = pwField.value;
+    let score = 0;
+    if (v.length >= 8)  score++;
+    if (/[A-Z]/.test(v)) score++;
+    if (/[0-9]/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    bars.forEach((b, i) => {
+      b.className = `h-1 flex-1 rounded-full ${i < score ? strengthColors[score-1] : 'bg-surface-variant'}`;
+    });
+    pwLabel.textContent = strengthLabels[score];
+  });
+
+  function setLoading(v) {
+    btn.disabled = v;
+    label.textContent = v ? 'Creating…' : 'Create account';
+    spinner.classList.toggle('hidden', !v);
+    arrow.classList.toggle('hidden', v);
+  }
+  function showError(msg) { errMsg.textContent = msg; errBan.classList.remove('hidden'); }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errBan.classList.add('hidden');
+    setLoading(true);
+    const fullName = document.getElementById('fullName').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const password = pwField.value;
+    const { error } = await db.auth.signUp({
+      email, password,
+      options: { data: { full_name: fullName } }
+    });
+    if (error) { showError(error.message); setLoading(false); }
+    else { form.classList.add('hidden'); sucBan.classList.remove('hidden'); }
+  });
+
+  document.getElementById('google-signup-btn').addEventListener('click', async () => {
+    const callbackUrl = new URL('../auth/callback.html', window.location.href).href;
+    const { error } = await db.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: callbackUrl,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'select_account',
+        }
+      }
+    });
+    if (error) showError(error.message);
+  });
+});
+</script>
+</body></html>

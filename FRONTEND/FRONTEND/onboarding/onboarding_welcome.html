@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center p-6 font-body-base">
+<div class="w-full max-w-md">
+<!-- Header -->
+<div class="text-center mb-8">
+<h1 class="font-h1 text-h1 text-on-surface mb-2 tracking-tight">Set up your workspace</h1>
+<p class="font-body-base text-body-base text-outline">This is where your team's projects and tasks live.</p>
+</div>
+<!-- Card -->
+<div class="bg-surface-container rounded-xl border border-outline-variant p-8 shadow-2xl shadow-black/20">
+<!-- Progress Dots -->
+<div class="flex justify-center gap-2 mb-8">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-6">
+<!-- Logo Upload Dropzone -->
+<div class="flex flex-col items-center gap-3">
+<label class="font-body-sm text-body-sm text-on-surface-variant font-medium self-start">Workspace Logo</label>
+<button class="w-24 h-24 rounded-full border-2 border-dashed border-outline-variant bg-surface-container-low flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-surface-container transition-colors duration-200 group" type="button">
+<span class="material-symbols-outlined text-[24px] text-outline group-hover:text-primary transition-colors">photo_camera</span>
+</button>
+<span class="font-body-sm text-body-sm text-outline">Upload Logo</span>
+</div>
+<!-- Input Field -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm text-body-sm text-on-surface-variant font-medium" for="workspace-name">Workspace Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 font-body-base text-body-base text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder:text-outline/50 transition-all" id="workspace-name" placeholder="e.g., Apex Engineering" type="text"/>
+</div>
+<!-- Primary CTA -->
+<button class="w-full bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-body-base text-body-base font-medium py-3 rounded-lg mt-2 transition-colors duration-200 shadow-sm border border-white/10" type="button">
+                    Get started
+                </button>
+</form>
+</div>
+<!-- Footer -->
+<div class="text-center mt-8">
+<a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors duration-200" href="#">Already have a workspace? Sign in</a>
+</div>
+</div>
+</body></html>

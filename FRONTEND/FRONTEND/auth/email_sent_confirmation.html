@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Email Sent - Apex</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center font-body-base antialiased relative overflow-hidden">
+<!-- Background Glow -->
+<div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+<div class="w-[600px] h-[600px] bg-primary-container/10 rounded-full blur-[100px]"></div>
+</div>
+<!-- Centered Card -->
+<main class="relative z-10 w-full max-w-[400px] p-container-padding">
+<!-- Logo/Header (Simplified for auth flow) -->
+<div class="flex justify-center mb-8">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center shadow-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">widgets</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl border border-outline-variant/30 shadow-2xl p-8 flex flex-col items-center text-center">
+<!-- Success Illustration (Icon) -->
+<div class="relative w-20 h-20 mb-6 flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/20 rounded-full blur-md"></div>
+<div class="relative w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center border border-primary/30 shadow-inner">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">mark_email_read</span>
+</div>
+</div>
+<!-- Copy -->
+<h1 class="font-h1 text-h1 text-on-surface mb-2">Check your inbox</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8">
+                We've sent a reset link to <br/>
+<span class="font-medium text-on-surface">alex.m@apex.inc</span>
+</p>
+<!-- Quick Actions -->
+<div class="w-full flex flex-col gap-3 mb-6">
+<button class="w-full bg-surface-container-highest hover:bg-surface-bright text-on-surface font-body-sm text-body-sm py-2.5 px-4 rounded-lg border border-outline-variant/50 transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                    Open Gmail
+                </button>
+<button class="w-full bg-surface-container-highest hover:bg-surface-bright text-on-surface font-body-sm text-body-sm py-2.5 px-4 rounded-lg border border-outline-variant/50 transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">drafts</span>
+                    Open Outlook
+                </button>
+</div>
+<!-- Resend Action -->
+<div class="w-full border-t border-outline-variant/30 pt-6">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Didn't receive the email?</p>
+<button class="w-full bg-transparent hover:bg-surface-container-highest text-primary font-body-sm text-body-sm py-2.5 px-4 rounded-lg border border-transparent hover:border-outline-variant/30 transition-colors flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[18px] group-disabled:hidden">refresh</span>
+                    Resend link <span class="text-on-surface-variant group-disabled:inline hidden ml-1">(60s)</span>
+</button>
+</div>
+</div>
+<!-- Back to login -->
+<div class="mt-8 text-center">
+<a class="inline-flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                Back to log in
+            </a>
+</div>
+</main>
+</body></html>

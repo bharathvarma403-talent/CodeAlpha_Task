@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kanban Board - Apex Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/supabase.js"></script>
+<style>
+body { min-height: max(884px, 100dvh); }
+.custom-scrollbar::-webkit-scrollbar { width:6px; height:6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background:transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background-color:#37333d; border-radius:9999px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color:#494454; }
+
+/* Drag & Drop styles */
+.task-card { transition: opacity .15s, transform .15s; }
+.task-card.dragging { opacity:.4; transform:scale(.97); }
+.kanban-col.drag-over { outline:2px dashed #7c6ff7; outline-offset:-2px; background:rgba(124,111,247,.06); }
+.drop-indicator { height:3px; background:#7c6ff7; border-radius:4px; margin:2px 0; transition:all .1s; }
+
+/* Modal */
+#task-modal { transition: opacity .2s; }
+#task-modal.hidden { pointer-events:none; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body-base antialiased h-screen flex overflow-hidden">
+
+<!-- Sidebar -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[240px] border-r border-outline-variant bg-surface-container-low flex-col p-4 gap-2 z-20">
+  <div class="flex items-center gap-3 p-2 mb-4 hover:bg-surface-variant rounded cursor-pointer transition-colors duration-200">
+    <div class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center">
+      <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings:'FILL' 1;">hexagon</span>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div id="ws-name" class="font-h2 text-h2 text-on-surface truncate leading-tight">Workspace</div>
+      <div class="font-body-sm text-body-sm text-on-surface-variant truncate">Active workspace</div>
+    </div>
+  </div>
+  <nav class="flex-1 flex flex-col gap-1">
+    <a class="flex items-center gap-3 px-3 py-2 rounded font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all duration-200" href="../dashboard/index.html">
+      <span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2 rounded font-body-sm text-body-sm bg-surface-variant text-primary font-semibold" href="#">
+      <span class="material-symbols-outlined text-[20px] text-primary" style="font-variation-settings:'FILL' 1;">view_kanban</span>Kanban
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2 rounded font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all" href="#">
+      <span class="material-symbols-outlined text-[20px]">check_circle</span>My Tasks
+    </a>
+  </nav>
+  <button id="signout-btn" class="flex items-center gap-2 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-variant hover:text-error transition-colors font-body-sm text-body-sm">
+    <span class="material-symbols-outlined text-[18px]">logout</span>Sign out
+  </button>
+</aside>
+
+<!-- Main -->
+<main class="flex-1 flex flex-col md:ml-[240px] h-full overflow-hidden bg-background">
+
+  <!-- TopBar -->
+  <header class="flex items-center justify-between px-4 h-14 w-full border-b border-outline-variant bg-surface-container flex-shrink-0 z-10">
+    <div class="flex items-center gap-3">
+      <h1 class="font-h1 text-h1 text-on-surface tracking-tight">Kanban Board</h1>
+      <select id="project-select" class="ml-4 bg-surface-container-high border border-outline-variant text-on-surface text-sm rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+        <option value="">Loading projects…</option>
+      </select>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="add-task-btn" class="flex items-center gap-2 px-3 py-1.5 bg-primary text-on-primary rounded-lg text-sm font-semibold hover:bg-primary-fixed transition-colors">
+        <span class="material-symbols-outlined text-[16px]">add</span>Add Task
+      </button>
+      <div id="realtime-dot" class="w-2 h-2 rounded-full bg-outline" title="Realtime disconnected"></div>
+      <img id="user-avatar" alt="user" class="w-8 h-8 rounded-full object-cover border border-outline-variant cursor-pointer" src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff"/>
+    </div>
+  </header>
+
+  <!-- Kanban Columns -->
+  <div id="board" class="flex-1 overflow-x-auto overflow-y-hidden p-4 flex gap-4 custom-scrollbar">
+    <!-- Columns rendered by JS -->
+    <div class="flex items-center justify-center flex-1 text-on-surface-variant">
+      <div class="text-center">
+        <span class="material-symbols-outlined text-[48px] text-outline mb-2">view_kanban</span>
+        <p class="text-sm">Select a project to load the board</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── Add Task Modal ── -->
+<div id="task-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modal-backdrop"></div>
+  <div class="relative w-full max-w-md bg-surface-container rounded-2xl border border-outline-variant shadow-2xl p-6 z-10">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="font-h1 text-h1 text-on-surface">New Task</h2>
+      <button id="modal-close" class="text-on-surface-variant hover:text-on-surface transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <form id="task-form" class="space-y-4">
+      <!-- Error -->
+      <div id="modal-error" class="hidden flex items-center gap-2 bg-error/10 border border-error/30 text-error rounded-lg px-3 py-2 text-sm">
+        <span class="material-symbols-outlined text-[16px]">error</span>
+        <span id="modal-error-msg"></span>
+      </div>
+
+      <!-- Title -->
+      <div>
+        <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1.5" for="task-title">Title *</label>
+        <input id="task-title" type="text" placeholder="What needs to be done?" required
+          class="w-full bg-surface border border-outline-variant text-on-surface rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-colors placeholder:text-outline"/>
+      </div>
+
+      <!-- Status + Priority row -->
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1.5">Status</label>
+          <select id="task-status" class="w-full bg-surface border border-outline-variant text-on-surface rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+            <option value="backlog">Backlog</option>
+            <option value="todo">Todo</option>
+            <option value="in_progress">In Progress</option>
+            <option value="in_review">In Review</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1.5">Priority</label>
+          <select id="task-priority" class="w-full bg-surface border border-outline-variant text-on-surface rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Due date -->
+      <div>
+        <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-1.5" for="task-due">Due Date</label>
+        <input id="task-due" type="date"
+          class="w-full bg-surface border border-outline-variant text-on-surface rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-colors"/>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" id="task-submit"
+        class="w-full bg-primary text-on-primary font-semibold rounded-lg px-4 py-2.5 text-sm hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 mt-2">
+        <span id="submit-label">Create Task</span>
+        <span id="submit-spinner" class="hidden material-symbols-outlined animate-spin text-[16px]">progress_activity</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+// ── Column mapping (will be updated dynamically) ───────────────────────────
+let PROJECT_STATUSES = [];
+
+const STATUS_TYPE_CONFIG = {
+  backlog:     { dot: 'bg-outline',            accent: '' },
+  todo:        { dot: 'bg-secondary-container', accent: '' },
+  in_progress: { dot: 'bg-primary animate-pulse', accent: 'border-t-2 border-t-primary' },
+  in_review:   { dot: 'bg-tertiary',           accent: '' },
+  done:        { dot: 'bg-primary/40',         accent: '' },
+  cancelled:   { dot: 'bg-error/40',           accent: '' },
+};
+
+const PRIORITY_STYLE = {
+  urgent: 'bg-error-container/20 text-error border-error-container/30',
+  high:   'bg-primary-container/20 text-primary-fixed-dim border-primary-container/30',
+  medium: 'bg-tertiary-container/20 text-tertiary border-tertiary-container/30',
+  low:    'bg-surface-variant text-on-surface-variant border-outline-variant',
+};
+
+// ── State ────────────────────────────────────────────────────────────────────
+let activeWorkspaceId = null;
+let activeProjectId   = null;
+let allTasks          = [];
+let realtimeChannel   = null;
+let dragSrcId         = null;
+let dragSrcStatus     = null;
+
+// ── DOM refs ─────────────────────────────────────────────────────────────────
+const board          = document.getElementById('board');
+const projectSelect  = document.getElementById('project-select');
+const addTaskBtn     = document.getElementById('add-task-btn');
+const modal          = document.getElementById('task-modal');
+const modalClose     = document.getElementById('modal-close');
+const modalBackdrop  = document.getElementById('modal-backdrop');
+const taskForm       = document.getElementById('task-form');
+const realtimeDot    = document.getElementById('realtime-dot');
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function priorityBadge(p) {
+  const cls = PRIORITY_STYLE[p] || PRIORITY_STYLE.low;
+  return `<span class="px-1.5 py-0.5 rounded-[3px] font-label-caps text-label-caps border ${cls}">${p.charAt(0).toUpperCase()+p.slice(1)}</span>`;
+}
+
+function dueBadge(due) {
+  if (!due) return '';
+  const d    = new Date(due);
+  const now  = new Date();
+  const over = d < now;
+  const fmt  = d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  const cls  = over ? 'text-error' : 'text-on-surface-variant';
+  return `<div class="flex items-center gap-1 ${cls}">
+    <span class="material-symbols-outlined text-[13px]">calendar_today</span>
+    <span class="font-mono text-[11px]">${fmt}</span>
+  </div>`;
+}
+
+function avatarHtml(assignee) {
+  if (!assignee) return `<div class="w-5 h-5 rounded-full bg-surface-variant border border-dashed border-outline flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-outline">person</span></div>`;
+  const url = assignee.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(assignee.full_name||'?')}&background=6366f1&color=fff&size=32`;
+  return `<img alt="${assignee.full_name||'Assignee'}" class="w-5 h-5 rounded-full ring-2 ring-surface-container" src="${url}"/>`;
+}
+
+function buildCard(task) {
+  const labels = task.task_labels?.map(tl => `
+    <span class="bg-surface-variant text-on-surface-variant px-1.5 py-0.5 rounded-[3px] font-label-caps text-label-caps border border-outline-variant" 
+          style="border-color: ${tl.label?.color}40; background: ${tl.label?.color}10; color: ${tl.label?.color}">
+      ${tl.label?.name||''}
+    </span>`).join('') || '';
+  
+  return `
+<div class="task-card bg-surface-container hover:bg-surface-container-highest transition-colors rounded p-3 border border-outline-variant shadow-sm group cursor-grab active:cursor-grabbing select-none"
+  data-id="${task.id}" data-status-id="${task.status_id}" data-sort-order="${task.sort_order}"
+  draggable="true" onclick="openTaskDetail('${task.id}')">
+  <div class="flex items-center justify-between mb-1">
+    <span class="text-[10px] font-mono text-outline font-bold tracking-wider">${task.identifier || 'APEX'}</span>
+    ${priorityBadge(task.priority)}
+  </div>
+  <h3 class="font-body-base text-body-base text-on-surface font-medium mb-3 line-clamp-2">${task.title}</h3>
+  <div class="flex flex-wrap gap-1 mb-3">${labels}</div>
+  <div class="flex items-center justify-between text-on-surface-variant font-mono text-[11px]">
+    <div class="flex items-center gap-2">${dueBadge(task.due_date)}</div>
+    ${avatarHtml(task.assignee)}
+  </div>
+</div>`;
+}
+
+function buildColumn(status, tasks) {
+  const cards = tasks.map(buildCard).join('');
+  const count = tasks.length;
+  const config = STATUS_TYPE_CONFIG[status.type] || STATUS_TYPE_CONFIG.todo;
+  const countCls = status.type==='in_progress' ? 'bg-primary/20 text-primary-fixed-dim' : 'bg-surface-variant text-on-surface-variant';
+  
+  return `
+<div class="kanban-col flex flex-col flex-shrink-0 w-[320px] h-full bg-surface-container-low rounded-lg border border-outline-variant ${config.accent}" data-status-id="${status.id}">
+  <div class="flex items-center justify-between p-3 border-b border-outline-variant flex-shrink-0">
+    <div class="flex items-center gap-2">
+      <div class="w-2 h-2 rounded-full ${config.dot}" style="${status.color ? `background-color: ${status.color}` : ''}"></div>
+      <h2 class="font-body-sm text-body-sm font-semibold text-on-surface uppercase tracking-wider">${status.name}</h2>
+      <span class="${countCls} text-[11px] px-1.5 py-0.5 rounded-full font-medium col-count">${count}</span>
+    </div>
+    <button class="add-col-task text-on-surface-variant hover:text-on-surface transition-colors" data-status-id="${status.id}" title="Add task to ${status.name}">
+      <span class="material-symbols-outlined text-[18px]">add</span>
+    </button>
+  </div>
+  <div class="cards-container flex-1 overflow-y-auto p-2 flex flex-col gap-2 custom-scrollbar" data-status-id="${status.id}">
+    ${cards || `<div class="empty-state flex flex-col items-center justify-center h-full py-8 text-center opacity-40">
+      <span class="material-symbols-outlined text-[32px] text-outline mb-2">inbox</span>
+      <p class="font-body-sm text-body-sm text-on-surface-variant italic">No tasks here</p>
+    </div>`}
+  </div>
+</div>`;
+}
+
+// ── Render board ─────────────────────────────────────────────────────────────
+function renderBoard(tasks) {
+  allTasks = tasks;
+  if (!PROJECT_STATUSES.length) return;
+
+  const html = PROJECT_STATUSES.map(status => {
+    const colTasks = tasks.filter(t => t.status_id === status.id).sort((a,b) => a.sort_order - b.sort_order);
+    return buildColumn(status, colTasks);
+  }).join('') + '<div class="w-16 flex-shrink-0"></div>';
+  
+  board.innerHTML = html;
+  attachDragDrop();
+  attachColButtons();
+}
+
+// ── Drag & Drop ──────────────────────────────────────────────────────────────
+function attachDragDrop() {
+  // Card drag events
+  document.querySelectorAll('.task-card').forEach(card => {
+    card.addEventListener('dragstart', e => {
+      dragSrcId     = card.dataset.id;
+      dragSrcStatus = card.dataset.status;
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      document.querySelectorAll('.drop-indicator').forEach(el => el.remove());
+      document.querySelectorAll('.kanban-col').forEach(c => c.classList.remove('drag-over'));
+    });
+  });
+
+  // Column drop zones
+  document.querySelectorAll('.kanban-col').forEach(col => {
+    col.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      col.classList.add('drag-over');
+    });
+    col.addEventListener('dragleave', e => {
+      if (!col.contains(e.relatedTarget)) col.classList.remove('drag-over');
+    });
+    col.addEventListener('drop', async e => {
+      e.preventDefault();
+      col.classList.remove('drag-over');
+      const newStatusId = col.dataset.statusId;
+      if (!dragSrcId) return;
+
+      const container = col.querySelector('.cards-container');
+      const cards = [...container.querySelectorAll('.task-card:not(.dragging)')];
+
+      // Find drop position
+      let before = null, after = null;
+      const mouseY = e.clientY;
+      for (const c of cards) {
+        const rect = c.getBoundingClientRect();
+        const mid  = rect.top + rect.height / 2;
+        if (mouseY < mid) { after = c; break; }
+        before = c;
+      }
+
+      const beforeOrder = before ? parseFloat(before.dataset.sortOrder) : null;
+      const afterOrder  = after  ? parseFloat(after.dataset.sortOrder)  : null;
+
+      // Calculate new sort_order
+      let newOrder;
+      if (beforeOrder !== null && afterOrder !== null) newOrder = (beforeOrder + afterOrder) / 2;
+      else if (beforeOrder !== null) newOrder = beforeOrder + 1000;
+      else if (afterOrder !== null)  newOrder = afterOrder - 1000;
+      else newOrder = 1000;
+
+      // Optimistic UI update
+      const taskIdx = allTasks.findIndex(t => t.id === dragSrcId);
+      if (taskIdx !== -1) {
+        allTasks[taskIdx] = { ...allTasks[taskIdx], status_id: newStatusId, sort_order: newOrder };
+        renderBoard([...allTasks]);
+      }
+
+      // Persist via Supabase direct update
+      try {
+        const { error } = await window._supabase
+          .from('tasks')
+          .update({ status_id: newStatusId, sort_order: newOrder })
+          .eq('id', dragSrcId);
+        
+        if (error) throw error;
+      } catch (err) {
+        console.error('Drag & drop save failed:', err);
+        await loadTasks();
+      }
+    });
+  });
+}
+
+// ── Col Add Task buttons ─────────────────────────────────────────────────────
+function attachColButtons() {
+  document.querySelectorAll('.add-col-task').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const statusSelect = document.getElementById('task-status');
+      statusSelect.value = btn.dataset.statusId;
+      openModal();
+    });
+  });
+}
+
+// ── Modal ────────────────────────────────────────────────────────────────────
+function openModal()  { modal.classList.remove('hidden'); document.getElementById('task-title').focus(); }
+function closeModal() { modal.classList.add('hidden'); taskForm.reset(); document.getElementById('modal-error').classList.add('hidden'); }
+
+addTaskBtn.addEventListener('click', openModal);
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+taskForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const label   = document.getElementById('submit-label');
+  const spinner = document.getElementById('submit-spinner');
+  const errEl   = document.getElementById('modal-error');
+  const errMsg  = document.getElementById('modal-error-msg');
+
+  label.textContent = 'Creating…';
+  spinner.classList.remove('hidden');
+  document.getElementById('task-submit').disabled = true;
+  errEl.classList.add('hidden');
+
+  try {
+    const { error } = await window._supabase
+      .from('tasks')
+      .insert({
+        workspace_id: activeWorkspaceId,
+        project_id:   activeProjectId,
+        title:        document.getElementById('task-title').value.trim(),
+        status_id:    document.getElementById('task-status').value,
+        priority:     document.getElementById('task-priority').value,
+        due_date:     document.getElementById('task-due').value || null,
+        created_by:   (await window.ApexApp.getCurrentUser()).id
+      });
+
+    if (error) throw error;
+    closeModal();
+  } catch (err) {
+    errMsg.textContent = err.message;
+    errEl.classList.remove('hidden');
+  } finally {
+    label.textContent = 'Create Task';
+    spinner.classList.add('hidden');
+    document.getElementById('task-submit').disabled = false;
+  }
+});
+
+// ── Load Tasks ───────────────────────────────────────────────────────────────
+async function loadTasks() {
+  if (!activeProjectId) return;
+  try {
+    const tasks = await window.ApexApp.fetchTasks({ projectId: activeProjectId, limit: 200 });
+    renderBoard(tasks);
+  } catch (err) {
+    board.innerHTML = `<div class="flex-1 flex items-center justify-center text-error text-sm">${err.message}</div>`;
+  }
+}
+
+// ── Realtime subscription ────────────────────────────────────────────────────
+function subscribeRealtime(projectId) {
+  if (realtimeChannel) window._supabase.removeChannel(realtimeChannel);
+  realtimeChannel = window.ApexApp.subscribeToTasks(projectId, () => {
+    loadTasks(); // refresh board on any task change
+  });
+  realtimeDot.className = 'w-2 h-2 rounded-full bg-primary animate-pulse';
+  realtimeDot.title = 'Realtime connected';
+}
+
+// ── Project select ───────────────────────────────────────────────────────────
+projectSelect.addEventListener('change', async () => {
+  activeProjectId = projectSelect.value;
+  if (!activeProjectId) { board.innerHTML = ''; return; }
+  board.innerHTML = `<div class="flex-1 flex items-center justify-center"><span class="material-symbols-outlined animate-spin text-primary text-[32px]">progress_activity</span></div>`;
+  
+  // Load Project Statuses first
+  const { data: statuses } = await window._supabase
+    .from('project_statuses')
+    .select('*')
+    .eq('project_id', activeProjectId)
+    .order('position', { ascending: true });
+  
+  PROJECT_STATUSES = statuses || [];
+  
+  // Update status select in modal
+  const statusSelect = document.getElementById('task-status');
+  statusSelect.innerHTML = PROJECT_STATUSES.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+
+  await loadTasks();
+  subscribeRealtime(activeProjectId);
+});
+
+function openTaskDetail(taskId) {
+  window.location.href = `../tasks/task_detail.html?id=${taskId}`;
+}
+
+// ── Boot ─────────────────────────────────────────────────────────────────────
+document.addEventListener('supabase:ready', async () => {
+  const session = await window.ApexApp.requireAuth('../auth/sign_in.html');
+  if (!session) return;
+
+  const user = session.user;
+  const { data: profile } = await window._supabase.from('profiles').select('full_name, avatar_url').eq('id', user.id).single();
+  if (profile?.avatar_url) document.getElementById('user-avatar').src = profile.avatar_url;
+
+  // Load workspaces
+  const workspaces = await window.ApexApp.fetchMyWorkspaces();
+  if (!workspaces.length) {
+    board.innerHTML = `<div class="flex-1 flex items-center justify-center text-on-surface-variant text-sm">No workspaces found. Create one first.</div>`;
+    return;
+  }
+  const ws = workspaces[0];
+  activeWorkspaceId = ws.id;
+  document.getElementById('ws-name').textContent = ws.name;
+
+  // Load projects into select
+  const projects = await window.ApexApp.fetchProjects(ws.id);
+  projectSelect.innerHTML = `<option value="">Select project…</option>` +
+    projects.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+
+  // Auto-select first project
+  if (projects.length > 0) {
+    projectSelect.value = projects[0].id;
+    activeProjectId = projects[0].id;
+    await loadTasks();
+    subscribeRealtime(activeProjectId);
+  }
+
+  // Sign out
+  document.getElementById('signout-btn').addEventListener('click', () => {
+    if (confirm('Sign out?')) window.ApexApp.signOut();
+  });
+});
+</script>
+</body></html>

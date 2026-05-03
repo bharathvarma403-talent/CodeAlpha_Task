@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex - Mobile App v3 Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-gray-50 dark:bg-gray-950 text-violet-600 dark:text-violet-400 font-inter text-sm font-medium docked full-width top-0 border-b border-b border-gray-200 dark:border-gray-800 flat no shadows Transition-all duration-200 ease-in-out flex justify-between items-center w-full px-6 h-14 hidden md:flex ml-[240px] max-w-[calc(100%-240px)] z-40 fixed top-0">
+<div class="flex items-center gap-4">
+<span class="text-base font-bold text-gray-900 dark:text-gray-50">Apex</span>
+<!-- Search Bar would go here if on left -->
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-gray-500 dark:text-gray-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50" href="#">Board</a>
+<a class="text-gray-500 dark:text-gray-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50" href="#">List</a>
+<a class="text-gray-500 dark:text-gray-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50" href="#">Timeline</a>
+<a class="text-violet-600 dark:text-violet-400 border-b-2 border-violet-600 dark:border-violet-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50" href="#">Dashboard</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hover:text-gray-900 dark:hover:text-gray-50"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-gray-900 dark:hover:text-gray-50"><span class="material-symbols-outlined">help</span></button>
+<button class="hover:text-gray-900 dark:hover:text-gray-50"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</header>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="bg-gray-100 dark:bg-gray-900 text-violet-600 dark:text-violet-400 font-inter text-[13px] leading-tight fixed left-0 top-0 h-full w-[240px] border-r border-r border-gray-200 dark:border-gray-800 flat no shadows flex flex-col h-screen p-4 hidden md:flex z-50">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg">
+                A
+            </div>
+<div>
+<h1 class="text-lg font-black text-gray-900 dark:text-gray-50 leading-none">Apex</h1>
+<span class="text-[11px] text-gray-500 dark:text-gray-400">Workspace</span>
+</div>
+</div>
+<button class="mb-6 w-full py-2 bg-primary text-on-primary rounded-lg font-medium shadow-sm hover:opacity-90 transition-opacity">
+            New Project
+        </button>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-lg">search</span>
+                Search
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-violet-600 dark:text-violet-400 bg-gray-200/50 dark:bg-gray-800/50 font-medium hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-lg">inbox</span>
+                Inbox
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-lg">tactic</span>
+                Projects
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-lg">group</span>
+                Teams
+            </a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 pt-4 border-t border-gray-200 dark:border-gray-800">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">star</span>
+                Favorites
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+                Settings
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="w-full min-h-screen pt-4 md:pt-20 px-4 md:px-8 md:ml-[240px] md:max-w-[calc(100%-240px)] flex flex-col gap-6 max-w-2xl mx-auto">
+<!-- Hero Section -->
+<section class="flex flex-col gap-4 items-center text-center mt-6">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-highest border border-outline-variant flex items-center justify-center shadow-lg">
+<img alt="Project Icon" class="w-full h-full object-cover rounded-2xl opacity-90" data-alt="A sleek, modern mobile app icon displaying abstract geometric shapes in vibrant neon purple and deep indigo. The icon has a glossy, glassmorphism finish, sitting on a dark background. High-resolution digital art, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWnZ326yu_FqtMlYOUilf4UtkpJeaBW3mXljOBRPpmO3iv7y0f3_LJsgZkNVz3ZDHhJxNgTnw9-b8J3MVHASw-DJRnfNiXsAaeTAKczw3xoiIK476WiOClsQGfE9bFOmM0tqiwvZYTaZejib4xVOJhtMEjlG12W49MbXflh3qsgaJSutf262f6g30hj3ZJNRjS-Hl5sXesFdpuZLOOjjn6aAaEJDVHrhw6kKxXDVM1FBrvtHW3E-BOo5RRHFYhk9zOa6qp5XOnq1o"/>
+</div>
+<div>
+<h1 class="font-h1 text-h1 text-on-surface">Mobile App v3</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-sm mx-auto">Complete overhaul of the core navigation and checkout flow for the Q3 release.</p>
+</div>
+<div class="flex items-center justify-center -space-x-3 mt-2">
+<img alt="Team member" class="w-8 h-8 rounded-full border-2 border-background object-cover" data-alt="Close up portrait of a young professional woman with natural makeup, looking directly at the camera. Soft, even studio lighting. Clean, dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJoYEN2iAZQWlMZEWqGJF6hxdhFhfvAcxyhNqxgUNp00KZwkX5CrDWzUSlUx-0oBNmlskaBksEr1I6aI3H7MiAj1tguHEDnCehF27m3aWy6USs_k1hDd-5kz7SYq0tJwWy_S-W_TGx8UAaHYHhxQIfk8IKgIECRxwsiw5BmbF6l1gGFoW0SFhGEX30RwvMfBqu18OW8od-KTFg69YY-mkms1BxxkWvKdeQeq7qMi35ECESFMQTH8-ts26uTffSbKYXHNi_L9LnE2M"/>
+<img alt="Team member" class="w-8 h-8 rounded-full border-2 border-background object-cover" data-alt="Close up portrait of a young professional man with a slight stubble, looking thoughtfully. Soft, warm studio lighting. Clean, dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-LRCctATy1rbT2IDtyHAuYFBPw9Ge39ETodFuTO-qPHK6Aw9D-IgFPpuqB_gotmi5BCucVNVsEJ33Kdyu3F4VIWDoQMTc6rsQzVg-SaM3EzEECOsr-2ijvmwoKY9ubTEVI3x-L8ttSOXz6r3jefMk0TpniFvQFHq5-3kRZ5wd42NjDXr2lAdSx4mM9QH6s6Jt0O9wGmdYVIBMWkr5HGC99PwKMlZ-9NlcW3tpZHj4zHMSPbNfd5FRHrQYJMW9XhmxM7fXzOtBxts"/>
+<img alt="Team member" class="w-8 h-8 rounded-full border-2 border-background object-cover" data-alt="Close up portrait of a mature professional woman with glasses, smiling slightly. Soft, cool studio lighting. Clean, dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVSLbKVvNeGEUnHSgrFwcTA6-FNbK6_NbIc2Z0d27jwBBrQAyDGcjnnvIHgYIM2WDPs_qqGuFgatMRd_ZUaeBz6ud5szjB4YCxY13tsLaD_HdrSOii1neEm_B3d9CkQO3wsYLI8aLCV3Ey2k3_IRpFaNdHU44-aRIBuqpJZM-dyIXidoEltMjIueEHGvbJy5jHvh4kYyHc4dTwUbI--QXCuYjnj_lH-r1l2toF0ZhLnKM5DOE-LRJMq07LW7SunXHwzZkJi4gPK1U"/>
+<div class="w-8 h-8 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center text-xs text-on-surface-variant">
+                    +4
+                </div>
+</div>
+</section>
+<!-- Progress Section -->
+<section class="bg-surface-container rounded-xl p-4 border border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-end mb-2">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Overall Progress</h2>
+<span class="font-mono text-mono text-primary">53%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[53%]"></div>
+</div>
+</section>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/30 flex flex-col gap-1 shadow-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Total Tasks</span>
+<span class="font-h1 text-h1 text-on-surface">154</span>
+</div>
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/30 flex flex-col gap-1 shadow-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Completed</span>
+<span class="font-h1 text-h1 text-on-surface">82</span>
+</div>
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/30 flex flex-col gap-1 shadow-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">In Progress</span>
+<span class="font-h1 text-h1 text-on-surface">45</span>
+</div>
+<div class="bg-surface-container rounded-xl p-4 border border-error/30 flex flex-col gap-1 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<span class="font-label-caps text-label-caps text-error uppercase pl-2">Overdue</span>
+<span class="font-h1 text-h1 text-on-surface pl-2">12</span>
+</div>
+</section>
+<!-- Stacked Content -->
+<section class="flex flex-col gap-6 pb-8">
+<!-- Recent Activity -->
+<div class="flex flex-col gap-3">
+<h2 class="font-h2 text-h2 text-on-surface">Recent Activity</h2>
+<div class="flex flex-col gap-2">
+<div class="flex gap-3 items-start p-3 rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface"><strong>Sarah J.</strong> completed task <span class="text-primary cursor-pointer hover:underline">APP-42</span></span>
+<span class="font-mono text-[10px] text-on-surface-variant mt-0.5">2 hours ago</span>
+</div>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] text-tertiary">comment</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface"><strong>Mike T.</strong> commented on <span class="text-primary cursor-pointer hover:underline">APP-38</span></span>
+<span class="font-mono text-[10px] text-on-surface-variant mt-0.5">4 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Due Dates -->
+<div class="flex flex-col gap-3 mt-2">
+<h2 class="font-h2 text-h2 text-on-surface">Upcoming Due Dates</h2>
+<div class="flex flex-col gap-2">
+<div class="bg-surface-container rounded-lg p-3 border border-outline-variant/30 flex justify-between items-center shadow-sm">
+<div class="flex flex-col">
+<span class="font-body-base text-body-base text-on-surface font-medium">Finalize API Endpoints</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">APP-56</span>
+</div>
+<div class="flex items-center gap-1 text-error bg-error/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span class="font-label-caps text-label-caps uppercase">Tomorrow</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-3 border border-outline-variant/30 flex justify-between items-center shadow-sm">
+<div class="flex flex-col">
+<span class="font-body-base text-body-base text-on-surface font-medium">Design QA Review</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">APP-61</span>
+</div>
+<div class="flex items-center gap-1 text-primary bg-primary/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+<span class="font-label-caps text-label-caps uppercase">Oct 12</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-white dark:bg-gray-900 text-violet-600 dark:text-violet-400 font-inter text-[10px] font-medium fixed bottom-0 w-full border-t rounded-t-none border-t border-gray-200 dark:border-gray-800 shadow-lg dark:shadow-none fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden">
+<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">task_alt</span>
+<span>Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">search</span>
+<span>Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/20 rounded-xl px-3 py-1 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">mail</span>
+<span>Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>

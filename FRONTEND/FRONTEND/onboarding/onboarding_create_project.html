@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Onboarding Step 2: Create First Project</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<link rel="stylesheet" href="../assets/css/globals.css" />
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center font-body-base overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Back Button - Top Left Absolute -->
+<div class="absolute top-6 left-6 md:top-8 md:left-8">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+<span class="font-body-sm font-medium">Back</span>
+</button>
+</div>
+<!-- Main Container -->
+<main class="w-full max-w-[640px] px-container-padding py-12 md:py-0 flex flex-col items-center">
+<!-- Progress Indicator -->
+<div class="flex items-center gap-3 mb-10 w-full justify-center">
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<div aria-current="step" class="w-8 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Header Content -->
+<div class="text-center mb-10 w-full max-w-md">
+<h1 class="font-h1 text-h1 text-on-surface mb-2 tracking-tight">Create your first project</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">A project helps you organize tasks around a specific goal.</p>
+</div>
+<!-- Form Card -->
+<div class="w-full bg-surface-container-low border border-surface-variant rounded-xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+<!-- Subtle glow effect in the card -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-30"></div>
+<form class="flex flex-col gap-8 w-full" onsubmit="event.preventDefault();">
+<!-- Project Name Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="projectName">Project Name</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 font-body-base text-body-base text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-200" id="projectName" name="projectName" placeholder="e.g., Mobile App v3" type="text"/>
+</div>
+<!-- Template Selector Bento Grid -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Start with a Template</label>
+<div class="grid grid-cols-2 gap-card-gap">
+<!-- Engineering -->
+<button class="flex items-center gap-3 p-4 border border-primary bg-surface-container-high rounded-lg text-left hover:bg-surface-container-highest transition-colors relative focus:outline-none" type="button">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="code">code</span>
+</div>
+<span class="font-body-sm font-medium text-on-surface">Engineering</span>
+<!-- Active indicator -->
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary"></div>
+</button>
+<!-- Design -->
+<button class="flex items-center gap-3 p-4 border border-outline-variant bg-surface-container rounded-lg text-left hover:border-outline hover:bg-surface-container-high transition-colors focus:outline-none" type="button">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="brush">brush</span>
+</div>
+<span class="font-body-sm font-medium text-on-surface">Design</span>
+</button>
+<!-- Marketing -->
+<button class="flex items-center gap-3 p-4 border border-outline-variant bg-surface-container rounded-lg text-left hover:border-outline hover:bg-surface-container-high transition-colors focus:outline-none" type="button">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="campaign">campaign</span>
+</div>
+<span class="font-body-sm font-medium text-on-surface">Marketing</span>
+</button>
+<!-- Blank -->
+<button class="flex items-center gap-3 p-4 border border-outline-variant bg-surface-container rounded-lg text-left hover:border-outline hover:bg-surface-container-high transition-colors focus:outline-none" type="button">
+<div class="w-10 h-10 rounded border border-dashed border-outline-variant flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</div>
+<span class="font-body-sm font-medium text-on-surface">Blank Project</span>
+</button>
+</div>
+</div>
+<!-- Icon & Color Picker Row -->
+<div class="flex flex-col md:flex-row gap-6 w-full">
+<!-- Icon Picker (Scrollable) -->
+<div class="flex flex-col gap-2 flex-1 min-w-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Icon</label>
+<div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-2 px-2 md:mx-0 md:px-0">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">🚀</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-primary-container/20 border-2 border-primary shrink-0 transition-colors" type="button">📱</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">🌐</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">📊</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">🛒</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">🎨</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">🔧</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">📝</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">💡</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">🔒</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">⚡</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center text-[20px] bg-surface-container-high border border-outline-variant shrink-0 hover:bg-surface-container-highest transition-colors" type="button">🔥</button>
+</div>
+</div>
+<!-- Color Picker -->
+<div class="flex flex-col gap-2 shrink-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Color</label>
+<div class="flex items-center gap-2 h-10">
+<!-- Violet (Active) -->
+<button class="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center p-[2px] focus:outline-none relative" type="button">
+<div class="w-full h-full rounded-full" style="background-color: #8B5CF6;"></div>
+</button>
+<!-- Indigo -->
+<button class="w-8 h-8 rounded-full border border-transparent hover:border-outline-variant flex items-center justify-center p-[2px] focus:outline-none transition-colors" type="button">
+<div class="w-full h-full rounded-full" style="background-color: #6366F1;"></div>
+</button>
+<!-- Amber -->
+<button class="w-8 h-8 rounded-full border border-transparent hover:border-outline-variant flex items-center justify-center p-[2px] focus:outline-none transition-colors" type="button">
+<div class="w-full h-full rounded-full" style="background-color: #F59E0B;"></div>
+</button>
+<!-- Emerald -->
+<button class="w-8 h-8 rounded-full border border-transparent hover:border-outline-variant flex items-center justify-center p-[2px] focus:outline-none transition-colors" type="button">
+<div class="w-full h-full rounded-full" style="background-color: #10B981;"></div>
+</button>
+<!-- Red -->
+<button class="w-8 h-8 rounded-full border border-transparent hover:border-outline-variant flex items-center justify-center p-[2px] focus:outline-none transition-colors" type="button">
+<div class="w-full h-full rounded-full" style="background-color: #EF4444;"></div>
+</button>
+<!-- Gray -->
+<button class="w-8 h-8 rounded-full border border-transparent hover:border-outline-variant flex items-center justify-center p-[2px] focus:outline-none transition-colors" type="button">
+<div class="w-full h-full rounded-full" style="background-color: #6B7280;"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-[1px] w-full bg-outline-variant mt-2 mb-2"></div>
+<!-- Submit CTA -->
+<div class="flex justify-end pt-2">
+<button class="bg-primary hover:bg-primary-container text-on-primary font-body-base font-medium py-2.5 px-6 rounded-lg transition-colors duration-200 shadow-sm flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-low w-full md:w-auto justify-center" type="submit">
+<span>Continue</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+</body></html>

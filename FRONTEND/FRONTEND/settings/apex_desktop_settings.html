@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Desktop Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-base h-screen overflow-hidden flex">
+<!-- Suppressed Shell Navigations for Settings Page -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Inner Settings Layout -->
+<main class="flex-1 flex flex-col md:flex-row h-full">
+<!-- Settings Navigation (Left Column) -->
+<aside class="w-full md:w-[280px] flex-shrink-0 bg-surface-container-low border-r border-outline-variant/30 overflow-y-auto">
+<div class="p-container-padding flex flex-col gap-6">
+<div class="mb-4">
+<h2 class="font-h2 text-h2 text-on-surface mb-1">Settings</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your workspace preferences.</p>
+</div>
+<nav class="flex flex-col gap-list-item-gap">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-2 px-2 uppercase">Personal</div>
+<!-- Active Item -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-surface-variant text-primary font-body-sm text-body-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">person</span>
+                            Profile
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+                            Notifications
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+                            Appearance
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+                            Security
+                        </a>
+<div class="font-label-caps text-label-caps text-on-surface-variant mt-6 mb-2 px-2 uppercase">Workspace</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">domain</span>
+                            Workspace
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+                            Members
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">extension</span>
+                            Integrations
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+                            Billing
+                        </a>
+</nav>
+</div>
+</aside>
+<!-- Settings Content Area (Right Column) -->
+<section class="flex-1 bg-background overflow-y-auto">
+<div class="max-w-3xl mx-auto p-container-padding pb-24">
+<header class="mb-8 border-b border-outline-variant/30 pb-6">
+<h1 class="font-h1 text-h1 text-on-surface">Profile Settings</h1>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Update your personal details and public profile information.</p>
+</header>
+<!-- Profile Hero / Avatar Section -->
+<div class="flex items-start gap-6 mb-10">
+<div class="relative group">
+<img alt="Profile avatar" class="w-24 h-24 rounded-full object-cover border-2 border-surface-container-high" data-alt="A professional headshot avatar of a young individual with a neutral expression, suitable for a corporate software workspace. The lighting is studio-quality, creating a sharp, high-contrast image that fits seamlessly into a dark mode UI. The background of the avatar is subtle and out of focus, emphasizing the subject. Overall mood is serious, competent, and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3JgNexUici4kbzuhrfEtVuFsZazLpu0eUM3eIpAaByrbleQZ00Wk8WIWbaeK-TManGmcLnvlJSU6d-PVxk7G7kKeUeMRj27uYfa_LLf6wTpDbUpy_20DA0QxUgDGQEymsC724ILZHAG9G0JFjqVJIxZB0WzbWIN_U1CnGszChbZUdGkR96dP2-9OkWJDPb8JX4ZWF2K3KI81me-ALEj-dXLnR9APG6YauyJ0LLK_zTkU8aI7jH12sdr3nViAqgIgG_urC7uyE0xQ"/>
+<button class="absolute inset-0 flex items-center justify-center bg-black/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 pt-2">
+<div class="flex gap-3 mb-3">
+<button class="bg-primary-container text-on-primary-container font-body-sm text-body-sm px-4 py-2 rounded-lg font-medium hover:bg-primary-container/90 transition-colors">
+                                    Upload new picture
+                                </button>
+<button class="bg-surface-container-high text-on-surface font-body-sm text-body-sm px-4 py-2 rounded-lg font-medium border border-outline-variant/50 hover:bg-surface-variant transition-colors">
+                                    Remove
+                                </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">JPG, GIF or PNG. Max size of 5MB.</p>
+</div>
+</div>
+<!-- Form Sections -->
+<form class="space-y-8">
+<!-- Personal Info -->
+<div class="space-y-4">
+<h3 class="font-h2 text-[16px] font-medium text-on-surface border-b border-outline-variant/20 pb-2">Personal Information</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">First Name</label>
+<input class="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-3 py-2 text-on-surface font-body-base text-body-base focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="Alex"/>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Last Name</label>
+<input class="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-3 py-2 text-on-surface font-body-base text-body-base focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="Chen"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Email Address</label>
+<input class="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-3 py-2 text-on-surface font-body-base text-body-base focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" readonly="" type="email" value="alex.chen@apexeng.com"/>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1">To change your email address, contact your workspace administrator.</p>
+</div>
+</div>
+<!-- Role & Department -->
+<div class="space-y-4">
+<h3 class="font-h2 text-[16px] font-medium text-on-surface border-b border-outline-variant/20 pb-2">Role &amp; Department</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Job Title</label>
+<input class="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-3 py-2 text-on-surface font-body-base text-body-base focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="Senior Product Designer"/>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Department</label>
+<select class="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-3 py-2 text-on-surface font-body-base text-body-base focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none">
+<option>Design</option>
+<option>Engineering</option>
+<option>Product</option>
+<option>Marketing</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Bio -->
+<div class="space-y-4">
+<h3 class="font-h2 text-[16px] font-medium text-on-surface border-b border-outline-variant/20 pb-2">About</h3>
+<div class="space-y-1.5">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Bio</label>
+<textarea class="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-3 py-2 text-on-surface font-body-base text-body-base focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" rows="4">Focusing on design systems and enterprise tooling. Previously at Vercel &amp; Linear.</textarea>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1 text-right">86 / 500 characters</p>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="pt-6 flex justify-end gap-3 border-t border-outline-variant/30">
+<button class="bg-transparent text-on-surface font-body-sm text-body-sm px-5 py-2 rounded-lg font-medium hover:bg-surface-variant transition-colors" type="button">
+                                Cancel
+                            </button>
+<button class="bg-primary-container text-on-primary-container font-body-sm text-body-sm px-5 py-2 rounded-lg font-medium hover:bg-primary-container/90 transition-colors shadow-sm" type="submit">
+                                Save Changes
+                            </button>
+</div>
+</form>
+</div>
+</section>
+</main>
+</div>
+</body></html>

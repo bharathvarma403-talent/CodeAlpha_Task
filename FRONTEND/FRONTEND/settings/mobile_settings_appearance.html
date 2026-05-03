@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Appearance Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<link rel="stylesheet" href="../assets/css/globals.css" />
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-background border-b border-surface-container-high shrink-0">
+<button class="p-2 -ml-2 text-on-surface-variant hover:text-on-surface transition-colors rounded-full hover:bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h1 text-h1 text-on-surface absolute left-1/2 -translate-x-1/2">Appearance</h1>
+<div class="w-10"></div> <!-- Placeholder for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-container-padding py-gutter flex flex-col gap-8">
+<!-- Theme Section -->
+<section class="flex flex-col gap-4">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Theme</h2>
+<div class="grid grid-cols-3 gap-card-gap">
+<!-- Light Theme Card -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-full aspect-[1/1.4] rounded-lg border border-surface-container-high bg-surface-container-lowest flex items-center justify-center overflow-hidden relative">
+<div class="w-[60%] h-[80%] rounded border border-gray-200 bg-white shadow-sm flex flex-col p-1 gap-1">
+<div class="h-2 bg-gray-100 rounded w-full"></div>
+<div class="h-4 bg-gray-50 rounded w-full mt-1"></div>
+<div class="h-4 bg-gray-50 rounded w-full"></div>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Light</span>
+</button>
+<!-- Dark Theme Card (Selected) -->
+<button class="flex flex-col items-center gap-2 group relative">
+<div class="w-full aspect-[1/1.4] rounded-lg border-2 border-primary bg-surface-container-low flex items-center justify-center overflow-hidden relative">
+<!-- Selected Badge -->
+<div class="absolute top-2 right-2 bg-primary text-on-primary rounded-full w-5 h-5 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[12px]" data-icon="check">check</span>
+</div>
+<div class="w-[60%] h-[80%] rounded border border-gray-800 bg-gray-950 shadow-sm flex flex-col p-1 gap-1">
+<div class="h-2 bg-gray-900 rounded w-full"></div>
+<div class="h-4 bg-gray-800 rounded w-full mt-1"></div>
+<div class="h-4 bg-gray-800 rounded w-full"></div>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-primary font-medium">Dark</span>
+</button>
+<!-- System Theme Card -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-full aspect-[1/1.4] rounded-lg border border-surface-container-high bg-surface-container flex items-center justify-center overflow-hidden relative">
+<div class="w-[60%] h-[80%] rounded border border-gray-700 bg-gray-800 shadow-sm flex flex-col p-1 gap-1 overflow-hidden relative">
+<!-- Diagonal split for system -->
+<div class="absolute inset-0 bg-white" style="clip-path: polygon(0 0, 100% 0, 0 100%);"></div>
+<div class="absolute inset-0 bg-gray-950" style="clip-path: polygon(100% 100%, 100% 0, 0 100%);"></div>
+<div class="relative z-10 w-full h-full flex flex-col gap-1">
+<div class="h-2 bg-gray-500/30 rounded w-full"></div>
+<div class="h-4 bg-gray-500/20 rounded w-full mt-1"></div>
+</div>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">System</span>
+</button>
+</div>
+</section>
+<!-- Accent Color Section -->
+<section class="flex flex-col gap-4">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Accent Color</h2>
+<div class="flex flex-wrap gap-3">
+<button class="w-9 h-9 rounded-full bg-blue-500 hover:scale-110 transition-transform"></button>
+<button class="w-9 h-9 rounded-full bg-purple-500 ring-2 ring-offset-2 ring-offset-background ring-primary hover:scale-110 transition-transform relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-white" data-icon="check">check</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-rose-500 hover:scale-110 transition-transform"></button>
+<button class="w-9 h-9 rounded-full bg-orange-500 hover:scale-110 transition-transform"></button>
+<button class="w-9 h-9 rounded-full bg-amber-400 hover:scale-110 transition-transform"></button>
+<button class="w-9 h-9 rounded-full bg-emerald-500 hover:scale-110 transition-transform"></button>
+<button class="w-9 h-9 rounded-full bg-teal-500 hover:scale-110 transition-transform"></button>
+<button class="w-9 h-9 rounded-full bg-slate-500 hover:scale-110 transition-transform"></button>
+</div>
+</section>
+<!-- Density Section -->
+<section class="flex flex-col gap-4 mb-4">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">List Density</h2>
+<div class="flex flex-col gap-2">
+<!-- Comfortable -->
+<button class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low border border-surface-container-high hover:bg-surface-container transition-colors">
+<div class="flex flex-col items-start gap-1">
+<span class="font-body-base text-body-base text-on-surface font-medium">Comfortable</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Default spacing</span>
+</div>
+<div class="flex flex-col gap-2 w-16 opacity-60">
+<div class="h-2 bg-on-surface-variant rounded-sm w-full"></div>
+<div class="h-2 bg-on-surface-variant rounded-sm w-3/4"></div>
+</div>
+</button>
+<!-- Compact (Selected) -->
+<button class="flex items-center justify-between p-4 rounded-lg bg-surface-container border-l-4 border-primary shadow-sm relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="flex flex-col items-start gap-1 relative z-10">
+<span class="font-body-base text-body-base text-primary font-medium">Compact</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">More items visible</span>
+</div>
+<div class="flex flex-col gap-1 w-16 relative z-10 opacity-80">
+<div class="h-1.5 bg-primary rounded-sm w-full"></div>
+<div class="h-1.5 bg-primary rounded-sm w-5/6"></div>
+<div class="h-1.5 bg-primary rounded-sm w-full"></div>
+</div>
+</button>
+<!-- Cozy -->
+<button class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low border border-surface-container-high hover:bg-surface-container transition-colors">
+<div class="flex flex-col items-start gap-1">
+<span class="font-body-base text-body-base text-on-surface font-medium">Cozy</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Maximum density</span>
+</div>
+<div class="flex flex-col gap-[2px] w-16 opacity-60">
+<div class="h-1 bg-on-surface-variant rounded-sm w-full"></div>
+<div class="h-1 bg-on-surface-variant rounded-sm w-full"></div>
+<div class="h-1 bg-on-surface-variant rounded-sm w-3/4"></div>
+<div class="h-1 bg-on-surface-variant rounded-sm w-5/6"></div>
+</div>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center mt-2 opacity-70">
+                Changes apply instantly
+            </p>
+</section>
+</main>
+</body></html>

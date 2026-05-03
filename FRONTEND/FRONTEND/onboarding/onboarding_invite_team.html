@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Invite Teammates - Apex Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center font-body-base p-4">
+<!-- Top Left Back Button (Contextual departure from centered content) -->
+<button class="fixed top-6 left-6 flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors duration-150 p-2 rounded-md hover:bg-surface-container">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+<span class="font-body-sm text-body-sm">Back</span>
+</button>
+<!-- Main Container -->
+<div class="w-full max-w-lg flex flex-col gap-8">
+<!-- Progress Indicator -->
+<div class="flex justify-center gap-2">
+<div class="w-12 h-1.5 rounded-full bg-outline-variant/30"></div>
+<div class="w-12 h-1.5 rounded-full bg-outline-variant/30"></div>
+<div class="w-12 h-1.5 rounded-full bg-primary"></div>
+<div class="w-12 h-1.5 rounded-full bg-outline-variant/30"></div>
+</div>
+<!-- Card Container -->
+<div class="bg-surface-container-low border border-outline-variant/20 rounded-xl p-8 flex flex-col gap-6 shadow-sm">
+<!-- Header -->
+<div class="flex flex-col gap-2">
+<h1 class="font-h1 text-h1 text-on-surface">Invite your team</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">Collaboration is better with others. Add your teammates now or skip for later.</p>
+</div>
+<!-- Input Area -->
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-2">
+<!-- Multi-add Email Input -->
+<div class="flex-grow flex flex-wrap gap-2 p-2 min-h-[42px] bg-surface-container border border-outline-variant/30 rounded-lg focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow">
+<!-- Chips -->
+<div class="flex items-center gap-1 bg-surface-variant text-on-surface-variant px-2 py-1 rounded-md text-sm">
+<span class="font-body-sm text-body-sm">alex@apex.inc</span>
+<button class="text-on-surface-variant hover:text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex items-center gap-1 bg-surface-variant text-on-surface-variant px-2 py-1 rounded-md text-sm">
+<span class="font-body-sm text-body-sm">sam@apex.inc</span>
+<button class="text-on-surface-variant hover:text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Actual Input -->
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/50 min-w-[150px] font-body-sm text-body-sm p-0 m-1" placeholder="Enter email addresses..." type="text"/>
+</div>
+<!-- Role Selector -->
+<div class="relative w-32 shrink-0 h-[42px]">
+<select class="w-full h-full appearance-none bg-surface-container border border-outline-variant/30 rounded-lg pl-3 pr-8 font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option value="admin">Admin</option>
+<option selected="" value="member">Member</option>
+<option value="viewer">Viewer</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Pending Invites List -->
+<div class="flex flex-col gap-2 mt-2">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Pending Invites</h3>
+<!-- Invite Item 1 -->
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-body-sm font-medium">A</div>
+<span class="font-body-sm text-body-sm text-on-surface">alex@apex.inc</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Member</span>
+<button class="text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Invite Item 2 -->
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-body-sm font-medium">S</div>
+<span class="font-body-sm text-body-sm text-on-surface">sam@apex.inc</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Member</span>
+<button class="text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between pt-4 mt-2">
+<button class="px-4 py-2 font-body-sm text-body-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 rounded-lg transition-colors">
+                    Skip for now
+                </button>
+<button class="px-6 py-2 bg-primary text-on-primary font-body-sm text-body-sm font-medium rounded-lg hover:bg-primary/90 transition-colors shadow-sm">
+                    Send invites
+                </button>
+</div>
+</div>
+</div>
+</body></html>

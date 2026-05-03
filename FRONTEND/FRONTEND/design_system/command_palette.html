@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Command Palette - Apex Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+        .backdrop-blur-md {
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-base h-screen w-screen overflow-hidden antialiased">
+<!-- Mock Background Content (to show blur effect) -->
+<div class="absolute inset-0 z-0 opacity-40 pointer-events-none p-container-padding flex flex-col gap-container-padding">
+<header class="flex items-center justify-between border-b border-surface-variant pb-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-surface-container-high"></div>
+<div class="h-6 w-32 bg-surface-container-high rounded"></div>
+</div>
+<div class="h-8 w-64 bg-surface-container-high rounded"></div>
+</header>
+<div class="flex gap-gutter h-full">
+<div class="w-60 h-full bg-surface-container rounded-lg hidden md:block"></div>
+<div class="flex-1 flex gap-gutter">
+<div class="flex-1 bg-surface-container rounded-lg p-4"></div>
+<div class="flex-1 bg-surface-container rounded-lg p-4"></div>
+<div class="flex-1 bg-surface-container rounded-lg p-4"></div>
+</div>
+</div>
+</div>
+<!-- Command Palette Overlay -->
+<div class="fixed inset-0 z-50 flex items-start justify-center pt-[88px] px-4 bg-black/40 backdrop-blur-md">
+<!-- Command Palette Container -->
+<div aria-modal="true" class="w-full max-w-[640px] bg-surface-container border border-surface-variant rounded-xl shadow-2xl flex flex-col overflow-hidden ring-1 ring-white/5" role="dialog">
+<!-- Search Input Header -->
+<div class="flex items-center px-4 h-14 border-b border-surface-variant bg-surface-container-high/50">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant mr-3 text-[20px]" data-icon="search">search</span>
+<input autofocus="" class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-base text-body-base placeholder:text-on-surface-variant/60 p-0 outline-none" placeholder="Search tasks, projects, people..." type="text"/>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-mono border border-surface-variant rounded px-1.5 py-0.5 bg-surface-container-highest">
+<span>esc</span>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="max-h-[530px] overflow-y-auto py-2 flex flex-col">
+<!-- Recent Category -->
+<div class="px-2 mb-2">
+<div class="px-3 py-2 text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
+                        Recent
+                    </div>
+<!-- Item 1 (Auto-selected / Active state) -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-primary-container/20 text-primary group cursor-pointer border border-primary-container/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="task_alt">task_alt</span>
+<div class="flex flex-col items-start">
+<span class="font-body-sm text-body-sm text-primary font-medium">Fix auth token expiry bug <span class="text-primary/70">(FIX-421)</span></span>
+</div>
+</div>
+<div class="hidden group-hover:flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="keyboard_return">keyboard_return</span>
+</div>
+</button>
+<!-- Item 2 -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-variant text-on-surface group cursor-pointer transition-colors duration-150 mt-1">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="folder_open">folder_open</span>
+<div class="flex flex-col items-start">
+<span class="font-body-sm text-body-sm">Mobile App v3</span>
+</div>
+</div>
+</button>
+<!-- Item 3 -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-variant text-on-surface group cursor-pointer transition-colors duration-150 mt-1">
+<div class="flex items-center gap-3">
+<div class="w-[18px] h-[18px] rounded-full bg-tertiary-container flex items-center justify-center text-[10px] font-bold text-on-tertiary-container">AM</div>
+<div class="flex flex-col items-start">
+<span class="font-body-sm text-body-sm">Ana Martinez</span>
+</div>
+</div>
+</button>
+</div>
+<div class="h-px bg-surface-variant mx-2 my-1"></div>
+<!-- Quick Actions Category -->
+<div class="px-2 mt-1">
+<div class="px-3 py-2 text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
+                        Quick Actions
+                    </div>
+<!-- Action 1 -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-variant text-on-surface group cursor-pointer transition-colors duration-150">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="add_task">add_task</span>
+<div class="flex flex-col items-start">
+<span class="font-body-sm text-body-sm">Create task</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-mono border border-outline-variant/50 rounded px-1.5 py-0.5 bg-surface">
+<span>C</span>
+</div>
+</button>
+<!-- Action 2 -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-variant text-on-surface group cursor-pointer transition-colors duration-150 mt-1">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="create_new_folder">create_new_folder</span>
+<div class="flex flex-col items-start">
+<span class="font-body-sm text-body-sm">Create project</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-mono border border-outline-variant/50 rounded px-1.5 py-0.5 bg-surface">
+<span>P</span>
+</div>
+</button>
+<!-- Action 3 -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-variant text-on-surface group cursor-pointer transition-colors duration-150 mt-1">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="dark_mode">dark_mode</span>
+<div class="flex flex-col items-start">
+<span class="font-body-sm text-body-sm">Toggle dark mode</span>
+</div>
+</div>
+</button>
+<!-- Action 4 -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-variant text-on-surface group cursor-pointer transition-colors duration-150 mt-1 mb-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="keyboard">keyboard</span>
+<div class="flex flex-col items-start">
+<span class="font-body-sm text-body-sm">View all shortcuts</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-mono border border-outline-variant/50 rounded px-1.5 py-0.5 bg-surface">
+<span>?</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Footer Hints -->
+<div class="px-4 py-2 border-t border-surface-variant bg-surface-container-lowest flex items-center justify-between text-on-surface-variant font-body-sm text-[12px]">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="keyboard_arrow_up">keyboard_arrow_up</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+                        to navigate
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="keyboard_return">keyboard_return</span>
+                        to select
+                    </span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

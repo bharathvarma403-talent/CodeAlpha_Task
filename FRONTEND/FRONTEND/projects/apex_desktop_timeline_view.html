@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Desktop - Timeline</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script src="../assets/js/theme.js"></script>
+<style>
+        /* Custom styles for precise Gantt rendering */
+        .gantt-grid-cell { width: 48px; min-width: 48px; }
+        .gantt-row { height: 40px; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base text-body-base flex h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- NavigationDrawer (Sidebar) -->
+<nav class="fixed left-0 top-0 h-full w-[240px] border-r border-gray-800 flex flex-col p-4 gap-2 bg-gray-900 z-50 transition-all duration-200">
+<!-- Workspace Switcher Header -->
+<div class="flex items-center gap-3 mb-6 p-2 rounded-lg hover:bg-gray-800/50 cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded bg-surface-container-highest overflow-hidden shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional, minimalist abstract geometric logo representing a modern engineering workspace. Rendered in crisp dark mode colors with a subtle glowing violet accent against a deep charcoal background. The design is sharp, corporate, and evokes a sense of structured precision and technological capability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQvSUaR8po9_MCLaSlhw74-c3dljHQlM1QOyPSeyM_YIwde1fLXE9DBj1WXnspifgOFsQu4nfWq2qtY7nBgw_4Wa2qFThpqz_eX212T14n03mRS3Wqyw7e-63XJvue-T1KnW9WSmwOm7yy4WEveOac1p8p_aohee-V7mphHS0nIx4QY4sWLvbdUj6dHdRt2Tp6MSn7CEGFA1GCWxY5U3ent58im8pHQ3YtNAA0Kq9Z-XcQQAzjsH8uu1PlFYZa7-BNtYUeLRv4rSA"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="font-inter text-[13px] font-medium text-violet-500 font-bold truncate">Apex Engineering</span>
+<span class="text-[11px] text-gray-500 truncate">Workspace Switcher</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-gray-500">unfold_more</span>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span class="font-inter text-[13px] font-medium flex-1">Search</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded border border-gray-700 text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">Cmd+K</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-inter text-[13px] font-medium">My Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+<span class="font-inter text-[13px] font-medium flex-1">Inbox</span>
+<span class="bg-primary text-on-primary text-[10px] font-bold px-1.5 rounded-full">3</span>
+</a>
+<div class="mt-4 mb-2 px-3">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase">Views</span>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="font-inter text-[13px] font-medium">Favorites</span>
+</a>
+<!-- Active Navigation -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-800 text-violet-400 font-semibold transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px] drop-shadow-sm" style="font-variation-settings: 'FILL' 1;">format_list_bulleted</span>
+<span class="font-inter text-[13px] flex-1">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="font-inter text-[13px] font-medium">Teams</span>
+</a>
+</div>
+<!-- Footer Profile area (implicit from design system standard) -->
+<div class="mt-auto border-t border-gray-800 pt-4 pb-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="font-inter text-[13px] font-medium">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-[240px] flex flex-col bg-background min-w-0">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-gray-950 border-b border-gray-800 shrink-0 z-40">
+<div class="flex items-center gap-4">
+<button class="text-gray-500 hover:text-gray-100 transition-colors duration-150 ease-in-out md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-violet-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<h1 class="text-lg font-semibold text-white tracking-tight">Apex Projects</h1>
+</div>
+</div>
+<!-- Contextual Toolbar (Timeline specific) -->
+<div class="hidden lg:flex items-center bg-surface-container-high rounded-md p-0.5 border border-outline-variant/30 shadow-sm">
+<button class="px-3 py-1 rounded text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors">Day</button>
+<button class="px-3 py-1 rounded text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors">Week</button>
+<button class="px-3 py-1 rounded bg-surface-container-low text-body-sm text-on-surface font-medium border border-outline-variant/50 shadow-sm">Month</button>
+<button class="px-3 py-1 rounded text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors">Quarter</button>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-gray-500 hover:bg-gray-900 hover:text-gray-100 rounded-full transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-gray-800 cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A sleek, high-end professional headshot portrait of a user in a modern corporate setting. The lighting is dramatic and moody, fitting a dark mode aesthetic, with subtle rim lighting highlighting the subject's features. The background is a blurred, dark geometric office environment, emphasizing focus and performance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgOEyrx2VCFF9HCQzPfTZvqQSFyV1LMPK44vkau6iOSL0HHKQm3bCSv44bNwIFeTQNNVsU7qDsbh0aF7mvXVSOKTIJSHAK2hSVKHCl-0aio139T_api5UbsNMjfXHViC29oDbxQTBKNEOHJHnfExTJIH-EdcByl9QqRBo-AchvfeFBDhjO878HBGdSKD4XfY8fw8PqmN6wx3ghhKLjXxUJusUnTqJOc2R69PVmu2e1xqPY3yry0V1_-2EzBTGTWVXWeX8yQk5IdI8"/>
+</div>
+</div>
+</header>
+<!-- Gantt View Area -->
+<!-- Using a single scrollable container with sticky headers/columns to keep everything synced without JS -->
+<main class="flex-1 overflow-auto bg-surface relative hide-scrollbar selection:bg-transparent">
+<div class="min-w-[1600px] pb-32"> <!-- Ensures right scrolling space -->
+<!-- Gantt Header (Sticky Top) -->
+<div class="flex border-b border-outline-variant sticky top-0 z-40 bg-surface/95 backdrop-blur-sm shadow-sm">
+<!-- Task List Header (Sticky Left) -->
+<div class="w-[320px] shrink-0 sticky left-0 z-50 bg-surface border-r border-outline-variant p-4 flex items-center justify-between shadow-[1px_0_0_0_rgba(255,255,255,0.05)]">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Task Name</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant cursor-pointer hover:text-on-surface">add</span>
+</div>
+</div>
+<!-- Timeline Scale Header -->
+<div class="flex-1 flex flex-col">
+<!-- Months Row -->
+<div class="flex border-b border-outline-variant/30 text-body-sm font-medium text-on-surface-variant h-8">
+<div class="flex items-center pl-2 border-r border-outline-variant/30" style="width: 1488px;">October 2023</div>
+</div>
+<!-- Days Row -->
+<div class="flex text-mono text-mono text-on-surface-variant h-8">
+<!-- Loop for Days (Mocking 31 days) -->
+<!-- Using standard widths for columns -->
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">01</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">02</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">03</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">04</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">05</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">06</div> <!-- Weekend -->
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">07</div> <!-- Weekend -->
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 text-primary font-bold">08</div> <!-- Today -->
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">09</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">10</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">11</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">12</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">13</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">14</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">15</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">16</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">17</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">18</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">19</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">20</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">21</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">22</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">23</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">24</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">25</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">26</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">27</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20 bg-surface-container-low/50">28</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">29</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">30</div>
+<div class="gantt-grid-cell flex items-center justify-center border-r border-outline-variant/20">31</div>
+</div>
+</div>
+</div>
+<!-- Gantt Body -->
+<div class="relative">
+<!-- SVG Overlay for Dependencies (Absolute covering right side) -->
+<svg class="absolute top-0 left-[320px] w-full h-full pointer-events-none z-20" style="width: calc(100% - 320px);">
+<defs>
+<marker id="arrow" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10">
+<path class="fill-outline" d="M 0 0 L 10 5 L 0 10 z"></path>
+</marker>
+</defs>
+<!-- Connections (Row height is 40px, center is 20, 60, 100...) -->
+<!-- Bar 1 (Row 1) to Bar 2 (Row 2) -->
+<path class="stroke-outline" d="M 240 20 L 252 20 L 252 60 L 264 60" fill="none" marker-end="url(#arrow)" stroke-linejoin="round" stroke-width="1.5"></path>
+<!-- Bar 2 (Row 2) to Bar 3 (Row 3) -->
+<path class="stroke-outline" d="M 432 60 L 444 60 L 444 100 L 456 100" fill="none" marker-end="url(#arrow)" stroke-linejoin="round" stroke-width="1.5"></path>
+<!-- Bar 1 (Row 1) to Bar 4 (Row 4) - Long dependency -->
+<path class="stroke-outline" d="M 240 20 L 264 20 L 264 140 L 480 140" fill="none" marker-end="url(#arrow)" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+<!-- Today Line Overlay -->
+<!-- Positioned at Day 08 (7 * 48px = 336px) relative to timeline start -->
+<div class="absolute top-0 bottom-0 left-[320px] pointer-events-none z-30" style="margin-left: 356px;">
+<div class="w-px h-full bg-error relative">
+<div class="absolute -top-1 -left-1 w-2.5 h-2.5 rounded-full bg-error shadow-sm shadow-error/50"></div>
+</div>
+</div>
+<!-- Row 1: Parent Project -->
+<div class="flex group hover:bg-surface-container-lowest transition-colors gantt-row border-b border-outline-variant/10">
+<!-- Task Left Side -->
+<div class="w-[320px] shrink-0 sticky left-0 z-30 bg-surface group-hover:bg-surface-container-lowest border-r border-outline-variant px-4 py-2 flex items-center gap-2 shadow-[1px_0_0_0_rgba(255,255,255,0.05)] transition-colors">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant cursor-pointer hover:text-on-surface">expand_more</span>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-body-base text-body-base font-semibold text-on-surface truncate">V2 Platform Rewrite</span>
+</div>
+<!-- Timeline Right Side -->
+<div class="flex-1 relative flex">
+<!-- Background Grid Lines (Repeated for visual consistency) -->
+<div class="absolute inset-0 flex pointer-events-none opacity-20">
+<div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline bg-surface-variant"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div><div class="gantt-grid-cell border-r border-outline"></div>
+</div>
+<!-- Task Bar (Days 1 to 5: Width 5*48=240, Left 0) -->
+<div class="absolute top-1/2 -translate-y-1/2 left-0 w-[240px] h-[24px] bg-primary/20 border border-primary/40 rounded-lg flex items-center px-2 z-10 cursor-pointer hover:bg-primary/30 transition-colors">
+<div class="w-full h-1 bg-primary/50 rounded-full overflow-hidden">
+<div class="w-1/3 h-full bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Row 2: Subtask -->
+<div class="flex group hover:bg-surface-container-lowest transition-colors gantt-row border-b border-outline-variant/10">
+<div class="w-[320px] shrink-0 sticky left-0 z-30 bg-surface group-hover:bg-surface-container-lowest border-r border-outline-variant px-4 py-2 flex items-center gap-2 pl-10 shadow-[1px_0_0_0_rgba(255,255,255,0.05)] transition-colors">
+<span class="material-symbols-outlined text-[14px] text-tertiary" style="font-variation-settings: 'FILL' 1;">api</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Database Schema Design</span>
+</div>
+<div class="flex-1 relative flex">
+<!-- Task Bar (Days 6 to 9: Left 5*48=240, Width 4*48=192) -->
+<div class="absolute top-1/2 -translate-y-1/2 left-[264px] w-[168px] h-[22px] bg-tertiary-container text-on-tertiary-container rounded-md flex items-center px-2 z-10 cursor-pointer shadow-sm hover:brightness-110 transition-all">
+<span class="font-mono text-[10px] font-semibold truncate">DB-01</span>
+</div>
+</div>
+</div>
+<!-- Row 3: Subtask -->
+<div class="flex group hover:bg-surface-container-lowest transition-colors gantt-row border-b border-outline-variant/10">
+<div class="w-[320px] shrink-0 sticky left-0 z-30 bg-surface group-hover:bg-surface-container-lowest border-r border-outline-variant px-4 py-2 flex items-center gap-2 pl-10 shadow-[1px_0_0_0_rgba(255,255,255,0.05)] transition-colors">
+<div class="w-1 h-3 rounded-full bg-error"></div> <!-- Priority Indicator -->
+<span class="font-body-sm text-body-sm text-on-surface truncate">Auth Service Migration</span>
+<div class="ml-auto w-5 h-5 rounded-full overflow-hidden border border-outline shrink-0">
+<img class="w-full h-full object-cover" data-alt="A small circular avatar of a software engineer, featuring clear, high-contrast dark mode lighting to match the UI environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArFrO6TFIgh7-Dt8br0e__AKsPfP0R2SuAQblu-wC4bSZZfVj76fPQsdla5bHtj1faR9W7PDlNgqTDSYLUUk5diZeoZJnvyvnon6rzoZoz8KSzxmDDAAMdyq1IVRa0ww4IZnhMvK6OnwQ1EcuzngoEXxP5xEsEafsUewkj8WeuVHSrNsE3HkWMupGN6rlU4uOZVZwtxb02-itb6laRSWS9lzzk6eRRq5tb6BfyY59yp9kKwnOi7QWCIwnYbd04xivrS1ZYM-rEThE"/>
+</div>
+</div>
+<div class="flex-1 relative flex">
+<!-- Task Bar (Days 10 to 14: Left 9*48=432, Width 5*48=240) -->
+<div class="absolute top-1/2 -translate-y-1/2 left-[456px] w-[240px] h-[22px] bg-error-container text-on-error-container rounded-md flex items-center px-2 z-10 cursor-pointer shadow-sm hover:brightness-110 transition-all">
+<span class="font-mono text-[10px] font-semibold truncate">AUTH-12 (Critical)</span>
+</div>
+</div>
+</div>
+<!-- Row 4: Milestone -->
+<div class="flex group hover:bg-surface-container-lowest transition-colors gantt-row border-b border-outline-variant/10">
+<div class="w-[320px] shrink-0 sticky left-0 z-30 bg-surface group-hover:bg-surface-container-lowest border-r border-outline-variant px-4 py-2 flex items-center gap-2 pl-10 shadow-[1px_0_0_0_rgba(255,255,255,0.05)] transition-colors">
+<span class="material-symbols-outlined text-[16px] text-tertiary" style="font-variation-settings: 'FILL' 1;">flag</span>
+<span class="font-body-sm text-body-sm font-semibold text-tertiary truncate">Backend Alpha Release</span>
+</div>
+<div class="flex-1 relative flex items-center">
+<!-- Milestone Marker (Diamond) at Day 10 (480px) -->
+<div class="absolute left-[480px] w-4 h-4 bg-tertiary rotate-45 z-10 shadow-md ring-2 ring-surface"></div>
+</div>
+</div>
+<!-- Row 5: Another Parent -->
+<div class="flex group hover:bg-surface-container-lowest transition-colors gantt-row border-b border-outline-variant/10 mt-2">
+<div class="w-[320px] shrink-0 sticky left-0 z-30 bg-surface group-hover:bg-surface-container-lowest border-r border-outline-variant px-4 py-2 flex items-center gap-2 shadow-[1px_0_0_0_rgba(255,255,255,0.05)] transition-colors">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant cursor-pointer hover:text-on-surface">chevron_right</span>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-body-base text-body-base font-semibold text-on-surface truncate">Frontend UI Overhaul</span>
+</div>
+<div class="flex-1 relative flex">
+<!-- Task Bar -->
+<div class="absolute top-1/2 -translate-y-1/2 left-[480px] w-[384px] h-[24px] bg-primary/20 border border-primary/40 rounded-lg flex items-center px-2 z-10 cursor-pointer">
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex - Teams</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-base">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[240px] border-r border-outline-variant bg-surface-container-low flex flex-col p-4 z-40 hidden md:flex">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-h2">A</div>
+<div>
+<h1 class="font-h2 text-on-surface text-lg font-black text-gray-50">Apex</h1>
+<p class="font-body-sm text-on-surface-variant text-[13px] leading-tight text-gray-400">Workspace</p>
+</div>
+</div>
+<!-- Primary Tabs -->
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-[13px] leading-tight text-gray-400 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+                Search
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-[13px] leading-tight text-gray-400 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-[13px] leading-tight text-gray-400 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="inbox">inbox</span>
+                Inbox
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-[13px] leading-tight text-gray-400 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="tactic">tactic</span>
+                Projects
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-[13px] leading-tight text-primary bg-surface-container-highest font-medium transition-colors opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="group" data-weight="fill" style="font-variation-settings: 'FILL' 1;">group</span>
+                Teams
+            </a>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary font-body-base font-medium py-2 rounded-lg mb-6 shadow-sm hover:opacity-90 transition-opacity">
+            New Project
+        </button>
+<!-- Footer Tabs -->
+<div class="flex flex-col gap-1 mt-auto">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-[13px] leading-tight text-gray-400 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="star">star</span>
+                Favorites
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-body-sm text-[13px] leading-tight text-gray-400 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="docked full-width top-0 border-b border-outline-variant bg-surface flex justify-between items-center px-6 h-14 ml-[240px] w-[calc(100%-240px)] fixed z-30 hidden md:flex">
+<!-- Navigation Links -->
+<div class="flex gap-6 h-full items-end">
+<a class="font-inter text-sm font-medium text-gray-400 pb-2 hover:text-gray-50 Transition-all duration-200 ease-in-out" href="#">Board</a>
+<a class="font-inter text-sm font-medium text-gray-400 pb-2 hover:text-gray-50 Transition-all duration-200 ease-in-out" href="#">List</a>
+<a class="font-inter text-sm font-medium text-gray-400 pb-2 hover:text-gray-50 Transition-all duration-200 ease-in-out" href="#">Timeline</a>
+<a class="font-inter text-sm font-medium text-primary border-b-2 border-primary pb-2 Transition-all duration-200 ease-in-out" href="#">Dashboard</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 ml-0 md:ml-[240px] pt-0 md:pt-14 bg-background min-h-screen">
+<!-- Page Header -->
+<div class="px-container-padding py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant bg-surface/50 backdrop-blur-sm sticky top-14 z-20">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Team Directory</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage workspace members and workload</p>
+</div>
+<div class="flex items-center gap-3">
+<!-- Search -->
+<div class="relative w-64 hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-high border border-outline-variant rounded-lg pl-9 pr-3 py-1.5 font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search members..." type="text"/>
+</div>
+<!-- Filter -->
+<div class="relative">
+<button class="flex items-center gap-2 bg-surface-container-high border border-outline-variant px-3 py-1.5 rounded-lg font-body-sm hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+                        Role
+                        <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Invite CTA -->
+<button class="bg-primary text-on-primary font-body-base font-medium px-4 py-1.5 rounded-lg shadow-sm hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                    Invite member
+                </button>
+</div>
+</div>
+<!-- Grid Container -->
+<div class="p-container-padding">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-card-gap">
+<!-- Card 1 -->
+<div class="group relative bg-surface-container rounded-xl border border-outline-variant p-4 hover:border-outline hover:shadow-lg transition-all duration-200 overflow-hidden">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A close-up studio portrait of a confident young professional woman with dark hair, set against a dark gray background. The lighting is high-contrast, emphasizing sharp facial features. The overall aesthetic is minimalist and corporate, fitting seamlessly into a high-end dark mode UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4dYWRo0icsbDsXGeX0bE1f2exLF5Jw1i4HycYelVobEOuT0KjKfJApf1DQ4ifnidUOkqBhFv6tmgWb29HHH1oQLWHoL0_nCTRzC4Fn5qlowyZghuGc2OU5g5CGGjJxOWIXIxU7llTM52FXGhmazxL07AVaMv1R1CeDlpYm5C7P4TiOeIP2EmUAZ9ZobsWNmm2q--fj39rJV-wHaxyJ9HvL2pJhelF4Jzyc18yGBQt1X8JWe9nJO2dWgeeNGOljaleieuVu8x_pZM"/>
+<div>
+<h3 class="font-body-base text-body-base font-medium text-on-surface">Elena Rodriguez</h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-caps text-label-caps bg-primary-container/20 text-primary px-1.5 py-0.5 rounded uppercase">Admin</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">task_alt</span> 12 Active
+                                    </span>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<div class="space-y-1.5 mb-2">
+<div class="flex justify-between font-mono text-mono text-on-surface-variant">
+<span>Capacity</span>
+<span class="text-error">90%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<!-- Hover Actions Overlay -->
+<div class="absolute inset-0 bg-surface-container/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+<button class="w-full bg-surface-container-highest text-on-surface font-body-sm font-medium py-1.5 rounded border border-outline-variant hover:bg-surface-bright transition-colors">View profile</button>
+<button class="w-full bg-primary text-on-primary font-body-sm font-medium py-1.5 rounded hover:bg-primary/90 transition-colors">Assign task</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative bg-surface-container rounded-xl border border-outline-variant p-4 hover:border-outline hover:shadow-lg transition-all duration-200 overflow-hidden">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a man with a short beard and dark hair, wearing a dark gray shirt. The background is a seamless deep charcoal gray. The lighting highlights his features with a subtle shadow on one side, perfect for a modern dark mode software interface avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiilR7UQ37BEDAr2Al22w6zJUKPS8h2dQT2gPX9oRZ6iD7NblOtC6fORkCz_2aj8egxeqsFe2TfSTm4mh0rYf7EAEFsj0Ff_KARKXBgI1Hbd_IsE4NsrUGZQlpyuIJg3FrOrx9AyL31W8__KntF7xV6QAb0MhNRwrpmK3NteMycUH2znSSfPjUaTFUekHkz-XQ137jQXX1bEfyu5lgsi576KH2DKW2CbKpw4pzjlO2FjV2tYY9W_o6rqStHHVd402pgYlGn6qBPfg"/>
+<div>
+<h3 class="font-body-base text-body-base font-medium text-on-surface">Marcus Chen</h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-caps text-label-caps bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded uppercase border border-outline-variant">Member</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">task_alt</span> 5 Active
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-1.5 mb-2">
+<div class="flex justify-between font-mono text-mono text-on-surface-variant">
+<span>Capacity</span>
+<span class="text-tertiary">60%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-surface-container/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+<button class="w-full bg-surface-container-highest text-on-surface font-body-sm font-medium py-1.5 rounded border border-outline-variant hover:bg-surface-bright transition-colors">View profile</button>
+<button class="w-full bg-primary text-on-primary font-body-sm font-medium py-1.5 rounded hover:bg-primary/90 transition-colors">Assign task</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative bg-surface-container rounded-xl border border-outline-variant p-4 hover:border-outline hover:shadow-lg transition-all duration-200 overflow-hidden">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-h2 border border-outline-variant">SJ</div>
+<div>
+<h3 class="font-body-base text-body-base font-medium text-on-surface">Sarah Jenkins</h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-caps text-label-caps bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded uppercase border border-outline-variant">Member</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">task_alt</span> 2 Active
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-1.5 mb-2">
+<div class="flex justify-between font-mono text-mono text-on-surface-variant">
+<span>Capacity</span>
+<span class="text-primary-container">25%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-surface-container/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+<button class="w-full bg-surface-container-highest text-on-surface font-body-sm font-medium py-1.5 rounded border border-outline-variant hover:bg-surface-bright transition-colors">View profile</button>
+<button class="w-full bg-primary text-on-primary font-body-sm font-medium py-1.5 rounded hover:bg-primary/90 transition-colors">Assign task</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative bg-surface-container rounded-xl border border-outline-variant p-4 hover:border-outline hover:shadow-lg transition-all duration-200 overflow-hidden opacity-75">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-12 h-12 rounded-full object-cover border border-outline-variant grayscale" data-alt="A portrait of a male professional wearing a dark suit against an abstract, out-of-focus dark office background. The lighting is moody and dramatic with cool blue undertones. It evokes a sleek, corporate tech atmosphere suitable for a dark mode dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa0VR1gnEXfGS95Kks7k3pj672Q8MxO2MYJMybIbi0ZrZBC9xD5QkG0kR37mO2zSKvmZSQIeBWq5yS2EOCT_KoqMBn2tKgxd61seiG9Vr3vmMi4sNB1saj3-uhzhZ9dTbcPO9_jb6Votknb2LEJinoecGkedvEH3mPGJoE7bqAwpGEEcs6b4GWYKaNEOaPX3kxMqexL6rWimDVrw4u5Z0eHBRibBIHEWAwU4LBIUjjlXp7ND0F2qVHFRduVghw0ehfMA_JTgSuZCw"/>
+<div>
+<h3 class="font-body-base text-body-base font-medium text-on-surface">David Kim</h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-caps text-label-caps bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded uppercase border border-outline-variant">Viewer</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">task_alt</span> 0 Active
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-1.5 mb-2">
+<div class="flex justify-between font-mono text-mono text-on-surface-variant">
+<span>Capacity</span>
+<span class="text-on-surface-variant">0%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-on-surface-variant rounded-full" style="width: 0%"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-surface-container/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+<button class="w-full bg-surface-container-highest text-on-surface font-body-sm font-medium py-1.5 rounded border border-outline-variant hover:bg-surface-bright transition-colors">View profile</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 border-t border-outline-variant bg-surface md:hidden rounded-t-none">
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-inter text-[10px] font-medium p-2" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="task_alt">task_alt</span>
+            Tasks
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-inter text-[10px] font-medium p-2" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="search">search</span>
+            Search
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-inter text-[10px] font-medium p-2" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="mail">mail</span>
+            Inbox
+        </a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary/20 rounded-xl px-3 py-1 font-inter text-[10px] font-medium" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="person">person</span>
+            Profile
+        </a>
+</nav>
+</body></html>

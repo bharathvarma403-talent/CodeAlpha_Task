@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex Settings - Billing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+</head>
+<body class="bg-background text-on-background font-body-base min-h-screen flex flex-col md:flex-row">
+<!-- NavigationDrawer -->
+<aside class="fixed md:static left-0 top-0 h-full w-[240px] border-r border-outline-variant bg-surface-container-low flex flex-col p-4 gap-2 hidden md:flex z-50">
+<!-- Header -->
+<div class="flex items-center gap-3 px-2 py-3 mb-4 rounded-lg hover:bg-surface-variant transition-colors cursor-pointer">
+<img alt="workspace_avatar" class="w-8 h-8 rounded-lg object-cover" data-alt="A macro shot of a sleek, abstract corporate logo rendered in deep violet and brushed steel textures. The design is minimalist, set against a dark gray background with subtle studio lighting highlighting the metallic edges. The mood is professional and cutting-edge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCciTvz77hi4AzuIgmbWV0z6lZfrCtf3q6v2Ly-PFSYt2KlAb8n3z9fiyQ6MQN-kRBsv7rLW-OF-biaDzK1gukABk5e8YPZHuJ7Ul_m5SB0YUpqYTzWxle-XNDr5Gx2UAC-7tPZVYQB14EQ7UbeQlBd3yieyXeBLwk-4k8eNZ-KsA09h4nx7dGtPgKr2guh0041gOndSSrlkPcEdxYgh4ctXAOzx76vBEr9cTMKaPTQrFE2M2rWEXt3Y30wOUb5s9SLqPftS1pxg-I"/>
+<div class="flex-1 min-w-0">
+<div class="font-body-sm text-[13px] font-bold text-primary truncate">Apex Engineering</div>
+<div class="font-body-sm text-[11px] text-on-surface-variant truncate">Workspace Switcher</div>
+</div>
+<div class="font-mono text-[10px] text-outline px-1.5 py-0.5 rounded border border-outline-variant">Cmd+K</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-background transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span class="font-body-sm text-[13px] font-medium">Search</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-background transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-body-sm text-[13px] font-medium">My Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-background transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+<span class="font-body-sm text-[13px] font-medium">Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-background transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="font-body-sm text-[13px] font-medium">Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-background transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+<span class="font-body-sm text-[13px] font-medium">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-background transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="font-body-sm text-[13px] font-medium">Teams</span>
+</a>
+<!-- Settings (Active) -->
+<div class="mt-4 mb-1 px-3 font-label-caps text-[11px] text-outline font-semibold tracking-wider">PREFERENCES</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-surface-variant text-primary font-semibold transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-body-sm text-[13px]">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<div class="flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar (Mobile Only) -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-surface-container-lowest md:hidden border-b border-outline-variant">
+<button class="text-primary p-2 -ml-2 rounded-md hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-lg font-semibold text-on-background tracking-tight">Apex Projects</div>
+<img alt="user_profile_avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A headshot of a professional individual against a neutral dark gray background. Soft studio lighting highlights their features. The mood is corporate and approachable, fitting for a minimalist dashboard profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDunSTFSw9_ulqlp_64WuAd2PmwBjmsYIg0hnVtfguS6QdjCEkf-2baW_RyP4V9SVt9bFVFpzECYPNv1AaezfQSADfe-w3YjIwkyT4UT3XD8HNkz1yUEXg2qzO1TPiefYE9YoD1Mxmspy8Agc3ky8W2d00YeDzPqOm-5PyW5hrP55Gv0ktVODsOrSnfXH0Bj3t3NAKPi1sEN_jKwdJV_4pSKvZYvCrZ7RWtvlwREuB0K5P63is10llRGTSUAmMfvr2ZN470wioWjjc"/>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-6 md:p-8 overflow-y-auto w-full max-w-5xl mx-auto">
+<!-- Page Header -->
+<div class="mb-8">
+<h1 class="font-h1 text-h1 text-on-background mb-2">Billing &amp; Plans</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">Manage your subscription, payment methods, and billing history.</p>
+</div>
+<!-- Current Plan Card -->
+<section class="mb-12">
+<div class="bg-surface-container rounded-xl border border-primary-container p-6 relative overflow-hidden">
+<!-- Subtle Gradient Background -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 blur-3xl rounded-full -mr-20 -mt-20 pointer-events-none"></div>
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<h2 class="font-h2 text-h2 text-on-background">Pro Plan</h2>
+<span class="bg-primary/20 text-primary font-label-caps text-[11px] px-2 py-1 rounded-full border border-primary/30">CURRENT</span>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mb-4 max-w-md">You are currently on the Pro plan, billed annually. Your plan is designed for growing teams needing advanced project management features.</p>
+<div class="flex items-center gap-6 text-on-surface-variant">
+<div>
+<div class="font-label-caps text-[11px] text-outline mb-1">RENEWAL DATE</div>
+<div class="font-body-sm text-body-sm font-medium text-on-background">Oct 15, 2024</div>
+</div>
+<div>
+<div class="font-label-caps text-[11px] text-outline mb-1">TEAM SEATS</div>
+<div class="font-body-sm text-body-sm font-medium text-on-background">12 / 15 Used</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-start md:items-end gap-4">
+<div class="text-left md:text-right">
+<div class="font-h1 text-[32px] font-bold text-on-background leading-none mb-1">$49</div>
+<div class="font-body-sm text-[13px] text-on-surface-variant">per user / month</div>
+</div>
+<button class="bg-primary hover:bg-primary-container text-surface-container-lowest font-body-sm text-body-sm font-medium py-2 px-4 rounded-lg transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+                                Manage Subscription
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Plan Comparison -->
+<section class="mb-12">
+<h3 class="font-h2 text-h2 text-on-background mb-6">Available Plans</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Free Plan -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant p-6 flex flex-col">
+<div class="mb-4">
+<h4 class="font-body-base text-[16px] font-semibold text-on-background mb-1">Free</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant h-10">For individuals and small starter projects.</p>
+</div>
+<div class="mb-6">
+<span class="font-h1 text-[28px] font-bold text-on-background">$0</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant">/forever</span>
+</div>
+<ul class="flex flex-col gap-3 mb-8 flex-1">
+<li class="flex items-start gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">check</span>
+                                Up to 3 projects
+                            </li>
+<li class="flex items-start gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">check</span>
+                                Basic task management
+                            </li>
+<li class="flex items-start gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">check</span>
+                                1GB storage
+                            </li>
+</ul>
+<button class="w-full bg-surface-variant hover:bg-surface-bright text-on-background font-body-sm text-body-sm font-medium py-2 px-4 rounded-lg transition-colors border border-outline-variant">
+                            Downgrade
+                        </button>
+</div>
+<!-- Pro Plan (Current Highlight) -->
+<div class="bg-surface-container rounded-xl border-2 border-primary p-6 flex flex-col relative transform md:-translate-y-2 shadow-lg shadow-primary/5">
+<div class="absolute top-0 right-6 -translate-y-1/2">
+<span class="bg-primary text-surface-container-lowest font-label-caps text-[10px] px-2 py-1 rounded-full font-bold">CURRENT</span>
+</div>
+<div class="mb-4">
+<h4 class="font-body-base text-[16px] font-semibold text-on-background mb-1">Pro</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant h-10">For growing teams needing advanced features.</p>
+</div>
+<div class="mb-6">
+<span class="font-h1 text-[28px] font-bold text-on-background">$49</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant">/user/mo</span>
+</div>
+<ul class="flex flex-col gap-3 mb-8 flex-1">
+<li class="flex items-start gap-2 text-on-background font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary mt-0.5">check</span>
+                                Unlimited projects
+                            </li>
+<li class="flex items-start gap-2 text-on-background font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary mt-0.5">check</span>
+                                Advanced reporting
+                            </li>
+<li class="flex items-start gap-2 text-on-background font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary mt-0.5">check</span>
+                                100GB storage
+                            </li>
+<li class="flex items-start gap-2 text-on-background font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary mt-0.5">check</span>
+                                Priority support
+                            </li>
+</ul>
+</div>
+<!-- Enterprise Plan -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant p-6 flex flex-col">
+<div class="mb-4">
+<h4 class="font-body-base text-[16px] font-semibold text-on-background mb-1">Enterprise</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant h-10">For large organizations with complex needs.</p>
+</div>
+<div class="mb-6">
+<span class="font-h1 text-[28px] font-bold text-on-background">$99</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant">/user/mo</span>
+</div>
+<ul class="flex flex-col gap-3 mb-8 flex-1">
+<li class="flex items-start gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">check</span>
+                                Everything in Pro
+                            </li>
+<li class="flex items-start gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">check</span>
+                                Custom SSO integration
+                            </li>
+<li class="flex items-start gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">check</span>
+                                Unlimited storage
+                            </li>
+<li class="flex items-start gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">check</span>
+                                Dedicated account manager
+                            </li>
+</ul>
+<button class="w-full bg-surface-variant hover:bg-surface-bright text-on-background font-body-sm text-body-sm font-medium py-2 px-4 rounded-lg transition-colors border border-outline-variant">
+                            Upgrade
+                        </button>
+</div>
+</div>
+</section>
+<!-- Payment Method & Invoices -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+<!-- Payment Method -->
+<section class="lg:col-span-1">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-h2 text-[18px] text-on-background">Payment Method</h3>
+<button class="text-primary hover:text-primary-container font-body-sm text-[13px] font-medium transition-colors">Edit</button>
+</div>
+<div class="bg-surface-container rounded-xl border border-outline-variant p-4 flex items-center gap-4">
+<div class="w-12 h-8 bg-surface-container-lowest rounded border border-outline-variant flex items-center justify-center p-1">
+<!-- Simulated Visa Icon -->
+<div class="text-[10px] font-bold text-on-surface italic">VISA</div>
+</div>
+<div class="flex-1">
+<div class="font-body-sm text-body-sm font-medium text-on-background">•••• •••• •••• 4242</div>
+<div class="font-body-sm text-[12px] text-on-surface-variant">Expires 12/25</div>
+</div>
+</div>
+</section>
+<!-- Invoice History -->
+<section class="lg:col-span-2">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-h2 text-[18px] text-on-background">Invoice History</h3>
+<button class="text-on-surface-variant hover:text-on-background font-body-sm text-[13px] transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                            Download All
+                        </button>
+</div>
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-4 font-label-caps text-[11px] text-outline font-medium w-1/3">DATE</th>
+<th class="py-3 px-4 font-label-caps text-[11px] text-outline font-medium w-1/4">AMOUNT</th>
+<th class="py-3 px-4 font-label-caps text-[11px] text-outline font-medium w-1/4">STATUS</th>
+<th class="py-3 px-4 font-label-caps text-[11px] text-outline font-medium w-1/6 text-right">INVOICE</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-[13px]">
+<tr class="border-b border-outline-variant hover:bg-surface-variant/30 transition-colors">
+<td class="py-3 px-4 text-on-background">Sep 15, 2024</td>
+<td class="py-3 px-4 text-on-surface-variant">$49.00</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#163300]/30 text-[#85e028] border border-[#85e028]/20 font-medium text-[11px]">
+                                            Paid
+                                        </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-variant/30 transition-colors">
+<td class="py-3 px-4 text-on-background">Aug 15, 2024</td>
+<td class="py-3 px-4 text-on-surface-variant">$49.00</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#163300]/30 text-[#85e028] border border-[#85e028]/20 font-medium text-[11px]">
+                                            Paid
+                                        </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/30 transition-colors">
+<td class="py-3 px-4 text-on-background">Jul 15, 2024</td>
+<td class="py-3 px-4 text-on-surface-variant">$49.00</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#163300]/30 text-[#85e028] border border-[#85e028]/20 font-medium text-[11px]">
+                                            Paid
+                                        </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Danger Zone -->
+<section class="mt-16 pt-8 border-t border-outline-variant border-dashed">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div>
+<h4 class="font-body-base text-[16px] font-medium text-on-background mb-1">Cancel Subscription</h4>
+<p class="font-body-sm text-[13px] text-on-surface-variant">Permanently cancel your plan and lose access to Pro features.</p>
+</div>
+<button class="bg-transparent border border-error/50 text-error hover:bg-error/10 font-body-sm text-body-sm font-medium py-2 px-4 rounded-lg transition-colors whitespace-nowrap">
+                        Cancel plan
+                    </button>
+</div>
+</section>
+</main>
+</div>
+</body></html>

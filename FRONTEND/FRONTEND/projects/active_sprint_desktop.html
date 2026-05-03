@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Sprint Dashboard - Apex</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+</head>
+<body class="bg-background text-on-background font-body-base antialiased flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-6 h-14 ml-[240px] max-w-[calc(100%-240px)] bg-gray-50 dark:bg-gray-950 docked full-width top-0 border-b border-b border-gray-200 dark:border-gray-800 flat no shadows z-40 fixed">
+<div class="flex items-center space-x-8">
+<span class="text-base font-bold text-gray-900 dark:text-gray-50">Apex</span>
+<nav class="hidden md:flex space-x-6">
+<a class="font-inter text-sm font-medium text-violet-600 dark:text-violet-400 border-b-2 border-violet-600 dark:border-violet-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50 Transition-all duration-200 ease-in-out" href="#">Board</a>
+<a class="font-inter text-sm font-medium text-gray-500 dark:text-gray-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50 Transition-all duration-200 ease-in-out" href="#">List</a>
+<a class="font-inter text-sm font-medium text-gray-500 dark:text-gray-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50 Transition-all duration-200 ease-in-out" href="#">Timeline</a>
+<a class="font-inter text-sm font-medium text-gray-500 dark:text-gray-400 pb-2 hover:text-gray-900 dark:hover:text-gray-50 Transition-all duration-200 ease-in-out" href="#">Dashboard</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 Transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 Transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 Transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[240px] border-r border-r border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 flex flex-col h-screen p-4 z-50 flat no shadows">
+<div class="flex items-center space-x-3 mb-8 px-2">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">
+                A
+            </div>
+<div>
+<div class="font-bold text-gray-900 dark:text-gray-50 text-sm">Apex</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">Workspace</div>
+</div>
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 ml-auto text-[18px]">expand_more</span>
+</div>
+<button class="w-full bg-[#8B5CF6] text-white rounded-lg py-2 px-4 flex items-center justify-center space-x-2 hover:opacity-90 transition-opacity mb-6 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="font-medium text-sm">New Project</span>
+</button>
+<div class="flex-1 space-y-1">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-md font-inter text-[13px] leading-tight text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span>Search</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-md font-inter text-[13px] leading-tight text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-md font-inter text-[13px] leading-tight text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+<span>Inbox</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-md font-inter text-[13px] leading-tight text-violet-600 dark:text-violet-400 bg-gray-200/50 dark:bg-gray-800/50 font-medium hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">tactic</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-md font-inter text-[13px] leading-tight text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>Teams</span>
+</a>
+</div>
+<div class="mt-auto space-y-1 pt-4 border-t border-gray-200 dark:border-gray-800">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-md font-inter text-[13px] leading-tight text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span>Favorites</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-md font-inter text-[13px] leading-tight text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors Active: opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] pt-14 flex-1 flex flex-col overflow-hidden bg-background">
+<div class="p-container-padding flex-1 overflow-auto">
+<!-- Stats Bar (Bento style grid) -->
+<div class="grid grid-cols-4 gap-gutter mb-6">
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant flex flex-col justify-between h-24">
+<span class="font-body-sm text-on-surface-variant">Remaining</span>
+<div class="flex items-baseline space-x-1">
+<span class="font-h1 text-on-surface">12</span>
+<span class="font-body-sm text-on-surface-variant">Days</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant flex flex-col justify-between h-24">
+<span class="font-body-sm text-on-surface-variant">Tasks Completed</span>
+<div class="flex items-baseline space-x-1">
+<span class="font-h1 text-on-surface">42</span>
+<span class="font-body-sm text-on-surface-variant">/ 65</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant flex flex-col justify-between h-24">
+<span class="font-body-sm text-on-surface-variant">Points Burned</span>
+<div class="flex items-baseline space-x-1">
+<span class="font-h1 text-on-surface">128</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant flex flex-col justify-between h-24">
+<span class="font-body-sm text-on-surface-variant">Velocity</span>
+<div class="flex items-baseline space-x-1">
+<span class="font-h1 text-on-surface">54</span>
+<span class="font-body-sm text-on-surface-variant">pts/cycle</span>
+</div>
+</div>
+</div>
+<!-- Sprint Banner -->
+<div class="bg-surface-container p-6 rounded-lg border border-outline-variant flex items-center justify-between mb-8">
+<div>
+<h2 class="font-h2 text-on-surface mb-1">Sprint 24</h2>
+<p class="font-body-sm text-on-surface-variant">Oct 12 - Oct 26</p>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-3">
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="65, 100" stroke-width="3"></path>
+</svg>
+<span class="absolute font-label-caps text-on-surface">65%</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">Progress</span>
+</div>
+<button class="bg-surface-container-high text-on-surface border border-outline-variant px-4 py-2 rounded-lg font-body-sm hover:bg-surface-variant transition-colors shadow-sm">
+                        Complete Sprint
+                    </button>
+</div>
+</div>
+<!-- Kanban Board -->
+<div class="flex space-x-gutter overflow-x-auto pb-4 h-[calc(100vh-360px)]">
+<!-- Column: To Do -->
+<div class="w-[320px] shrink-0 flex flex-col bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<div class="flex items-center justify-between mb-4 px-1">
+<div class="flex items-center space-x-2">
+<h3 class="font-body-sm font-medium text-on-surface">To Do</h3>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">4</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 space-y-card-gap overflow-y-auto">
+<!-- Task Card -->
+<div class="bg-surface p-3 rounded-lg border border-outline-variant shadow-sm hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-body-sm font-medium text-on-surface leading-tight">Design System Token Architecture Update</h4>
+<div class="w-1.5 h-1.5 rounded-full bg-error mt-1.5"></div>
+</div>
+<p class="font-mono text-on-surface-variant mb-3 line-clamp-2">Refactor existing style dictionary tokens to support multi-brand themes.</p>
+<div class="flex items-center justify-between text-on-surface-variant">
+<div class="flex items-center space-x-3">
+<span class="font-label-caps text-[10px]">SYS-102</span>
+<div class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">chat_bubble</span>
+<span class="text-[11px]">3</span>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-[9px] text-on-secondary-container">JD</div>
+</div>
+</div>
+<!-- Task Card -->
+<div class="bg-surface p-3 rounded-lg border border-outline-variant shadow-sm hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-body-sm font-medium text-on-surface leading-tight">API Gateway Rate Limiting</h4>
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary mt-1.5"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant mt-3">
+<div class="flex items-center space-x-3">
+<span class="font-label-caps text-[10px]">ENG-441</span>
+<div class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">attachment</span>
+<span class="text-[11px]">1</span>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full border border-dashed border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px]">person_add</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Progress -->
+<div class="w-[320px] shrink-0 flex flex-col bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<div class="flex items-center justify-between mb-4 px-1">
+<div class="flex items-center space-x-2">
+<h3 class="font-body-sm font-medium text-on-surface">In Progress</h3>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">2</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 space-y-card-gap overflow-y-auto">
+<!-- Task Card -->
+<div class="bg-surface p-3 rounded-lg border border-outline-variant shadow-sm hover:border-primary transition-colors cursor-pointer border-l-2 border-l-primary">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-body-sm font-medium text-on-surface leading-tight">Implement WebSockets for Real-time Notifications</h4>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant mt-3">
+<div class="flex items-center space-x-3">
+<span class="font-label-caps text-[10px]">ENG-439</span>
+<div class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">checklist</span>
+<span class="text-[11px]">2/5</span>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full bg-primary-container flex items-center justify-center text-[9px] text-on-primary-container">AK</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Review -->
+<div class="w-[320px] shrink-0 flex flex-col bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<div class="flex items-center justify-between mb-4 px-1">
+<div class="flex items-center space-x-2">
+<h3 class="font-body-sm font-medium text-on-surface">Review</h3>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">1</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 space-y-card-gap overflow-y-auto">
+<!-- Task Card -->
+<div class="bg-surface p-3 rounded-lg border border-outline-variant shadow-sm hover:border-primary transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-body-sm font-medium text-on-surface leading-tight">User Onboarding Flow V2</h4>
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary mt-1.5"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant mt-3">
+<div class="flex items-center space-x-3">
+<span class="font-label-caps text-[10px]">UX-204</span>
+</div>
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-[9px] text-on-secondary-container">MR</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Done -->
+<div class="w-[320px] shrink-0 flex flex-col bg-surface-container-low rounded-lg p-3 border border-outline-variant opacity-80">
+<div class="flex items-center justify-between mb-4 px-1">
+<div class="flex items-center space-x-2">
+<h3 class="font-body-sm font-medium text-on-surface">Done</h3>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">42</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 space-y-card-gap overflow-y-auto">
+<!-- Task Card (Done State) -->
+<div class="bg-surface-dim p-3 rounded-lg border border-outline-variant/50 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-body-sm font-medium text-on-surface-variant line-through leading-tight">Setup CI/CD Pipeline for Staging</h4>
+<span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+</div>
+<div class="flex items-center justify-between text-outline mt-3">
+<div class="flex items-center space-x-3">
+<span class="font-label-caps text-[10px]">ENG-430</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Hidden on md and up, as per rules) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden bg-white dark:bg-gray-900 border-t border-t border-gray-200 dark:border-gray-800 rounded-t-none shadow-lg dark:shadow-none">
+<button class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100 p-2">
+<span class="material-symbols-outlined text-[24px]">task_alt</span>
+<span class="font-inter text-[10px] font-medium mt-1">Tasks</span>
+</button>
+<button class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100 p-2">
+<span class="material-symbols-outlined text-[24px]">search</span>
+<span class="font-inter text-[10px] font-medium mt-1">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100 p-2">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+<span class="font-inter text-[10px] font-medium mt-1">Inbox</span>
+</button>
+<button class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:bg-gray-100 dark:active:bg-gray-800 scale-95 duration-100 p-2">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-inter text-[10px] font-medium mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

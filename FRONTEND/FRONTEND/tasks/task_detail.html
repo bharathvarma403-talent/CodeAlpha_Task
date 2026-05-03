@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Task Detail - FIX-421</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base h-screen flex flex-col overflow-hidden antialiased">
+<!-- Header (Mobile Full-Screen Modal) -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-surface-container border-b border-surface-variant shrink-0">
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<span class="font-mono text-mono text-on-surface-variant">FIX-421</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto hide-scrollbar pb-24">
+<!-- Editable Task Title -->
+<div class="px-container-padding py-6 border-b border-surface-variant">
+<h1 class="font-h1 text-h1 text-on-surface outline-none cursor-text mb-2" contenteditable="true">Fix authentication token expiry bug</h1>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span>Updated 2 hours ago by</span>
+<span class="font-medium text-on-surface">Alex</span>
+</div>
+</div>
+<!-- Properties Grid -->
+<div class="px-container-padding py-6 border-b border-surface-variant grid grid-cols-2 gap-y-4 gap-x-6">
+<!-- Status -->
+<div class="flex flex-col gap-1">
+  <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Status</span>
+  <button data-type="status-btn" class="flex items-center gap-2 bg-surface-variant hover:bg-surface-container-highest transition-colors rounded-DEFAULT px-2 py-1 w-fit border border-surface-container-highest">
+    <span class="w-2 h-2 rounded-full bg-outline"></span>
+    <span class="font-body-sm text-body-sm text-on-surface">Loading…</span>
+    <span class="material-symbols-outlined text-[14px] text-on-surface-variant">expand_more</span>
+  </button>
+</div>
+<!-- Priority -->
+<div class="flex flex-col gap-1">
+  <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Priority</span>
+  <button data-type="priority-btn" class="flex items-center gap-2 bg-surface hover:bg-surface-container transition-colors rounded-DEFAULT px-2 py-1 w-fit border border-surface-variant">
+    <span class="material-symbols-outlined text-[16px] text-primary">priority</span>
+    <span class="font-body-sm text-body-sm text-on-surface">Loading…</span>
+  </button>
+</div>
+<!-- Assignee -->
+<div class="flex flex-col gap-1">
+  <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Assignee</span>
+  <button data-type="assignee-btn" class="flex items-center gap-2 bg-surface hover:bg-surface-container transition-colors rounded-DEFAULT px-2 py-1 w-fit border border-transparent hover:border-surface-variant">
+    <img class="w-5 h-5 rounded-full object-cover" src="https://ui-avatars.com/api/?name=U&background=random"/>
+    <span class="font-body-sm text-body-sm text-on-surface">Loading…</span>
+  </button>
+</div>
+<!-- Due Date -->
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Due Date</span>
+<button class="flex items-center gap-2 bg-surface hover:bg-surface-container transition-colors rounded-DEFAULT px-2 py-1 w-fit border border-transparent hover:border-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+<span class="font-body-sm text-body-sm text-on-surface">Oct 24</span>
+</button>
+</div>
+<!-- Estimate -->
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Estimate</span>
+<div class="flex items-center gap-2 px-2 py-1">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">schedule</span>
+<span class="font-body-sm text-body-sm text-on-surface">3h / 5h</span>
+</div>
+</div>
+<!-- Labels -->
+<div class="flex flex-col gap-1">
+  <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Labels</span>
+  <div id="labels-container" class="flex items-center gap-1 flex-wrap px-2 py-1"></div>
+</div>
+</div>
+<!-- Description Section -->
+<div class="px-container-padding py-6 border-b border-surface-variant">
+<div class="flex items-center justify-between mb-3">
+<h2 class="font-h2 text-[16px] leading-[24px] font-semibold text-on-surface">Description</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-DEFAULT hover:bg-surface-container">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<div id="task-description" class="prose prose-invert prose-sm max-w-none text-on-surface-variant font-body-base text-body-base space-y-3">
+  Loading description…
+</div>
+</div>
+<!-- Subtasks List -->
+<div class="px-container-padding py-6 border-b border-surface-variant">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-h2 text-[16px] leading-[24px] font-semibold text-on-surface flex items-center gap-2">
+                    Subtasks
+                    <span class="bg-surface-variant text-on-surface-variant font-mono text-[10px] px-1.5 py-0.5 rounded-DEFAULT">1/3</span>
+</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-DEFAULT hover:bg-surface-container">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<div class="space-y-list-item-gap">
+<!-- Subtask 1 (Completed) -->
+<div class="flex items-start gap-3 p-2 hover:bg-surface-container rounded-lg transition-colors group cursor-pointer">
+<button class="mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-through truncate">Audit current token validation logic</p>
+</div>
+<img alt="Alex" class="w-5 h-5 rounded-full object-cover shrink-0 opacity-50" data-alt="A small circular avatar portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACdasIGzS3YP8b3fDKcwWUu0i_20KKcaKGHlCYbz3NQ-to6ENGiySLp4ofb3-WuXbyYG_btJhgbGuGaMsY5wzwy10aDz3g05PmXVTTA65s-7u3mKrRVc2DEJ6Uwrvb91XlJMhk41IB_Fn5X_N_yzeNugOtoMNBbrFCS62UIIr0Qt4ohMiU5poZSHcPIVLEUYHd7Jex1RxP9DMlaww5vDri0kBYnR7s7UMepNZoSVP7c1SwpL12KF1wu6YsdKr0Gf9UjWnY0d50FNo"/>
+</div>
+<!-- Subtask 2 -->
+<div class="flex items-start gap-3 p-2 hover:bg-surface-container rounded-lg transition-colors group cursor-pointer bg-surface-container-low">
+<button class="mt-0.5 text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface truncate">Update timezone offset calculation</p>
+</div>
+<img alt="Alex" class="w-5 h-5 rounded-full object-cover shrink-0" data-alt="A small circular avatar portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN62RDm3g7aFD2L_WwIb1WNnauz7TAbPun4FTCfdntX1KaZ_LkVS3DEsd5-kLQrRv1EwbignjjM0kuSgEL3D0w5iLyqhjwjQV7lH5uPb7_icCZZv2opajXzz3lIvp5nOwJSQg0tyuJw64EXbwxJs2YfQy-Xu97tsI92eHRj-IxEQj733IHViibEUj3Kix74AYx6ILNkMWEX218frexzZbiWtZ3sbzn1QBeg9mQYZyGYdyOfIzc7X1IvwlELiUN_pVGqWdrHeYOY1g"/>
+</div>
+<!-- Subtask 3 -->
+<div class="flex items-start gap-3 p-2 hover:bg-surface-container rounded-lg transition-colors group cursor-pointer">
+<button class="mt-0.5 text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface truncate">Write unit tests for edge cases</p>
+</div>
+<div class="w-5 h-5 rounded-full border border-dashed border-outline-variant flex items-center justify-center text-outline-variant shrink-0">
+<span class="material-symbols-outlined text-[12px]">person_add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Attachments Section -->
+<div class="px-container-padding py-6 border-b border-surface-variant">
+<h2 class="font-h2 text-[16px] leading-[24px] font-semibold text-on-surface mb-4">Attachments</h2>
+<div class="grid grid-cols-2 gap-3">
+<!-- Attachment 1 -->
+<div class="border border-surface-variant rounded-lg p-3 flex flex-col gap-2 bg-surface hover:bg-surface-container transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-2 pointer-events-none">
+<span class="material-symbols-outlined text-on-surface bg-surface-container-high rounded-full p-1 text-[16px]">download</span>
+</div>
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">MP4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface truncate">error_repro_video.mp4</p>
+<p class="font-mono text-[10px] text-on-surface-variant">2.4 MB</p>
+</div>
+<!-- Attachment 2 -->
+<div class="border border-surface-variant rounded-lg p-3 flex flex-col gap-2 bg-surface hover:bg-surface-container transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-2 pointer-events-none">
+<span class="material-symbols-outlined text-on-surface bg-surface-container-high rounded-full p-1 text-[16px]">download</span>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">image</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">PNG</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface truncate">token_flow_diagram.png</p>
+<p class="font-mono text-[10px] text-on-surface-variant">856 KB</p>
+</div>
+</div>
+</div>
+<!-- Comments / Activity Feed -->
+<div class="px-container-padding py-6">
+<h2 class="font-h2 text-[16px] leading-[24px] font-semibold text-on-surface mb-4">Activity</h2>
+<div id="activity-log-container" class="space-y-4"></div>
+<div id="comments-container" class="space-y-6 mt-8"></div>
+</div>
+</main>
+<!-- Floating Comment Input (Bottom Fixed) -->
+<div class="fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-surface-variant p-3 z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+  <form id="comment-form" class="flex items-end gap-2 bg-surface-container rounded-lg border border-surface-variant p-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+    <textarea id="comment-input" class="flex-1 bg-transparent border-none text-on-surface font-body-sm text-body-sm focus:ring-0 resize-none max-h-24 hide-scrollbar p-1 placeholder-on-surface-variant" placeholder="Write a comment..." rows="1" style="min-height: 24px;"></textarea>
+    <div class="flex items-center gap-1 shrink-0 pb-1">
+      <button type="submit" class="bg-primary text-on-primary p-1 rounded-DEFAULT hover:bg-primary-container transition-colors ml-1 shadow-sm">
+        <span class="material-symbols-outlined text-[20px]">send</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<script src="../assets/js/supabase.js"></script>
+<script>
+let currentTaskId = new URLSearchParams(window.location.search).get('id');
+let currentTask = null;
+
+async function loadTask() {
+  if (!currentTaskId) return;
+  try {
+    currentTask = await window.ApexApp.fetchTaskDetail(currentTaskId);
+    renderTask(currentTask);
+    loadActivity();
+  } catch (err) {
+    console.error(err);
+    alert('Failed to load task');
+  }
+}
+
+async function loadActivity() {
+  try {
+    const activity = await window.ApexApp.fetchActivity(currentTaskId);
+    renderActivity(activity);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function renderTask(task) {
+  document.title = `${task.identifier} - ${task.title}`;
+  document.querySelector('.text-mono').textContent = task.identifier;
+  document.querySelector('h1').textContent = task.title;
+  
+  // Status
+  const statusBtn = document.querySelector('[data-type="status-btn"]');
+  if (statusBtn) {
+    statusBtn.querySelector('span:nth-child(2)').textContent = task.status_ref?.name || 'Unknown';
+    statusBtn.querySelector('span:nth-child(1)').style.backgroundColor = task.status_ref?.color || '#ccc';
+  }
+
+  // Priority
+  const priorityBtn = document.querySelector('[data-type="priority-btn"]');
+  if (priorityBtn) {
+    priorityBtn.querySelector('span:nth-child(2)').textContent = task.priority.charAt(0).toUpperCase() + task.priority.slice(1);
+  }
+
+  // Assignee
+  const assigneeBtn = document.querySelector('[data-type="assignee-btn"]');
+  if (assigneeBtn) {
+    if (task.assignee) {
+      assigneeBtn.querySelector('img').src = task.assignee.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(task.assignee.full_name)}&background=random`;
+      assigneeBtn.querySelector('span').textContent = task.assignee.display_name || task.assignee.full_name;
+    } else {
+      assigneeBtn.querySelector('span').textContent = 'Unassigned';
+    }
+  }
+
+  // Description
+  document.getElementById('task-description').innerHTML = task.description || '<p class="italic text-outline">No description provided.</p>';
+
+  // Labels
+  const labelsContainer = document.getElementById('labels-container');
+  labelsContainer.innerHTML = task.task_labels?.map(tl => `
+    <span class="font-body-sm text-[11px] px-1.5 py-0.5 rounded-DEFAULT border" 
+          style="background: ${tl.label?.color}15; color: ${tl.label?.color}; border-color: ${tl.label?.color}40">
+      ${tl.label?.name}
+    </span>
+  `).join('') || '';
+
+  // Comments
+  const commentsContainer = document.getElementById('comments-container');
+  commentsContainer.innerHTML = task.comments?.map(c => `
+    <div class="flex gap-3">
+      <img src="${c.user?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.user?.full_name||'U')}`}" class="w-8 h-8 rounded-full object-cover shrink-0 mt-1"/>
+      <div class="flex-1">
+        <div class="flex items-baseline gap-2 mb-1">
+          <span class="font-body-sm text-body-sm font-medium text-on-surface">${c.user?.display_name || c.user?.full_name}</span>
+          <span class="font-mono text-[10px] text-on-surface-variant">${new Date(c.created_at).toLocaleString()}</span>
+        </div>
+        <div class="bg-surface-container-low border border-surface-variant rounded-lg rounded-tl-none p-3 font-body-sm text-body-sm text-on-surface-variant">
+          ${c.content}
+        </div>
+      </div>
+    </div>
+  `).join('') || '';
+}
+
+function renderActivity(logs) {
+  const container = document.getElementById('activity-log-container');
+  container.innerHTML = logs.map(log => `
+    <div class="flex gap-3 items-center opacity-80">
+      <div class="w-8 flex justify-center shrink-0">
+        <div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+      </div>
+      <div class="font-body-sm text-[12px] text-on-surface-variant">
+        <span class="font-medium text-on-surface">${log.actor?.display_name || log.actor?.full_name}</span> 
+        ${log.action === 'update' ? `changed ${log.field} from <span class="bg-surface-variant px-1 rounded">${log.old_value}</span> to <span class="bg-surface-variant px-1 rounded">${log.new_value}</span>` : `created the task`}
+        <span class="font-mono text-[10px] ml-1">${new Date(log.created_at).toLocaleTimeString()}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Events ───────────────────────────────────────────────────────────────────
+
+document.getElementById('comment-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const input = document.getElementById('comment-input');
+  const content = input.value.trim();
+  if (!content) return;
+
+  try {
+    const user = await window.ApexApp.getCurrentUser();
+    const { error } = await window._supabase.from('comments').insert({
+      task_id: currentTaskId,
+      user_id: user.id,
+      content: content
+    });
+    if (error) throw error;
+    input.value = '';
+    loadTask(); // reload to show new comment
+  } catch (err) {
+    alert(err.message);
+  }
+});
+
+document.addEventListener('supabase:ready', () => {
+  loadTask();
+  window.ApexApp.subscribeToComments(currentTaskId, loadTask);
+  window.ApexApp.subscribeToActivity(currentTaskId, loadActivity);
+});
+
+// Back button
+document.querySelector('.material-symbols-outlined[textContent="arrow_back"]').parentElement.onclick = () => window.history.back();
+document.querySelector('.material-symbols-outlined[textContent="close"]').parentElement.onclick = () => window.history.back();
+
+</script>
+</body></html>

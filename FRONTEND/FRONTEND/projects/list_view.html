@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>List View - Apex Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<link rel="stylesheet" href="../assets/css/globals.css" />
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base antialiased h-screen flex overflow-hidden">
+<!-- NavigationDrawer -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[240px] border-r border-gray-800 bg-gray-900 flex-col p-4 gap-2 z-20">
+<!-- Header -->
+<div class="flex items-center gap-3 px-2 py-3 mb-4 rounded-md hover:bg-gray-800/50 cursor-pointer transition-all duration-200">
+<img alt="workspace_avatar" class="w-8 h-8 rounded-md object-cover" data-alt="A professional workspace avatar showcasing a sleek, modern architectural building interior with subtle corporate branding in deep blues and grays, representing a sophisticated workspace switcher icon. The lighting is crisp and corporate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJCFNWhj4-i8xagvIk1ygQQhX8VQUN-lo3--rJhgBHBgQY0vc9v_KP4LE627Sb9kaXRyZktoyFxZPRBFROVu2udC1XqpkzO0W53UzKajFOERB8sPBTPCljzBbMUQAZ9MF9Rp5RCAp1kxaCEpuxpJxmGbd1MXO64CFxxbfSE6fdW8I1UpaPQGFdfvwhgV0D6PiakruVtPzMY78PkWzZ-lqgJz8TAAcCKWmSZBnUPa9lfP0tW-st_XT-blnmOfH5ymjBBr5Tb8qZOfQ"/>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="font-h2 text-h2 text-violet-500 truncate">Apex Engineering</span>
+<span class="font-body-sm text-body-sm text-gray-400 truncate">Workspace Switcher</span>
+</div>
+<span class="font-mono text-mono text-gray-500">Cmd+K</span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md font-body-sm text-body-sm text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">search</span>
+                Search
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md bg-gray-800 text-violet-400 font-semibold transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                My Tasks
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md font-body-sm text-body-sm text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+                Inbox
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md font-body-sm text-body-sm text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">star</span>
+                Favorites
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md font-body-sm text-body-sm text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+                Projects
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md font-body-sm text-body-sm text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+                Teams
+            </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-[240px] h-full w-full relative">
+<!-- TopAppBar (Mobile Top, Web Top) -->
+<header class="flex items-center justify-between px-4 h-14 w-full bg-gray-950 border-b border-gray-800 z-10 shrink-0">
+<div class="flex items-center gap-3">
+<button class="md:hidden text-gray-400 hover:text-gray-200 transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Breadcrumbs -->
+<div class="hidden md:flex items-center gap-2 font-body-sm text-body-sm text-gray-400">
+<a class="hover:text-gray-200 transition-colors" href="#">Projects</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-gray-200 transition-colors" href="#">Apex Frontend</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-background font-medium">Sprint 24</span>
+</div>
+<span class="md:hidden text-lg font-semibold text-white tracking-tight">Apex Projects</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<button class="p-1.5 text-gray-400 hover:text-gray-200 hover:bg-gray-900 rounded-md transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+<button class="p-1.5 text-gray-400 hover:text-gray-200 hover:bg-gray-900 rounded-md transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">sort</span>
+</button>
+<button class="p-1.5 text-violet-400 bg-gray-900 rounded-md transition-colors duration-150 ease-in-out border border-gray-800">
+<span class="material-symbols-outlined text-[20px]">view_list</span>
+</button>
+<button class="p-1.5 text-gray-400 hover:text-gray-200 hover:bg-gray-900 rounded-md transition-colors duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">view_kanban</span>
+</button>
+</div>
+<img alt="user_profile_avatar" class="w-7 h-7 rounded-full object-cover border border-gray-700" data-alt="A clean, professional headshot of a user with a subtle smile, against a neutral light background, suitable for a corporate profile avatar in a dark mode application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAbgHQotv2gJ-p3DedAqCl5b79ADb445iCkAc9cSFjszYe449vetRN1Skl2VpeEWE-hSm55OTmbXtZ5NIc82xzfw3cIkA6q8deuQjWG68yHcmgtaoWrZngK14TGU4H6o8bK9cXKpIM3WOQpNhsLxeVcph9b8JR23PIe5QUS_93VYM2Cw6SrStTAOfAZCbA6VfTgjgbwQs2W_fc_R9P58MkeLZhoCpsczb-pJXTNM_s3qz8b4gfpxtVl743t8UsbTjOH1RtlDpbNbM"/>
+</div>
+</header>
+<!-- List Canvas -->
+<div class="flex-1 overflow-auto bg-surface relative">
+<div class="min-w-[800px] w-full pb-32"> <!-- Padding bottom for bulk action bar -->
+<!-- Table Header -->
+<div class="sticky top-0 z-10 grid grid-cols-[40px_minmax(300px,_1fr)_120px_80px_120px_120px] items-center px-6 py-2 border-b border-outline-variant bg-surface-container-lowest font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+<div class="flex justify-center">
+<input class="w-4 h-4 rounded border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-surface-container-lowest" type="checkbox"/>
+</div>
+<div>Task Name</div>
+<div>Status</div>
+<div>Priority</div>
+<div>Assignee</div>
+<div>Due Date</div>
+</div>
+<!-- SPRINT 24 Group -->
+<div class="mt-4 mb-2 px-6">
+<button class="flex items-center gap-2 group w-full text-left">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors">expand_more</span>
+<h3 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wide">SPRINT 24</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-2 bg-surface-container-high px-2 py-0.5 rounded-full">4 tasks</span>
+<div class="h-px bg-outline-variant flex-1 ml-4 opacity-50"></div>
+</button>
+</div>
+<!-- Sprint 24 Tasks -->
+<div class="flex flex-col border-y border-outline-variant">
+<!-- Task Row 1 (Selected) -->
+<div class="group grid grid-cols-[40px_minmax(300px,_1fr)_120px_80px_120px_120px] items-center px-6 py-1.5 border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors bg-surface-container/30">
+<div class="flex justify-center">
+<input checked="" class="w-4 h-4 rounded border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="pr-4 truncate font-body-sm text-body-sm text-on-surface cursor-text flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">design_services</span>
+                            Design System Audit
+                        </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 cursor-pointer hover:bg-tertiary-container/30 transition-colors">In Progress</span>
+</div>
+<div class="flex items-center justify-start px-2 cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-error" style="font-variation-settings: 'FILL' 1;">keyboard_double_arrow_up</span>
+</div>
+<div class="flex items-center cursor-pointer">
+<img alt="Assignee" class="w-5 h-5 rounded-full border border-surface" data-alt="Small circular avatar profile picture of a woman with dark hair on a gray background, used in a dense table layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwmB6POfxAPPJ4-CJQ1iBzTKpP2yVVDdIxMa9KX9qCZnu6rLcc6YDXUj8DfZTqMqdGhUI03MXkNhJA0hAgBLMCWSrrAbLd-PbBBLB0RNd2h2Dbd-h6GGe1GeMJVjvw-Drb65TAxlH2aFw6rofe9fYEm9Dv-dz1mIp7wA0rUVsadF2IaY0H_jxiw0BVsujt_Lx1rRFiz80oIvKHv5L2GwQYdtAWZM8wY-6e1KUNEdxtCDzjQZaxQPzufbvL2sskZLc5WNfPDjIheRg"/>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface-variant truncate">Sarah J.</span>
+</div>
+<div class="font-mono text-mono text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
+                            Oct 12
+                        </div>
+</div>
+<!-- Task Row 2 -->
+<div class="group grid grid-cols-[40px_minmax(300px,_1fr)_120px_80px_120px_120px] items-center px-6 py-1.5 border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
+<div class="flex justify-center">
+<input class="w-4 h-4 rounded border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="pr-4 truncate font-body-sm text-body-sm text-on-surface cursor-text flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary-container">code</span>
+                            Implement NavigationDrawer component
+                        </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant cursor-pointer hover:bg-surface-container-highest transition-colors">To Do</span>
+</div>
+<div class="flex items-center justify-start px-2 cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">keyboard_arrow_up</span>
+</div>
+<div class="flex items-center cursor-pointer">
+<img alt="Assignee" class="w-5 h-5 rounded-full border border-surface" data-alt="Small circular avatar profile picture of a man with glasses on a light background, used in a dense table layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGi9dHEyDO9z7ZAipsifo2ZjFhu7XcznCkFSUMw2Thgbk9bDWHjItBr_pwH8yq1rdkuyJN7JGz2UOYeaBAnxG0sB1e9detUpTXgCTkGh-nRKKUxqvrHOrhFzDsn-43y3cQkaYtiJGlzpA9opJ3jDmZdnK2P2MpI4U2bwKapa2UNL4RQV07JFGRuep5jn2m4JtcASFgBMfe8OMvpRpV-6RysU3mUKnbPK8dRhNSFKBB2fGjvOFDj0ciOCtKVTG5B2SmhlCrQkLkWug"/>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface-variant truncate">Mike T.</span>
+</div>
+<div class="font-mono text-mono text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
+                            Oct 14
+                        </div>
+</div>
+<!-- Task Row 3 -->
+<div class="group grid grid-cols-[40px_minmax(300px,_1fr)_120px_80px_120px_120px] items-center px-6 py-1.5 border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
+<div class="flex justify-center">
+<input class="w-4 h-4 rounded border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="pr-4 truncate font-body-sm text-body-sm text-on-surface cursor-text flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-error">bug_report</span>
+                            Fix z-index stacking context on mobile header
+                        </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container/20 text-primary border border-primary-container/30 cursor-pointer hover:bg-primary-container/30 transition-colors">In Review</span>
+</div>
+<div class="flex items-center justify-start px-2 cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-error" style="font-variation-settings: 'FILL' 1;">keyboard_double_arrow_up</span>
+</div>
+<div class="flex items-center cursor-pointer">
+<div class="w-5 h-5 rounded-full border border-surface bg-surface-container-highest flex items-center justify-center text-[9px] font-medium text-on-surface">
+                                un
+                            </div>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface-variant truncate italic">Unassigned</span>
+</div>
+<div class="font-mono text-mono text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
+                            Oct 15
+                        </div>
+</div>
+<!-- Task Row 4 -->
+<div class="group grid grid-cols-[40px_minmax(300px,_1fr)_120px_80px_120px_120px] items-center px-6 py-1.5 hover:bg-surface-container-low transition-colors">
+<div class="flex justify-center">
+<input class="w-4 h-4 rounded border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="pr-4 truncate font-body-sm text-body-sm text-on-surface-variant line-through cursor-text flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-outline">description</span>
+                            Update README documentation
+                        </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-variant text-on-surface-variant border border-outline-variant cursor-pointer hover:bg-surface-container-highest transition-colors">Done</span>
+</div>
+<div class="flex items-center justify-start px-2 cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-outline">remove</span>
+</div>
+<div class="flex items-center cursor-pointer opacity-70">
+<img alt="Assignee" class="w-5 h-5 rounded-full border border-surface" data-alt="Small circular avatar profile picture of a user, desaturated indicating completed task status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc8sK7tdlGRklWdej_d4JYlUjWjWbzd1zkFc0DNcaZ2Dn2cGp0wtNSIllqEtWaI6Czi-X_ymK0lWuWY4hhLVxVT-1lbjX4XDGf8Qemzy2rFtagt8Q1YQm6LJNS5E261CMxARdIxadINvq0CunCA5Uy6ldAcBZgj11Y5ip5lhPRvwSg2iYbfAkY2oNYQ9dUPnvua4v-y28D2uWsByK-aBDdgKO2vg4rGin13r3JTdL9FGj-_msgv09S4uyElUek3imId1axtAHDVo4"/>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface-variant truncate">You</span>
+</div>
+<div class="font-mono text-mono text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
+                            Oct 10
+                        </div>
+</div>
+</div>
+<!-- BACKLOG Group -->
+<div class="mt-8 mb-2 px-6">
+<button class="flex items-center gap-2 group w-full text-left">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors transform -rotate-90">expand_more</span>
+<h3 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wide">BACKLOG</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-2 bg-surface-container-high px-2 py-0.5 rounded-full">12 tasks</span>
+<div class="h-px bg-outline-variant flex-1 ml-4 opacity-50"></div>
+</button>
+</div>
+<!-- Backlog tasks (collapsed visually by omitting them, or showing just one) -->
+<div class="flex flex-col border-y border-outline-variant">
+<div class="group grid grid-cols-[40px_minmax(300px,_1fr)_120px_80px_120px_120px] items-center px-6 py-1.5 hover:bg-surface-container-low transition-colors">
+<div class="flex justify-center">
+<input class="w-4 h-4 rounded border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="pr-4 truncate font-body-sm text-body-sm text-on-surface cursor-text flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-outline">database</span>
+                            Migrate user schema
+                        </div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant cursor-pointer hover:bg-surface-container-highest transition-colors">To Do</span>
+</div>
+<div class="flex items-center justify-start px-2 cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-outline">remove</span>
+</div>
+<div class="flex items-center cursor-pointer">
+<div class="w-5 h-5 rounded-full border border-surface bg-surface-container-highest flex items-center justify-center text-[9px] font-medium text-on-surface">
+                                un
+                            </div>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface-variant truncate italic">Unassigned</span>
+</div>
+<div class="font-mono text-mono text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
+                            No Date
+                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bulk Action Bar -->
+<div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-surface-container-highest border border-outline-variant rounded-lg shadow-2xl px-4 py-2.5 flex items-center gap-4 z-30 min-w-[400px]">
+<div class="flex items-center gap-2 border-r border-outline-variant pr-4">
+<span class="flex items-center justify-center w-5 h-5 bg-primary text-on-primary rounded font-mono text-[11px] font-bold">1</span>
+<span class="font-body-sm text-body-sm text-on-surface">selected</span>
+</div>
+<div class="flex items-center gap-1 flex-1">
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded transition-colors flex items-center gap-1.5 px-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span class="font-body-sm text-body-sm">Edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded transition-colors flex items-center gap-1.5 px-2">
+<span class="material-symbols-outlined text-[18px]">label</span>
+<span class="font-body-sm text-body-sm">Status</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded transition-colors flex items-center gap-1.5 px-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="font-body-sm text-body-sm">Date</span>
+</button>
+<button class="p-1.5 text-error hover:bg-error-container/20 rounded transition-colors ml-auto flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

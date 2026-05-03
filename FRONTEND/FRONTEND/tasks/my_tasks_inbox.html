@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Tasks / Inbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="../assets/js/theme.js"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface h-screen w-full overflow-hidden flex font-body-base text-body-base">
+<!-- NavigationDrawer -->
+<nav class="fixed left-0 top-0 h-full w-[240px] border-r border-gray-800 bg-gray-900 flex flex-col p-4 gap-2 hidden md:flex z-50">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-6 px-2">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm shrink-0">
+                AE
+            </div>
+<div class="flex-1 min-w-0">
+<div class="font-inter text-sm font-semibold text-white truncate">Apex Engineering</div>
+<div class="text-[11px] text-gray-500 truncate">Workspace Switcher</div>
+</div>
+<span class="material-symbols-outlined text-gray-500 text-lg">unfold_more</span>
+</div>
+<!-- Navigation Items -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium" href="#">
+<span class="material-symbols-outlined text-lg">search</span>
+            Search
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-800 text-violet-400 font-semibold transition-all duration-200 font-inter text-[13px]" href="#">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            My Tasks
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium" href="#">
+<span class="material-symbols-outlined text-lg">inbox</span>
+            Inbox
+            <span class="ml-auto bg-violet-500/20 text-violet-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold">12</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium" href="#">
+<span class="material-symbols-outlined text-lg">star</span>
+            Favorites
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium" href="#">
+<span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+            Projects
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition-all duration-200 font-inter text-[13px] font-medium" href="#">
+<span class="material-symbols-outlined text-lg">group</span>
+            Teams
+        </a>
+<div class="mt-auto pt-4 border-t border-gray-800 px-2 flex justify-between items-center text-gray-500 text-[11px]">
+<span>Cmd+K</span>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-full md:ml-[240px] relative w-full">
+<!-- TopAppBar (Mobile Only) -->
+<header class="md:hidden flex items-center justify-between px-4 h-14 w-full bg-gray-950 border-b border-gray-800 z-40 sticky top-0">
+<button class="text-gray-400 hover:text-gray-100 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-lg font-semibold text-white tracking-tight">Apex Projects</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional individual looking confident, set against a dark, minimalist background. The lighting is dramatic yet professional, highlighting their features subtly. The overall tone is corporate and modern, matching a sleek, dark-mode software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMggPD3LJVzM2ewFLIK_ZkjZhLv38FMTVMNp3IOlbW2YYEld2iclF7wcmTJceuMGJHkt2RBRIMCdjNfLOaPUqrN1P9agqPei_r2bmPLMnzp4h91fyfO8lyLGvJEpfkcNHFF2kNRiHJyaR50P9i2zwaUe9rMLrUcGlTtXMCB0MqVvkQllrt7pVophth3GeIUGxLNjsfyIWvzZ04LFGWH-b9AT4iqsh2PsgB5mQwzWfxxUhPtaeDbnFq_K7YvK2byYtmtpJEaYTM2aM"/>
+</button>
+</header>
+<!-- Page Header & Tabs -->
+<div class="px-container-padding pt-8 pb-4 border-b border-surface-container flex-shrink-0">
+<h1 class="font-h1 text-h1 text-on-surface mb-6">Work</h1>
+<div class="flex gap-6 border-b border-surface-variant">
+<button class="pb-3 text-body-sm font-body-sm text-primary font-semibold border-b-2 border-primary">My Tasks</button>
+<button class="pb-3 text-body-sm font-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Inbox</button>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto p-container-padding">
+<div class="max-w-4xl mx-auto space-y-8">
+<!-- Overdue Section -->
+<section>
+<div class="flex items-center gap-2 mb-3">
+<h2 class="font-label-caps text-label-caps text-error">OVERDUE</h2>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-1.5 py-0.5 rounded-full font-medium">2</span>
+</div>
+<div class="space-y-list-item-gap">
+<!-- Task Item -->
+<div class="group flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-surface-container hover:border-surface-variant transition-colors cursor-pointer">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="font-body-sm text-body-sm text-on-surface font-medium truncate">Finalize Q3 Marketing Strategy Deck</div>
+<div class="flex items-center gap-3 mt-1">
+<span class="font-mono text-mono text-on-surface-variant">MK-104</span>
+<span class="flex items-center gap-1 text-[11px] text-error font-medium">
+<span class="material-symbols-outlined text-[12px]">calendar_today</span>
+                                        Yesterday
+                                    </span>
+</div>
+</div>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+</div>
+</div>
+<!-- Task Item -->
+<div class="group flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-surface-container hover:border-surface-variant transition-colors cursor-pointer">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="font-body-sm text-body-sm text-on-surface font-medium truncate">Review Security Audit Report</div>
+<div class="flex items-center gap-3 mt-1">
+<span class="font-mono text-mono text-on-surface-variant">ENG-492</span>
+<span class="flex items-center gap-1 text-[11px] text-error font-medium">
+<span class="material-symbols-outlined text-[12px]">calendar_today</span>
+                                        Mon
+                                    </span>
+<span class="flex items-center gap-1 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[12px]">chat_bubble</span>
+                                        3
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Due Today Section -->
+<section>
+<div class="flex items-center gap-2 mb-3">
+<h2 class="font-label-caps text-label-caps text-primary">DUE TODAY</h2>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-1.5 py-0.5 rounded-full font-medium">3</span>
+</div>
+<div class="space-y-list-item-gap">
+<!-- Task Item -->
+<div class="group flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-surface-container hover:border-surface-variant transition-colors cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"></div>
+<button class="text-on-surface-variant hover:text-primary transition-colors ml-1">
+<span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="font-body-sm text-body-sm text-on-surface font-medium truncate">Update Client API Credentials</div>
+<div class="flex items-center gap-3 mt-1">
+<span class="font-mono text-mono text-on-surface-variant">API-099</span>
+<span class="flex items-center gap-1 text-[11px] text-primary font-medium">
+<span class="material-symbols-outlined text-[12px]">calendar_today</span>
+                                        Today
+                                    </span>
+</div>
+</div>
+</div>
+<!-- Task Item -->
+<div class="group flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-surface-container hover:border-surface-variant transition-colors cursor-pointer">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="font-body-sm text-body-sm text-on-surface font-medium truncate">Prepare Board Meeting Slides</div>
+<div class="flex items-center gap-3 mt-1">
+<span class="font-mono text-mono text-on-surface-variant">EXEC-12</span>
+<span class="flex items-center gap-1 text-[11px] text-primary font-medium">
+<span class="material-symbols-outlined text-[12px]">calendar_today</span>
+                                        Today
+                                    </span>
+<span class="flex items-center gap-1 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[12px]">attachment</span>
+                                        2
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming Section -->
+<section>
+<div class="flex items-center gap-2 mb-3">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant">UPCOMING</h2>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-1.5 py-0.5 rounded-full font-medium">12</span>
+</div>
+<div class="space-y-list-item-gap opacity-80">
+<!-- Task Item -->
+<div class="group flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border border-transparent hover:border-surface-variant transition-colors cursor-pointer">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium truncate">Design System Documentation Sync</div>
+<div class="flex items-center gap-3 mt-1">
+<span class="font-mono text-mono text-on-surface-variant/70">DS-405</span>
+<span class="flex items-center gap-1 text-[11px] text-on-surface-variant/70 font-medium">
+<span class="material-symbols-outlined text-[12px]">calendar_today</span>
+                                        Tomorrow
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-gray-950 border-t border-gray-800 flex justify-around items-center h-16 pb-safe z-50">
+<a class="flex flex-col items-center justify-center w-full h-full text-gray-500 hover:text-gray-300" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">search</span>
+<span class="text-[10px] font-medium">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-violet-400" href="#">
+<span class="material-symbols-outlined text-2xl mb-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-medium">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-gray-500 hover:text-gray-300 relative" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">inbox</span>
+<span class="text-[10px] font-medium">Inbox</span>
+<span class="absolute top-2 right-6 w-2 h-2 bg-violet-500 rounded-full"></span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-gray-500 hover:text-gray-300" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">format_list_bulleted</span>
+<span class="text-[10px] font-medium">Projects</span>
+</a>
+</nav>
+</body></html>
